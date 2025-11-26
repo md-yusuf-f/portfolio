@@ -302,12 +302,12 @@
                     <!-- Trust Indicators / Quick Stats -->
                     <div class="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-800 mt-8">
                         <div>
-                            <div class="text-3xl font-bold text-white">40%</div>
-                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Efficiency Gain</div>
+                            <div class="text-3xl font-bold text-white">100%</div>
+                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Test Coverage</div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold text-white">45%</div>
-                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Vuln. Reduction</div>
+                            <div class="text-3xl font-bold text-white">35%</div>
+                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Faster Execution</div>
                         </div>
                         <div>
                             <div class="text-3xl font-bold text-white">20+</div>
@@ -347,7 +347,7 @@
                             </div>
                             <div class="flex">
                                 <span class="text-primary-500 mr-4">6</span>
-                                <span class="text-neutral-300 ml-8">security.reduceVulnerabilities(</span><span class="text-orange-400">45%</span><span class="text-neutral-300">);</span>
+                                <span class="text-neutral-300 ml-8">security.reduceDefects(</span><span class="text-orange-400">30%</span><span class="text-neutral-300">);</span>
                             </div>
                             <div class="flex">
                                 <span class="text-primary-500 mr-4">7</span>
@@ -389,10 +389,11 @@
                     <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Azure</span>
                 </div>
 
-                <!-- AWS -->
+                <!-- Jenkins (Replaced AWS) -->
                 <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 1.5s;">
-                    <i class="ph ph-amazon-logo text-5xl md:text-6xl text-yellow-500 drop-shadow-[0_0_10px_rgba(234,179,8,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">AWS</span>
+                    <!-- Using a generic build/gear icon as Jenkins specific icon might not be available in phosphor/fontawesome free standard sets, but checking fontawesome -->
+                    <i class="fa-brands fa-jenkins text-5xl md:text-6xl text-neutral-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Jenkins</span>
                 </div>
 
                 <!-- Docker -->
@@ -401,10 +402,10 @@
                     <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Docker</span>
                 </div>
 
-                <!-- Oracle/DB -->
+                <!-- PostgreSQL (Replaced Oracle) -->
                 <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 2.5s;">
-                    <i class="ph ph-database text-5xl md:text-6xl text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Oracle</span>
+                    <i class="ph ph-database text-5xl md:text-6xl text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">PostgreSQL</span>
                 </div>
             </div>
 
@@ -423,9 +424,9 @@
                         SonarQube
                     </span>
 
-                    <!-- Kubernetes (Blue) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-blue-500 hover:text-blue-400 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] cursor-default">
-                        Kubernetes
+                    <!-- Git Actions (Replaced Kubernetes) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_-5px_rgba(249,115,22,0.5)] cursor-default">
+                        Git Actions
                     </span>
 
                     <!-- Hibernate (Olive Green) -->
@@ -525,12 +526,12 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Cloud & DevOps</h3>
                     <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                         Orchestrating deployments using Hydra and XLR, with AWS capabilities. Established robust incident alerting protocols to minimize downtime.
+                         Orchestrating deployments using Hydra and XLR. Facilitated early detection of issues using ELF monitoring and incident raising.
                     </p>
                     <ul class="space-y-2 text-sm text-neutral-500">
                         <li>• Hydra & XLR Deployments</li>
-                        <li>• Incident Alerting</li>
-                        <li>• Docker & Kubernetes</li>
+                        <li>• ELF Monitoring</li>
+                        <li>• Docker & Jenkins</li>
                     </ul>
                 </div>
 
@@ -541,12 +542,12 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Quality & Security</h3>
                     <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                        Leading proactive vulnerability remediation across all enterprise applications. Ensuring rigorous compliance and code quality standards.
+                        Leading proactive vulnerability remediation across all enterprise applications. Achieved 100% JUnit test coverage and SonarQube compliance.
                     </p>
                     <ul class="space-y-2 text-sm text-neutral-500">
                         <li>• Vulnerability Management</li>
                         <li>• Security Compliance</li>
-                        <li>• Code Review Leadership</li>
+                        <li>• 100% Test Coverage</li>
                     </ul>
                 </div>
             </div>
@@ -581,8 +582,9 @@
                                     <div class="text-xs text-neutral-500">Endpoints Created</div>
                                 </div>
                                 <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">45%</div>
-                                    <div class="text-xs text-neutral-500">Vulnerability Drop</div>
+                                    <!-- Updated to 35% Speed Boost based on resume -->
+                                    <div class="text-2xl font-bold text-primary-400">35%</div>
+                                    <div class="text-xs text-neutral-500">Speed Boost</div>
                                 </div>
                             </div>
                             
@@ -604,12 +606,12 @@
                             
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                 <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">40%</div>
-                                    <div class="text-xs text-neutral-500">Coverage Increase</div>
+                                    <div class="text-2xl font-bold text-primary-400">100%</div>
+                                    <div class="text-xs text-neutral-500">Coverage Achieved</div>
                                 </div>
                                 <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">15%</div>
-                                    <div class="text-xs text-neutral-500">Issue Reduction</div>
+                                    <div class="text-2xl font-bold text-primary-400">30%</div>
+                                    <div class="text-xs text-neutral-500">Defect Reduction</div>
                                 </div>
                             </div>
 
@@ -627,12 +629,12 @@
                     <div class="grid md:grid-cols-12 gap-8 items-center">
                         <div class="md:col-span-8">
                             <h3 class="text-2xl font-bold text-white mb-2">DevOps & Operational Efficiency</h3>
-                            <p class="text-neutral-400 mb-6">Streamlining deployment workflows using Hydra & XLR while enhancing incident response through automated alerting systems.</p>
+                            <p class="text-neutral-400 mb-6">Streamlining deployment workflows using Hydra & XLR while enhancing incident response using ELF monitoring.</p>
                             
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                 <div class="bg-black p-4 rounded-lg border border-neutral-800">
                                     <div class="text-2xl font-bold text-primary-400">25%</div>
-                                    <div class="text-xs text-neutral-500">Workflow Boost</div>
+                                    <div class="text-xs text-neutral-500">Adoption Rate</div>
                                 </div>
                                 <div class="bg-black p-4 rounded-lg border border-neutral-800">
                                     <div class="text-2xl font-bold text-primary-400">20%</div>
@@ -642,8 +644,8 @@
 
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Hydra / XLR</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Incident Alerting</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Jenkins</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">ELF Monitoring</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Docker / Jenkins</span>
                             </div>
                         </div>
                     </div>
