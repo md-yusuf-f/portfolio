@@ -266,32 +266,41 @@
     </nav>
 
     <!-- Hero Section (Added ID="hero") -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <!-- Increased pt-20 to pt-32 to lower the content -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">
         <!-- Background Accents -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none opacity-50" id="hero-glow"></div>
         
         <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8 animate-fade-in-up">
-                    <!-- Updated Status Pill with ID and Transition Styles -->
-                    <div id="status-pill" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-pill text-green-500 text-xs font-semibold tracking-wider uppercase whitespace-nowrap overflow-hidden" style="transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); width: auto;">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)] shrink-0"></span>
-                        <!-- Added ID for JavaScript targeting and transition utility -->
-                        <span id="status-text" class="transition-opacity duration-700 ease-in-out">Available</span>
-                    </div>
-                    
-                    <h1 class="text-6xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-4 name-gradient-glow">
-                        Mohammed Yusuf
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">
-                        <span class="text-gradient-primary">Software Engineer</span>
-                    </h2>
-                    
-                    <p class="text-lg text-neutral-400 max-w-xl leading-relaxed">
+            
+            <!-- HEADLINE SECTION: Name & Title spanning full width -->
+            <div class="space-y-6 mb-12 animate-fade-in-up relative z-30">
+                <!-- Updated Status Pill -->
+                <div id="status-pill" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-pill text-green-500 text-xs font-semibold tracking-wider uppercase whitespace-nowrap overflow-hidden" style="transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); width: auto;">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)] shrink-0"></span>
+                    <span id="status-text" class="transition-opacity duration-700 ease-in-out">Available</span>
+                </div>
+                
+                <!-- Name moved here, spanning full width -->
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-4 name-gradient-glow relative z-30">
+                    Mohammed Yusuf
+                </h1>
+                <!-- Title moved here -->
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white relative z-30">
+                    <span class="text-gradient-primary">Software Engineer</span>
+                </h2>
+            </div>
+
+            <!-- CONTENT GRID: Description vs Graphic -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- LEFT COLUMN: Description, Buttons, Stats -->
+                <div class="space-y-8 animate-fade-in-up relative z-30" style="animation-delay: 0.2s;"> <!-- Added slight delay for staggered effect -->
+                    <p class="text-lg text-neutral-400 max-w-xl leading-relaxed relative z-30">
                         Specializing in scalable Java ecosystems, Microservices, and Distributed Systems. I transform legacy infrastructures into high-efficiency modern architecture.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 pt-8">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 relative z-30">
                         <!-- Resume Download Button (Linked to GitHub) -->
                         <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="px-8 py-4 glass-button text-white font-medium rounded-lg text-center flex items-center justify-center gap-2 group">
                             <i class="ph ph-download-simple text-xl group-hover:text-primary-400 group-hover:translate-y-1 transition-transform"></i>
@@ -300,7 +309,7 @@
                     </div>
 
                     <!-- Trust Indicators / Quick Stats -->
-                    <div class="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-800 mt-8">
+                    <div class="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-800 mt-8 relative z-30">
                         <div>
                             <div class="text-3xl font-bold text-white">100%</div>
                             <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Test Coverage</div>
@@ -316,9 +325,10 @@
                     </div>
                 </div>
 
-                <!-- Abstract Visual / Code Graphic -->
-                <div class="hidden lg:block relative animate-float">
-                    <div class="glass-card p-8 rounded-2xl relative z-20 bg-black/60">
+                <!-- RIGHT COLUMN: Abstract Visual / Code Graphic -->
+                <!-- Removed excessive top margin since it's now side-by-side with description, not name -->
+                <div class="hidden lg:block relative animate-float z-10">
+                    <div class="glass-card p-8 rounded-2xl relative bg-black/60">
                         <div class="flex items-center space-x-2 mb-6">
                             <div class="w-3 h-3 rounded-full bg-red-500"></div>
                             <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -343,11 +353,13 @@
                             </div>
                             <div class="flex">
                                 <span class="text-primary-500 mr-4">5</span>
+                                <!-- Matches resume: 40% efficiency -->
                                 <span class="text-neutral-300 ml-8">efficiency += </span> <span class="text-orange-400">40%</span><span class="text-neutral-300">;</span>
                             </div>
                             <div class="flex">
                                 <span class="text-primary-500 mr-4">6</span>
-                                <span class="text-neutral-300 ml-8">security.reduceDefects(</span><span class="text-orange-400">30%</span><span class="text-neutral-300">);</span>
+                                <!-- Matches resume: 30% defect reduction -->
+                                <span class="text-neutral-300 ml-8">security.reduceDefects(</span><span class="text-orange-400">30%</span><span class="text-neutral-300">;</span>
                             </div>
                             <div class="flex">
                                 <span class="text-primary-500 mr-4">7</span>
@@ -414,6 +426,11 @@
                 <p class="text-center text-xs text-neutral-600 mb-8 uppercase tracking-widest">Advanced Toolkit</p>
                 <div class="flex flex-wrap justify-center gap-6">
                     
+                    <!-- Apache Kafka (Red/Orange) - NEW -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_20px_-5px_rgba(239,68,68,0.5)] cursor-default">
+                        Apache Kafka
+                    </span>
+
                     <!-- GitHub Copilot (Indigo) -->
                     <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.5)] cursor-default">
                         GitHub Copilot
@@ -510,12 +527,12 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Backend Engineering</h3>
                     <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                        Expertise in Java, Spring Framework, Hibernate, and Microservices. Designed 40+ RESTful endpoints and optimized database interactions.
+                        Expertise in Java, Spring Framework, Hibernate, and Microservices. Designed event-driven architectures using Apache Kafka for real-time data processing.
                     </p>
                     <ul class="space-y-2 text-sm text-neutral-500">
                         <li>• Spring Boot & Data</li>
+                        <li>• Apache Kafka Integration</li>
                         <li>• RESTful API Design</li>
-                        <li>• JUnit & Mockito Testing</li>
                     </ul>
                 </div>
 
