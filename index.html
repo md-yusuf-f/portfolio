@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Yusuf | Software Engineer & Cloud Specialist</title>
+    <meta name="description" content="Portfolio of Mohammed Yusuf, a Software Engineer specializing in Java, Spring Boot, and Azure Security.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- FontAwesome (Added for Docker Logo) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        // Dynamic Primary Color System via CSS Variables
+                        primary: {
+                            400: 'var(--color-primary-400)',
+                            500: 'var(--color-primary-500)', 
+                            600: 'var(--color-primary-600)',
+                        },
+                        neutral: {
+                            800: 'var(--color-bg-800)',
+                            900: 'var(--color-bg-900)',
+                            950: 'var(--color-bg-950)', // Used for main background
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'text-shimmer': 'textShimmer 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        textShimmer: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Variables for Dynamic Theming */
+        :root {
+            /* Default: Interstellar (Black Hole Theme) */
+            --color-primary-400: #fbbf24; /* Amber Gold */
+            --color-primary-500: #d97706; 
+            --color-primary-600: #b45309; 
+            
+            /* Background Colors - Void Blacks */
+            --color-bg-950: #000000; 
+            --color-bg-900: #0a0a0a; 
+            --color-bg-800: #171717; 
+        }
+
+        /* Custom Scrollbar - Matches Theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg-950); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-bg-800); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary-500); 
+        }
+
+        /* Gradient Text Utility */
+        .text-gradient-primary {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, var(--color-primary-400), #ffffff);
+        }
+
+        /* Enhanced Animated Gradient Text for Name */
+        .name-gradient-glow {
+            background: linear-gradient(
+                to right, 
+                #ffffff 20%, 
+                var(--color-primary-400) 40%, 
+                var(--color-primary-500) 60%, 
+                #ffffff 80%
+            );
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 4s linear infinite;
+            /* subtle text shadow to enhance the "glow" perception against black */
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.2); 
+        }
+
+        /* Glassmorphism Card - Updated with Liquid Texture */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03); /* Neutral transparent white */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Added inset shadow for liquid top-highlight effect */
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            border-color: var(--color-primary-500);
+            transform: translateY(-4px);
+            /* Enhanced glow on hover */
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.5), 
+                0 0 15px -3px var(--color-primary-500),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2); 
+        }
+        
+        /* Override background utility to use var */
+        .bg-black {
+            background-color: var(--color-bg-950) !important;
+        }
+        .bg-neutral-950 {
+            background-color: var(--color-bg-900) !important;
+        }
+        /* Ensure borders match theme */
+        .border-neutral-900, .border-neutral-800 {
+            border-color: var(--color-bg-800) !important;
+        }
+        .bg-neutral-900 {
+            background-color: var(--color-bg-900) !important;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Liquid Glass Button Style */
+        .glass-button {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); /* Top highlight for liquid feel */
+            transition: all 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-primary-500);
+            box-shadow: 
+                0 0 20px -5px var(--color-primary-500), /* Outer Glow */
+                inset 0 0 15px rgba(255, 255, 255, 0.1); /* Inner Glow/Liquid feel */
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        /* New Glass Pill Style for Status */
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2); /* Top highlight */
+        }
+
+        /* Glass Icon for Contact Section (Liquid effect without forced hover color) */
+        .glass-icon {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); /* Top highlight for liquid feel */
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-black text-neutral-300 font-sans selection:bg-primary-500/30 selection:text-primary-400 transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md border-b border-neutral-800"></div>
+        <div class="max-w-7xl mx-auto px-6 h-20 relative flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-tight text-white group relative z-50">
+                MY<span class="text-primary-500">.</span>
+            </a>
+            
+            <!-- Desktop Menu (Updated with Sliding Liquid Glass Border) -->
+            <div class="hidden md:flex items-center relative bg-neutral-900/80 rounded-full p-1 border border-neutral-800 backdrop-blur-sm" id="desktop-nav-container">
+                <!-- The Sliding Indicator (Liquid Glass Effect) -->
+                <div id="nav-indicator" class="absolute top-1 bottom-1 rounded-full transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) opacity-0 pointer-events-none z-0
+                    bg-white/5 
+                    backdrop-blur-lg 
+                    border border-white/10 
+                    shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+                    <!-- Inner glow for extra "liquid" depth -->
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-b from-white/5 to-transparent opacity-50"></div>
+                </div>
+
+                <!-- Links -->
+                <a href="#about" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">About</a>
+                <a href="#expertise" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Expertise</a>
+                <a href="#work" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Project Impacts</a>
+                <a href="#contact" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Get in Touch</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white relative z-50" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-neutral-900 border-b border-neutral-800 p-6 z-40">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
+                <a href="#expertise" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Expertise</a>
+                <a href="#work" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Project Impacts</a>
+                <a href="#contact" class="block text-primary-400 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Added ID="hero") -->
+    <!-- Increased pt-20 to pt-32 to lower the content -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">
+        <!-- Background Accents -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none opacity-50" id="hero-glow"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+            
+            <!-- HEADLINE SECTION: Name & Title spanning full width -->
+            <div class="space-y-6 mb-12 animate-fade-in-up relative z-30">
+                <!-- Updated Status Pill -->
+                <div id="status-pill" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-pill text-green-500 text-xs font-semibold tracking-wider uppercase whitespace-nowrap overflow-hidden" style="transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); width: auto;">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)] shrink-0"></span>
+                    <span id="status-text" class="transition-opacity duration-700 ease-in-out">Available</span>
+                </div>
+                
+                <!-- Name moved here, spanning full width -->
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-4 name-gradient-glow relative z-30">
+                    Mohammed Yusuf
+                </h1>
+                <!-- Title moved here -->
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white relative z-30">
+                    <span class="text-gradient-primary">Software Engineer</span>
+                </h2>
+            </div>
+
+            <!-- CONTENT GRID: Description vs Graphic -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- LEFT COLUMN: Description, Buttons, Stats -->
+                <div class="space-y-8 animate-fade-in-up relative z-30" style="animation-delay: 0.2s;"> <!-- Added slight delay for staggered effect -->
+                    <p class="text-lg text-neutral-400 max-w-xl leading-relaxed relative z-30">
+                        I architect and build robust Java ecosystems and distributed systems. My focus is on modernizing legacy infrastructure and crafting high-efficiency microservices that scale effortlessly.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 relative z-30">
+                        <!-- Resume Download Button (Linked to GitHub) -->
+                        <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="px-8 py-4 glass-button text-white font-medium rounded-lg text-center flex items-center justify-center gap-2 group">
+                            <i class="ph ph-download-simple text-xl group-hover:text-primary-400 group-hover:translate-y-1 transition-transform"></i>
+                            <span>Resume</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators / Quick Stats -->
+                    <div class="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-800 mt-8 relative z-30">
+                        <div>
+                            <div class="text-3xl font-bold text-white">100%</div>
+                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Test Coverage</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">35%</div>
+                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Faster Execution</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">20+</div>
+                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Engineers Mentored</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Abstract Visual / Code Graphic -->
+                <!-- Removed excessive top margin since it's now side-by-side with description, not name -->
+                <div class="hidden lg:block relative animate-float z-10">
+                    <div class="glass-card p-8 rounded-2xl relative bg-black/60">
+                        <div class="flex items-center space-x-2 mb-6">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="font-mono text-sm space-y-3">
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">1</span>
+                                <span class="text-purple-400">@Service</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">2</span>
+                                <span class="text-blue-400">public class</span> <span class="text-yellow-200 ml-2">MigrationService</span> <span class="text-neutral-300">{</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">3</span>
+                                <span class="text-neutral-500 ml-4">// Migrating legacy .NET to Java Spring Boot</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">4</span>
+                                <span class="text-purple-400 ml-4">public void</span> <span class="text-blue-300">optimizeWorkflow</span><span class="text-neutral-300">() {</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">5</span>
+                                <!-- Matches resume: 40% efficiency -->
+                                <span class="text-neutral-300 ml-8">efficiency += </span> <span class="text-orange-400">40%</span><span class="text-neutral-300">;</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">6</span>
+                                <!-- Matches resume: 30% defect reduction -->
+                                <span class="text-neutral-300 ml-8">security.reduceDefects(</span><span class="text-orange-400">30%</span><span class="text-neutral-300">;</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">7</span>
+                                <span class="text-neutral-300 ml-4">}</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-primary-500 mr-4">8</span>
+                                <span class="text-neutral-300">}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logos / Tech Stack -->
+    <section class="py-16 border-y border-neutral-900 bg-neutral-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-center text-sm font-semibold text-neutral-500 mb-12 uppercase tracking-widest">Technologies & Tools</p>
+            
+            <!-- Primary Tech Grid -->
+            <div class="flex flex-wrap justify-center gap-12 md:gap-24 mb-12">
+                <!-- Java -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 0s;">
+                    <i class="ph ph-coffee text-5xl md:text-6xl text-orange-500 drop-shadow-[0_0_10px_rgba(249,115,22,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Java</span>
+                </div>
+
+                <!-- Spring Boot -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 0.5s;">
+                    <i class="ph ph-leaf text-5xl md:text-6xl text-emerald-500 drop-shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Spring Boot</span>
+                </div>
+
+                <!-- Azure -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 1s;">
+                    <i class="ph ph-cloud-arrow-up text-5xl md:text-6xl text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Azure</span>
+                </div>
+
+                <!-- Jenkins (Replaced AWS) -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 1.5s;">
+                    <!-- Using a generic build/gear icon as Jenkins specific icon might not be available in phosphor/fontawesome free standard sets, but checking fontawesome -->
+                    <i class="fa-brands fa-jenkins text-5xl md:text-6xl text-neutral-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Jenkins</span>
+                </div>
+
+                <!-- Docker -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 2s;">
+                    <i class="fa-brands fa-docker text-5xl md:text-6xl text-sky-500 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Docker</span>
+                </div>
+
+                <!-- PostgreSQL (Replaced Oracle) -->
+                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 2.5s;">
+                    <i class="ph ph-database text-5xl md:text-6xl text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
+                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">PostgreSQL</span>
+                </div>
+            </div>
+
+            <!-- Advanced Toolkit List (Updated: Text Only + Color Glows) -->
+            <div class="border-t border-neutral-800 pt-12">
+                <p class="text-center text-xs text-neutral-600 mb-8 uppercase tracking-widest">Advanced Toolkit</p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    
+                    <!-- Apache Kafka (Red/Orange) - NEW -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_20px_-5px_rgba(239,68,68,0.5)] cursor-default">
+                        Apache Kafka
+                    </span>
+
+                    <!-- GitHub Copilot (Indigo) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.5)] cursor-default">
+                        GitHub Copilot
+                    </span>
+
+                    <!-- SonarQube (Cyan) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-cyan-500 hover:text-cyan-400 hover:shadow-[0_0_20px_-5px_rgba(6,182,212,0.5)] cursor-default">
+                        SonarQube
+                    </span>
+
+                    <!-- Git Actions (Replaced Kubernetes) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_-5px_rgba(249,115,22,0.5)] cursor-default">
+                        Git Actions
+                    </span>
+
+                    <!-- Hibernate (Olive Green) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-lime-600 hover:text-lime-500 hover:shadow-[0_0_20px_-5px_rgba(132,204,22,0.5)] cursor-default">
+                        Hibernate
+                    </span>
+
+                    <!-- JUnit (Split Red/Green Glow) -->
+                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-neutral-700 hover:text-white hover:shadow-[-15px_0_30px_-5px_rgba(239,68,68,0.6),15px_0_30px_-5px_rgba(16,185,129,0.6)] cursor-default">
+                        JUnit 5
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-black relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12">
+                <div class="md:col-span-4 reveal">
+                    <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
+                    <div class="w-20 h-1 bg-primary-500 mb-8"></div>
+                    <!-- Updated with glass-card for liquid effect -->
+                    <div class="p-6 rounded-xl glass-card">
+                        <i class="ph ph-certificate text-4xl text-primary-400 mb-4"></i>
+                        <h3 class="text-lg font-semibold text-white mb-2">Certified Expert</h3>
+                        <p class="text-neutral-400 text-sm mb-2">Microsoft Certified: Azure Security Engineer Associate</p>
+                        <!-- Added Verify Link -->
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/MohammedYusuf-0636/C2BED8FD1B1373F?sharingId=DBB00A15C7365DA5" target="_blank" class="text-xs font-mono text-primary-500 hover:underline flex items-center gap-1">
+                            <i class="ph ph-check-circle"></i> Verify (ID: C2BED8FD1B1373F)
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-8 space-y-6 text-neutral-400 leading-relaxed reveal">
+                    <p class="text-lg">
+                        I work as a System Engineer at <span class="text-white font-medium">Tata Consultancy Services</span>, creating secure, efficient code and scalable solutions.
+                    </p>
+                    <p>
+                        With strong experience in end-to-end engineering, I manage the entire software lifecycle—from initial concept and system design to deployment and ongoing monitoring. I don’t just write code; I ensure stability, security, and continuous improvement through regular updates and smart enhancements that meet evolving business needs.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="ph ph-check-circle text-primary-500"></i>
+                            <span>Full SDLC Ownership</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ph ph-check-circle text-primary-500"></i>
+                            <span>Incident Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ph ph-check-circle text-primary-500"></i>
+                            <span>Security Patching</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ph ph-users-three text-primary-500"></i>
+                            <span>Mentored 20+ Engineers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-24 bg-neutral-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#262626 1px, transparent 1px); background-size: 32px 32px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Core Capabilities</h2>
+                <!-- Updated description text -->
+                <p class="text-neutral-400">Here’s the tech stack I rely on to build enterprise-grade solutions.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-xl reveal hover:bg-neutral-900/50">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 text-blue-400">
+                        <i class="ph ph-code text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Backend Engineering</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                        Building high-performance, scalable services. I specialize in modernizing legacy systems and designing event-driven architectures that handle complex data flows efficiently.
+                    </p>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li>• Spring Boot & Data</li>
+                        <li>• Apache Kafka Integration</li>
+                        <li>• RESTful API Design</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-xl reveal hover:bg-neutral-900/50" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-primary-400">
+                        <i class="ph ph-cloud text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Cloud & DevOps</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                         Ensuring reliable and automated delivery. I focus on streamlining deployment pipelines and implementing proactive monitoring to maintain high system availability.
+                    </p>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li>• Automated Deployments</li>
+                        <li>• Proactive Monitoring</li>
+                        <li>• Docker & Jenkins</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-xl reveal" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 text-purple-400">
+                        <i class="ph ph-shield-check text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Quality & Security</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                        Prioritizing secure and stable code. I champion rigorous testing standards and proactive vulnerability management to safeguard enterprise applications.
+                    </p>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li>• Vulnerability Management</li>
+                        <li>• Security Compliance</li>
+                        <li>• 100% Test Coverage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work / Project Impacts -->
+    <section id="work" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <span class="text-primary-500 font-semibold tracking-wider uppercase text-sm">Portfolio</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Project Impacts</h2>
+                </div>
+                <div class="hidden md:block w-1/3 h-px bg-neutral-800 mb-2"></div>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Project 1 -->
+                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-100 transition-opacity">
+                        <i class="ph ph-arrow-up-right text-4xl text-primary-500"></i>
+                    </div>
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">Legacy System Migration</h3>
+                            <p class="text-neutral-400 mb-6">Led the migration from .NET/Mainframe to a robust Java Spring Boot ecosystem.</p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <div class="text-2xl font-bold text-primary-400">40+</div>
+                                    <div class="text-xs text-neutral-500">Endpoints Created</div>
+                                </div>
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <!-- Updated to 35% Speed Boost based on resume -->
+                                    <div class="text-2xl font-bold text-primary-400">35%</div>
+                                    <div class="text-xs text-neutral-500">Speed Boost</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Java</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Spring Boot</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">REST API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">Testing Automation Framework</h3>
+                            <p class="text-neutral-400 mb-6">Implemented robust testing protocols using Cucumber and JUnit to ensure every release is stable.</p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <div class="text-2xl font-bold text-primary-400">100%</div>
+                                    <div class="text-xs text-neutral-500">Coverage Achieved</div>
+                                </div>
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <div class="text-2xl font-bold text-primary-400">30%</div>
+                                    <div class="text-xs text-neutral-500">Defect Reduction</div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">JUnit</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Cucumber</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Quality Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">DevOps & Operational Efficiency</h3>
+                            <p class="text-neutral-400 mb-6">Streamlined deployment workflows with Hydra & XLR and enhanced incident response through ELF monitoring.</p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <div class="text-2xl font-bold text-primary-400">25%</div>
+                                    <div class="text-xs text-neutral-500">Adoption Rate</div>
+                                </div>
+                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
+                                    <div class="text-2xl font-bold text-primary-400">20%</div>
+                                    <div class="text-xs text-neutral-500">Build Time Cut</div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Hydra / XLR</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">ELF Monitoring</span>
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Docker / Jenkins</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial / Trust Section -->
+    <section class="py-20 bg-gradient-to-b from-black to-neutral-950 border-t border-neutral-900">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <i class="ph ph-quotes text-5xl text-neutral-700 mb-6 inline-block"></i>
+            <h3 class="text-2xl md:text-3xl font-medium text-white mb-8 leading-snug">
+                "Consistently praised in <span class="text-primary-400">95% of client feedback</span> for proactive problem-solving and system enhancements."
+            </h3>
+            <div class="flex items-center justify-center space-x-4">
+                <div class="w-12 h-12 bg-neutral-800 rounded-full flex items-center justify-center text-xl font-bold text-primary-500">T</div>
+                <div class="text-left">
+                    <div class="text-white font-bold">Feedback Record</div>
+                    <div class="text-primary-500 text-sm">Tata Consultancy Services</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-neutral-950 relative">
+        <div class="max-w-3xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-bold text-white mb-4">Contact</h2>
+                <p class="text-neutral-400">Want to optimize your architecture? Let's chat.</p>
+            </div>
+
+            <div class="bg-black border border-neutral-800 rounded-2xl p-8 md:p-12 shadow-2xl reveal">
+                
+                <!-- Contact Methods Grid -->
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
+                    
+                    <!-- Email (Red) -->
+                    <a href="mailto:mohammedyusuf1799@gmail.com" class="group flex flex-col items-center gap-3" title="Email Me">
+                        <!-- Replaced bg-black/border with glass-icon -->
+                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-red-500 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.6)] group-hover:-translate-y-1">
+                            <i class="ph ph-envelope-simple text-3xl text-red-500 transition-transform duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-500 group-hover:text-red-500 transition-colors tracking-widest uppercase">Email</span>
+                    </a>
+
+                    <!-- Phone (Green) -->
+                    <a href="tel:+918056660332" class="group flex flex-col items-center gap-3" title="Call Me">
+                        <!-- Replaced bg-black/border with glass-icon -->
+                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-emerald-500 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] group-hover:-translate-y-1">
+                            <i class="ph ph-phone text-3xl text-emerald-500 transition-transform duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-500 group-hover:text-emerald-500 transition-colors tracking-widest uppercase">Phone</span>
+                    </a>
+
+                    <!-- LinkedIn (Blue) -->
+                    <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="LinkedIn">
+                        <!-- Replaced bg-black/border with glass-icon -->
+                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-blue-500 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] group-hover:-translate-y-1">
+                            <i class="ph ph-linkedin-logo text-3xl text-blue-500 transition-transform duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-500 group-hover:text-blue-500 transition-colors tracking-widest uppercase">LinkedIn</span>
+                    </a>
+
+                    <!-- GitHub (White) -->
+                    <a href="https://github.com/md-yusuf-f" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="GitHub">
+                        <!-- Replaced bg-black/border with glass-icon -->
+                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:-translate-y-1">
+                            <i class="ph ph-github-logo text-3xl text-white transition-transform duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-500 group-hover:text-white transition-colors tracking-widest uppercase">GitHub</span>
+                    </a>
+
+                    <!-- LeetCode (Yellow) -->
+                    <a href="https://leetcode.com/u/YusufSaf/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="LeetCode">
+                        <!-- Replaced bg-black/border with glass-icon -->
+                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-yellow-500 group-hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] group-hover:-translate-y-1">
+                            <i class="ph ph-code text-3xl text-yellow-500 transition-transform duration-300 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-500 group-hover:text-yellow-500 transition-colors tracking-widest uppercase">LeetCode</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-neutral-900">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-lg font-bold text-white">MOHAMMED YUSUF<span class="text-primary-500">.</span></span>
+                <p class="text-neutral-500 text-sm mt-1">Based in Tamil Nadu / Bengaluru, India</p>
+            </div>
+            <!-- Footer Icons -->
+            <div class="flex space-x-6 text-neutral-500">
+                <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 hover:scale-110 transition-all"><i class="ph ph-linkedin-logo text-3xl"></i></a>
+                <a href="https://github.com/md-yusuf-f" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:scale-110 transition-all"><i class="ph ph-github-logo text-3xl"></i></a>
+                <a href="https://leetcode.com/u/YusufSaf/" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 hover:scale-110 transition-all" title="LeetCode"><i class="ph ph-code text-3xl"></i></a>
+            </div>
+            <div class="mt-4 md:mt-0 text-neutral-600 text-sm">
+                &copy; 2024 Mohammed Yusuf. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Scroll Reveal Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reveal Animation Logic
+            const reveals = document.querySelectorAll('.reveal');
+
+            function reveal() {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        if (reveals[i]) reveals[i].classList.add('active');
+                    }
+                }
+            }
+
+            window.addEventListener('scroll', reveal);
+            reveal(); // Trigger once on load
+            
+            // Navbar Glass Effect on Scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.getElementById('navbar');
+                if (nav) {
+                    if (window.scrollY > 50) {
+                        nav.classList.add('shadow-lg');
+                    } else {
+                        nav.classList.remove('shadow-lg');
+                    }
+                }
+            });
+
+            // --- Robust Navigation Active Link Indicator Logic ---
+            const indicator = document.getElementById('nav-indicator');
+            const navContainer = document.getElementById('desktop-nav-container');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            // Initialize tracking for all sections to avoid "reduce of empty array" errors
+            let visibleSections = {
+                'hero': 0,
+                'about': 0,
+                'expertise': 0,
+                'work': 0,
+                'contact': 0
+            };
+
+            function updateIndicator(link) {
+                if (!link || !indicator) return;
+                
+                // Use offsetWidth/offsetLeft for precise element-relative positioning
+                // This ensures the slider matches the element's width (text + padding) exactly
+                const width = link.offsetWidth;
+                const left = link.offsetLeft;
+                
+                // Apply styles
+                indicator.style.width = `${width}px`;
+                indicator.style.transform = `translateX(${left}px)`;
+                indicator.style.opacity = '1';
+            }
+
+            function hideIndicator() {
+                if(indicator) indicator.style.opacity = '0';
+            }
+
+            function snapToActiveSection() {
+                // Determine which section is currently most visible
+                const keys = Object.keys(visibleSections);
+                if (keys.length === 0) {
+                    hideIndicator();
+                    return;
+                }
+
+                // Find section with max visibility ratio
+                const mostVisibleSection = keys.reduce((a, b) => 
+                    visibleSections[a] > visibleSections[b] ? a : b
+                );
+
+                // If currently in Hero section or no section is visible enough, hide it
+                // Adjusted threshold for better responsiveness
+                if (mostVisibleSection === 'hero' || visibleSections[mostVisibleSection] < 0.1) {
+                    hideIndicator();
+                } else {
+                    const activeLink = document.querySelector(`.nav-link[href="#${mostVisibleSection}"]`);
+                    if (activeLink) {
+                        updateIndicator(activeLink);
+                    } else {
+                        hideIndicator();
+                    }
+                }
+            }
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -20% 0px', // Focus on the center 60% of the screen
+                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    visibleSections[entry.target.id] = entry.intersectionRatio;
+                });
+                snapToActiveSection();
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Interaction Event Listeners
+            
+            // 1. Hover: Move to hovered link
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', (e) => updateIndicator(e.target));
+            });
+            
+            // 2. Mouse Leave: Snap back to currently active section
+            if (navContainer) {
+                navContainer.addEventListener('mouseleave', () => {
+                    snapToActiveSection();
+                });
+            }
+
+            // 3. Resize: Recalculate position (crucial for responsive layouts)
+            window.addEventListener('resize', () => {
+               snapToActiveSection();
+            });
+
+            // 4. Font Loading: Recalculate once fonts are ready to ensure correct widths
+            document.fonts.ready.then(() => {
+                snapToActiveSection();
+            });
+
+            // --- Status Text Rotator with Smooth Width Animation ---
+            const statusWords = ["Available", "Online", "Open to work"];
+            let statusIndex = 0;
+            const statusText = document.getElementById('status-text');
+            const statusPill = document.getElementById('status-pill');
+
+            if (statusText && statusPill) {
+                setInterval(() => {
+                    // 1. Lock current width to prepare for animation
+                    const currentWidth = statusPill.offsetWidth;
+                    statusPill.style.width = `${currentWidth}px`;
+                    
+                    // 2. Fade out text
+                    statusText.style.opacity = '0'; 
+
+                    setTimeout(() => {
+                        // 3. Prepare next state
+                        statusIndex = (statusIndex + 1) % statusWords.length;
+                        const newWord = statusWords[statusIndex];
+                        
+                        // 4. Measure new width invisible to user
+                        // We temporarily disable transition to snap to 'auto' and measure
+                        statusPill.style.transition = 'none';
+                        statusPill.style.width = 'auto';
+                        statusText.innerText = newWord;
+                        const newWidth = statusPill.offsetWidth;
+
+                        // 5. Reset to start position (previous width)
+                        statusPill.style.width = `${currentWidth}px`;
+                        
+                        // Force reflow to ensure the browser registers the width change
+                        void statusPill.offsetWidth; 
+
+                        // 6. Enable transition and animate to new width
+                        statusPill.style.transition = 'width 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                        statusPill.style.width = `${newWidth}px`;
+                        
+                        // 7. Fade in text
+                        statusText.style.opacity = '1';
+
+                        // 8. Cleanup: After animation, reset to auto to handle window resizing gracefully
+                        setTimeout(() => {
+                            statusPill.style.width = 'auto';
+                        }, 700); // Matches transition duration
+
+                    }, 700); // Wait for fade out
+                }, 4000); // Change every 4 seconds
+            }
+
+        });
+    </script>
+</body>
+</html>
