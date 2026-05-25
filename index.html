@@ -1,960 +1,1268 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Yusuf | Software Engineer & Cloud Specialist</title>
-    <meta name="description" content="Portfolio of Mohammed Yusuf, a Software Engineer specializing in Java, Spring Boot, and Azure Security.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter for UI -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <!-- FontAwesome (Added for Docker Logo) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Yusuf — Backend Software Engineer</title>
+<meta name="description" content="Backend Software Engineer specialising in Java, Spring Boot, Apache Kafka and self-hosted cloud infrastructure. 3+ years at Tata Consultancy Services.">
+<meta property="og:title" content="Mohammed Yusuf — Backend Software Engineer">
+<meta property="og:description" content="Java · Spring Boot · Kafka · Docker · Distributed Systems · Self-Hosted Infrastructure">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0d12;
+  --bg2: #0f1219;
+  --bg3: #141720;
+  --border: rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.12);
+  --accent: #e8ff47;
+  --accent2: rgba(232,255,71,.12);
+  --accent3: rgba(232,255,71,.06);
+  --blue: #4f9cf9;
+  --green: #3fcf8e;
+  --amber: #f5a623;
+  --rose: #ff6b6b;
+  --t1: #f0f0f0;
+  --t2: #8b8f9a;
+  --t3: #454852;
+  --r: 8px;
+  --r2: 12px;
+  --mono: 'IBM Plex Mono', monospace;
+}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        // Dynamic Primary Color System via CSS Variables
-                        primary: {
-                            400: 'var(--color-primary-400)',
-                            500: 'var(--color-primary-500)', 
-                            600: 'var(--color-primary-600)',
-                        },
-                        neutral: {
-                            800: 'var(--color-bg-800)',
-                            900: 'var(--color-bg-900)',
-                            950: 'var(--color-bg-950)', // Used for main background
-                        }
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'text-shimmer': 'textShimmer 3s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        textShimmer: {
-                            '0%': { backgroundPosition: '0% 50%' },
-                            '100%': { backgroundPosition: '100% 50%' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--t2);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    <style>
-        /* CSS Variables for Dynamic Theming */
-        :root {
-            /* Default: Interstellar (Black Hole Theme) */
-            --color-primary-400: #fbbf24; /* Amber Gold */
-            --color-primary-500: #d97706; 
-            --color-primary-600: #b45309; 
-            
-            /* Background Colors - Void Blacks */
-            --color-bg-950: #000000; 
-            --color-bg-900: #0a0a0a; 
-            --color-bg-800: #171717; 
-        }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-        /* Custom Scrollbar - Matches Theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--color-bg-950); 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--color-bg-800); 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-primary-500); 
-        }
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 200;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  background: rgba(11,13,18,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.1rem;
+  color: var(--t1); text-decoration: none;
+  letter-spacing: -.02em;
+}
+.logo .dot { color: var(--accent); }
+.nav-links { display: flex; gap: 2px; }
+.nav-links a {
+  padding: 6px 14px; border-radius: 6px;
+  color: var(--t3); font-size: .84rem; font-weight: 500;
+  text-decoration: none;
+  transition: color .15s, background .15s;
+}
+.nav-links a:hover { color: var(--t1); background: rgba(255,255,255,.04); }
+.nav-links a.active { color: var(--accent); background: var(--accent3); }
+.nav-right { display: flex; align-items: center; gap: .75rem; }
+.nav-resume {
+  padding: 7px 18px; border-radius: 6px;
+  background: var(--accent); color: #0b0d12;
+  font-size: .82rem; font-weight: 700;
+  text-decoration: none;
+  transition: opacity .2s;
+  letter-spacing: .01em;
+}
+.nav-resume:hover { opacity: .85; }
+.nav-mobile-btn {
+  display: none;
+  background: none; border: 1px solid var(--border2);
+  border-radius: 6px; color: var(--t2);
+  font-size: .95rem; padding: 5px 9px; cursor: pointer;
+}
+#mobile-menu {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0;
+  background: rgba(11,13,18,.97);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 2rem; z-index: 199;
+  flex-direction: column; gap: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+}
+#mobile-menu.open { display: flex; }
+#mobile-menu a {
+  color: var(--t2); text-decoration: none;
+  font-size: .92rem; font-weight: 500;
+  padding: .55rem .75rem; border-radius: 6px;
+  transition: background .15s;
+}
+#mobile-menu a:hover { background: var(--accent3); color: var(--accent); }
 
-        /* Gradient Text Utility */
-        .text-gradient-primary {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(to right, var(--color-primary-400), #ffffff);
-        }
+/* SECTION HELPERS */
+section { padding: 88px 2.5rem; }
+.si { max-width: 1120px; margin: 0 auto; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: .72rem;
+  font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: .75rem;
+}
+.section-label::before {
+  content: ''; width: 18px; height: 1px;
+  background: var(--accent); flex-shrink: 0;
+}
+h2.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800; color: var(--t1);
+  letter-spacing: -.03em; line-height: 1.1;
+  margin-bottom: .5rem;
+}
+.section-sub { color: var(--t2); font-size: .93rem; max-width: 480px; }
 
-        /* Enhanced Animated Gradient Text for Name */
-        .name-gradient-glow {
-            background: linear-gradient(
-                to right, 
-                #ffffff 20%, 
-                var(--color-primary-400) 40%, 
-                var(--color-primary-500) 60%, 
-                #ffffff 80%
-            );
-            background-size: 200% auto;
-            color: #fff;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textShimmer 4s linear infinite;
-            /* subtle text shadow to enhance the "glow" perception against black */
-            text-shadow: 0 0 30px rgba(251, 191, 36, 0.2); 
-        }
+/* REVEAL */
+.rv { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+.rv.vis { opacity: 1; transform: none; }
+.d1 { transition-delay: .07s; } .d2 { transition-delay: .14s; }
+.d3 { transition-delay: .21s; } .d4 { transition-delay: .28s; }
 
-        /* Glassmorphism Card - Updated with Liquid Texture */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03); /* Neutral transparent white */
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Added inset shadow for liquid top-highlight effect */
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            border-color: var(--color-primary-500);
-            transform: translateY(-4px);
-            /* Enhanced glow on hover */
-            box-shadow: 
-                0 20px 25px -5px rgba(0, 0, 0, 0.5), 
-                0 0 15px -3px var(--color-primary-500),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2); 
-        }
-        
-        /* Override background utility to use var */
-        .bg-black {
-            background-color: var(--color-bg-950) !important;
-        }
-        .bg-neutral-950 {
-            background-color: var(--color-bg-900) !important;
-        }
-        /* Ensure borders match theme */
-        .border-neutral-900, .border-neutral-800 {
-            border-color: var(--color-bg-800) !important;
-        }
-        .bg-neutral-900 {
-            background-color: var(--color-bg-900) !important;
-        }
+/* ==============================
+   HERO
+   ============================== */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+/* subtle grid background */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+/* accent glow */
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  top: -200px; left: -200px;
+  background: radial-gradient(circle, rgba(232,255,71,.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1120px; width: 100%;
+  margin: 0 auto;
+  padding: 100px 2.5rem 60px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 5rem;
+  align-items: center;
+}
+.hero-left { display: flex; flex-direction: column; gap: 1.5rem; }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.availability-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px 5px 10px;
+  background: rgba(63,207,142,.06);
+  border: 1px solid rgba(63,207,142,.2);
+  border-radius: 100px;
+  width: fit-content;
+  font-family: var(--mono); font-size: .7rem;
+  font-weight: 500; color: var(--green);
+  letter-spacing: .04em;
+}
+.avail-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(63,207,142,.5); }
+  50% { box-shadow: 0 0 0 5px rgba(63,207,142,0); }
+}
 
-        /* Liquid Glass Button Style */
-        .glass-button {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); /* Top highlight for liquid feel */
-            transition: all 0.3s ease;
-        }
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: -.04em;
+  color: var(--t1);
+}
+.hero-name .accent { color: var(--accent); }
 
-        .glass-button:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--color-primary-500);
-            box-shadow: 
-                0 0 20px -5px var(--color-primary-500), /* Outer Glow */
-                inset 0 0 15px rgba(255, 255, 255, 0.1); /* Inner Glow/Liquid feel */
-            transform: translateY(-2px);
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
+.hero-tagline {
+  font-size: 1rem; color: var(--t2); font-weight: 400;
+  line-height: 1.6; max-width: 480px;
+}
+.hero-tagline strong { color: var(--t1); font-weight: 500; }
 
-        /* New Glass Pill Style for Status */
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2); /* Top highlight */
-        }
+.hero-code {
+  font-family: var(--mono); font-size: .8rem;
+  color: var(--t3); padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--r) var(--r) 0;
+  letter-spacing: .01em;
+}
+.hero-code .kw { color: var(--blue); }
+.hero-code .str { color: var(--accent); }
 
-        /* Glass Icon for Contact Section (Liquid effect without forced hover color) */
-        .glass-icon {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.1); /* Top highlight for liquid feel */
-            transition: all 0.3s ease;
-        }
-    </style>
+.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: var(--r);
+  background: var(--accent); color: #0b0d12;
+  font-size: .875rem; font-weight: 700;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+}
+.btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: var(--r);
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--t2); font-size: .875rem; font-weight: 500;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.stat-item { display: flex; flex-direction: column; gap: 2px; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.75rem; font-weight: 800;
+  color: var(--t1); letter-spacing: -.04em; line-height: 1;
+}
+.stat-num .accent { color: var(--accent); font-style: normal; }
+.stat-label {
+  font-family: var(--mono); font-size: .65rem;
+  color: var(--t3); text-transform: uppercase;
+  letter-spacing: .1em; font-weight: 500;
+}
+
+/* HERO PHOTO */
+.hero-right { display: flex; justify-content: center; align-items: center; }
+.photo-frame {
+  position: relative; width: 300px;
+}
+.photo-border {
+  position: absolute; inset: -1px;
+  background: linear-gradient(135deg, var(--accent) 0%, rgba(79,156,249,.6) 50%, rgba(232,255,71,.1) 100%);
+  border-radius: 16px; z-index: 0;
+}
+.photo-inner-wrap {
+  position: absolute; inset: 1px;
+  background: var(--bg); border-radius: 15px; z-index: 1;
+}
+.photo-img {
+  position: relative; width: 100%; height: 380px;
+  border-radius: 15px; overflow: hidden; z-index: 2;
+}
+.photo-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  filter: brightness(.92) contrast(1.05);
+}
+.photo-img::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+  background: linear-gradient(to top, rgba(11,13,18,.7), transparent);
+  pointer-events: none;
+}
+.photo-tag {
+  position: absolute; bottom: -14px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 16px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 100px;
+  font-family: var(--mono); font-size: .7rem;
+  color: var(--t2); white-space: nowrap; z-index: 10;
+  box-shadow: 0 4px 24px rgba(0,0,0,.5);
+}
+.photo-tag svg { color: var(--accent); }
+
+/* ==============================
+   SKILL TICKER
+   ============================== */
+.ticker-wrap {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0; overflow: hidden; position: relative;
+}
+.ticker-wrap::before, .ticker-wrap::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+  pointer-events: none;
+}
+.ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg2), transparent); }
+.ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg2), transparent); }
+.ticker-track {
+  display: flex; animation: ticker 35s linear infinite; width: max-content;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-item {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 1.5rem;
+  font-family: var(--mono); font-size: .76rem;
+  font-weight: 500; color: var(--t3);
+  white-space: nowrap;
+  border-right: 1px solid var(--border);
+  transition: color .15s;
+}
+.ticker-item:hover { color: var(--t2); }
+.ticker-item .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==============================
+   ABOUT
+   ============================== */
+#about { background: var(--bg2); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 5rem; align-items: start; margin-top: 2.5rem;
+}
+.about-text p {
+  color: var(--t2); line-height: 1.85;
+  margin-bottom: .9rem; font-size: .94rem;
+}
+.about-text p strong { color: var(--t1); font-weight: 500; }
+.cert-block {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; border-radius: var(--r2);
+  background: var(--bg3); border: 1px solid var(--border2);
+  margin-top: 1.5rem;
+}
+.cert-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(79,156,249,.12); border: 1px solid rgba(79,156,249,.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cert-icon svg { width: 20px; height: 20px; color: var(--blue); }
+.cert-title { font-size: .85rem; font-weight: 600; color: var(--t1); display: block; }
+.cert-sub { font-family: var(--mono); font-size: .68rem; color: var(--t3); margin-top: 2px; }
+
+/* Skills grid in About */
+.skills-grid {
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.skill-group {}
+.skill-group-label {
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--accent); text-transform: uppercase;
+  letter-spacing: .12em; font-weight: 500;
+  margin-bottom: .6rem;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+.pill {
+  padding: 4px 12px; border-radius: 100px;
+  font-family: var(--mono); font-size: .72rem;
+  font-weight: 500; border: 1px solid;
+}
+.pill-java { color: #f89820; border-color: rgba(248,152,32,.25); background: rgba(248,152,32,.06); }
+.pill-spring { color: #4ade80; border-color: rgba(74,222,128,.25); background: rgba(74,222,128,.06); }
+.pill-kafka { color: #f87171; border-color: rgba(248,113,113,.25); background: rgba(248,113,113,.06); }
+.pill-docker { color: var(--blue); border-color: rgba(79,156,249,.25); background: rgba(79,156,249,.06); }
+.pill-infra { color: #a78bfa; border-color: rgba(167,139,250,.25); background: rgba(167,139,250,.06); }
+.pill-obs { color: var(--amber); border-color: rgba(245,166,35,.25); background: rgba(245,166,35,.06); }
+.pill-sec { color: var(--green); border-color: rgba(63,207,142,.25); background: rgba(63,207,142,.06); }
+.pill-ai { color: #c084fc; border-color: rgba(192,132,252,.25); background: rgba(192,132,252,.06); }
+
+/* ==============================
+   EXPERTISE
+   ============================== */
+#expertise { background: var(--bg); }
+.exp-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1rem; margin-top: 2.5rem;
+}
+.exp-card {
+  padding: 1.75rem; border-radius: var(--r2);
+  background: var(--bg2); border: 1px solid var(--border);
+  transition: border-color .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.exp-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  opacity: 0; transition: opacity .2s;
+}
+.exp-card:hover { border-color: rgba(232,255,71,.2); transform: translateY(-3px); }
+.exp-card:hover::before { opacity: 1; }
+.exp-card-1::before { background: linear-gradient(90deg, var(--blue), transparent); }
+.exp-card-2::before { background: linear-gradient(90deg, var(--accent), transparent); }
+.exp-card-3::before { background: linear-gradient(90deg, var(--green), transparent); }
+.exp-card-4::before { background: linear-gradient(90deg, #c084fc, transparent); }
+.exp-card-5::before { background: linear-gradient(90deg, var(--blue), transparent); }
+.exp-ico {
+  width: 40px; height: 40px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.1rem; font-size: 1.1rem;
+}
+.exp-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem; font-weight: 700; color: var(--t1);
+  margin-bottom: .4rem; letter-spacing: -.01em;
+}
+.exp-metric {
+  display: inline-flex; padding: 2px 9px;
+  border-radius: 5px; font-family: var(--mono);
+  font-size: .68rem; font-weight: 600;
+  margin-bottom: .75rem; letter-spacing: .02em;
+}
+.exp-card p { font-size: .84rem; color: var(--t2); line-height: 1.7; margin-bottom: .85rem; }
+.exp-list { list-style: none; }
+.exp-list li {
+  font-family: var(--mono); font-size: .75rem;
+  color: var(--t3); padding: 3px 0 3px 14px;
+  position: relative; line-height: 1.5;
+}
+.exp-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--accent); font-size: .7rem;
+}
+.exp-wide { grid-column: span 2; }
+.exp-wide-inner { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; }
+
+/* ==============================
+   PROJECTS
+   ============================== */
+#work { background: var(--bg2); }
+.proj-list { display: flex; flex-direction: column; gap: 1px; margin-top: 2.5rem; }
+.proj-card {
+  padding: 1.75rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 2.5rem; align-items: start;
+  transition: border-color .2s;
+  position: relative;
+}
+.proj-card:first-child { border-radius: var(--r2) var(--r2) 0 0; }
+.proj-card:last-child { border-radius: 0 0 var(--r2) var(--r2); }
+.proj-card + .proj-card { border-top: none; }
+.proj-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px; background: var(--accent);
+  opacity: 0; transition: opacity .2s; border-radius: 1px 0 0 1px;
+}
+.proj-card:hover { border-color: rgba(232,255,71,.2); }
+.proj-card:hover::before { opacity: 1; }
+.proj-num {
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--accent); letter-spacing: .1em;
+  margin-bottom: .3rem;
+}
+.proj-badge {
+  display: inline-flex; padding: 2px 8px; border-radius: 5px;
+  font-family: var(--mono); font-size: .63rem;
+  font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  margin-left: .4rem; vertical-align: middle; border: 1px solid;
+}
+.pb-ai { background: rgba(192,132,252,.1); color: #c084fc; border-color: rgba(192,132,252,.25); }
+.pb-inf { background: rgba(63,207,142,.08); color: var(--green); border-color: rgba(63,207,142,.2); }
+.pb-tcs { background: rgba(245,166,35,.08); color: var(--amber); border-color: rgba(245,166,35,.2); }
+.proj-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem; font-weight: 700; color: var(--t1);
+  margin-bottom: .4rem; letter-spacing: -.02em;
+}
+.proj-card > .proj-content > p {
+  font-size: .86rem; color: var(--t2); line-height: 1.75; max-width: 640px;
+}
+.proj-stats { display: flex; gap: .55rem; margin-top: .85rem; flex-wrap: wrap; }
+.pstat {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6px 13px; border-radius: var(--r);
+  background: var(--bg2); border: 1px solid var(--border);
+}
+.pstat-n {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 800; color: var(--accent);
+  letter-spacing: -.02em; line-height: 1;
+}
+.pstat-l {
+  font-family: var(--mono); font-size: .56rem;
+  color: var(--t3); text-transform: uppercase;
+  letter-spacing: .1em; font-weight: 500;
+}
+.proj-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: .75rem; }
+.tag {
+  padding: 2px 8px; border-radius: 5px; border: 1px solid;
+  font-family: var(--mono); font-size: .68rem; font-weight: 500;
+}
+.tj { color: #fb923c; border-color: rgba(251,146,60,.25); background: rgba(251,146,60,.06); }
+.ts { color: #4ade80; border-color: rgba(74,222,128,.25); background: rgba(74,222,128,.06); }
+.tk { color: #f87171; border-color: rgba(248,113,113,.25); background: rgba(248,113,113,.06); }
+.td { color: var(--blue); border-color: rgba(79,156,249,.25); background: rgba(79,156,249,.06); }
+.tv { color: #a78bfa; border-color: rgba(167,139,250,.25); background: rgba(167,139,250,.06); }
+.tn { color: var(--t3); border-color: var(--border); background: var(--bg3); }
+.tai { color: #c084fc; border-color: rgba(192,132,252,.25); background: rgba(192,132,252,.06); }
+.tpy { color: #fbbf24; border-color: rgba(251,191,36,.25); background: rgba(251,191,36,.06); }
+.tg { color: var(--green); border-color: rgba(63,207,142,.25); background: rgba(63,207,142,.06); }
+
+/* Architecture diagram inline */
+.arch-diagram {
+  margin-top: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-family: var(--mono); font-size: .72rem; color: var(--t3);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+.arch-diagram .node { color: var(--t1); font-weight: 500; }
+.arch-diagram .arrow { color: var(--accent); }
+.arch-diagram .label { color: var(--blue); }
+.arch-diagram .comment { color: var(--t3); }
+.proj-icon-area {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: .25rem;
+}
+.proj-icon-circle {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.proj-links { display: flex; gap: .5rem; margin-top: .85rem; }
+.proj-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: .7rem; font-weight: 600;
+  text-decoration: none; border: 1px solid;
+  transition: background .15s, border-color .15s;
+}
+.proj-link-gh { color: var(--t2); border-color: var(--border2); background: transparent; }
+.proj-link-gh:hover { border-color: var(--t2); color: var(--t1); background: rgba(255,255,255,.04); }
+
+/* ==============================
+   EXPERIENCE
+   ============================== */
+#experience { background: var(--bg); }
+.timeline {
+  position: relative; padding-left: 2rem; margin-top: 2.5rem;
+}
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(232,255,71,.2) 60%, transparent 100%);
+}
+.tl-item { position: relative; margin-bottom: 2.75rem; }
+.tl-item::before {
+  content: ''; position: absolute; left: -2.5rem; top: 5px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--accent);
+  box-shadow: 0 0 8px rgba(232,255,71,.4);
+}
+.tl-date {
+  font-family: var(--mono); font-size: .7rem;
+  color: var(--accent); letter-spacing: .06em; margin-bottom: .3rem;
+}
+.tl-role {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--t1);
+  letter-spacing: -.02em;
+}
+.tl-company {
+  font-size: .84rem; color: var(--t3); margin-bottom: .85rem; margin-top: .1rem;
+}
+.tl-company strong { color: var(--amber); font-weight: 600; }
+.tl-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+.tl-list li {
+  font-size: .86rem; color: var(--t2);
+  padding-left: 1.15rem; position: relative; line-height: 1.65;
+}
+.tl-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--accent); font-size: .72rem; font-weight: 600;
+}
+.tl-list li strong { color: var(--t1); font-weight: 500; }
+
+/* ==============================
+   EDUCATION
+   ============================== */
+#education { background: var(--bg2); }
+.edu-card {
+  display: flex; align-items: center; gap: 1.75rem;
+  padding: 1.75rem 2rem; border-radius: var(--r2);
+  background: var(--bg); border: 1px solid var(--border);
+  margin-top: 2rem; transition: border-color .2s;
+}
+.edu-card:hover { border-color: rgba(232,255,71,.2); }
+.edu-icon {
+  width: 52px; height: 52px; border-radius: 13px;
+  background: var(--accent3); border: 1px solid rgba(232,255,71,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.edu-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700; color: var(--t1); margin-bottom: .2rem;
+}
+.edu-card p { font-size: .84rem; color: var(--t2); }
+.edu-card .code-note {
+  font-family: var(--mono); font-size: .7rem; color: var(--t3); margin-top: .3rem;
+}
+
+/* ==============================
+   CONTACT
+   ============================== */
+#contact { background: var(--bg); }
+.contact-head { text-align: center; max-width: 480px; margin: 0 auto 2.75rem; }
+.contact-head p { font-size: .93rem; color: var(--t2); margin-top: .75rem; }
+.soc-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: .85rem; max-width: 640px; margin: 0 auto;
+}
+.soc-card {
+  display: flex; flex-direction: column; align-items: center; gap: .8rem;
+  padding: 1.75rem 1.25rem; border-radius: var(--r2);
+  background: var(--bg2); border: 1px solid var(--border);
+  text-decoration: none; color: var(--t2);
+  transition: border-color .2s, transform .2s;
+}
+.soc-card:hover { border-color: var(--card-accent, var(--accent)); transform: translateY(-3px); }
+.soc-ico {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; transition: transform .2s;
+}
+.soc-card:hover .soc-ico { transform: scale(1.1); }
+.soc-label { font-family: var(--mono); font-size: .75rem; font-weight: 600; color: var(--t2); }
+.cta-strip {
+  max-width: 640px; margin: 1rem auto 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r2);
+  display: flex; align-items: center; gap: 1rem;
+}
+.cta-strip p {
+  font-size: .88rem; color: var(--t2); flex: 1;
+  line-height: 1.5;
+}
+.cta-strip p strong { color: var(--t1); }
+
+/* FOOTER */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2.5rem;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: .75rem;
+}
+.foot-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; color: var(--t1); font-size: 1rem;
+}
+.foot-logo .dot { color: var(--accent); }
+.foot-copy { font-family: var(--mono); font-size: .72rem; color: var(--t3); }
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero-right { display: none; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); }
+  .hero-actions { justify-content: center; }
+  .availability-badge { margin: 0 auto; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-wide { grid-column: span 1; }
+  .exp-wide-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .proj-card { grid-template-columns: 1fr; }
+  .proj-icon-area { display: none; }
+  .soc-grid { grid-template-columns: repeat(2,1fr); }
+  .nav-links, .nav-resume { display: none; }
+  .nav-mobile-btn { display: block; }
+}
+@media(max-width:540px){
+  section { padding: 64px 1.25rem; }
+  .hero-inner { padding: 80px 1.25rem 50px; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); }
+}
+</style>
 </head>
-<body class="bg-black text-neutral-300 font-sans selection:bg-primary-500/30 selection:text-primary-400 transition-colors duration-500">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md border-b border-neutral-800"></div>
-        <div class="max-w-7xl mx-auto px-6 h-20 relative flex items-center justify-between">
-            <a href="#" class="text-xl font-bold tracking-tight text-white group relative z-50">
-                MY<span class="text-primary-500">.</span>
-            </a>
-            
-            <!-- Desktop Menu (Updated with Sliding Liquid Glass Border) -->
-            <div class="hidden md:flex items-center relative bg-neutral-900/80 rounded-full p-1 border border-neutral-800 backdrop-blur-sm" id="desktop-nav-container">
-                <!-- The Sliding Indicator (Liquid Glass Effect) -->
-                <div id="nav-indicator" class="absolute top-1 bottom-1 rounded-full transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) opacity-0 pointer-events-none z-0
-                    bg-white/5 
-                    backdrop-blur-lg 
-                    border border-white/10 
-                    shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
-                    <!-- Inner glow for extra "liquid" depth -->
-                    <div class="absolute inset-0 rounded-full bg-gradient-to-b from-white/5 to-transparent opacity-50"></div>
-                </div>
+<nav>
+  <a href="#" class="logo">MY<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#expertise" class="nav-link">Expertise</a>
+    <a href="#work" class="nav-link">Projects</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="nav-resume">Resume</a>
+    <button class="nav-mobile-btn" id="mb">&#9776;</button>
+  </div>
+</nav>
+<div id="mobile-menu">
+  <a href="#about" onclick="cm()">About</a>
+  <a href="#expertise" onclick="cm()">Expertise</a>
+  <a href="#work" onclick="cm()">Projects</a>
+  <a href="#experience" onclick="cm()">Experience</a>
+  <a href="#contact" onclick="cm()">Contact</a>
+  <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" onclick="cm()">Download Resume</a>
+</div>
 
-                <!-- Links -->
-                <a href="#about" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">About</a>
-                <a href="#expertise" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Expertise</a>
-                <a href="#work" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Project Impacts</a>
-                <a href="#contact" class="nav-link relative z-10 px-6 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors rounded-full text-center">Get in Touch</a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white relative z-50" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <i class="ph ph-list text-2xl"></i>
-            </button>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="availability-badge rv">
+        <span class="avail-dot"></span>
+        Open to backend engineering roles
+      </div>
+      <h1 class="hero-name rv d1">Mohammed<br><span class="accent">Yusuf</span></h1>
+      <p class="hero-tagline rv d1">
+        <strong>Backend Software Engineer</strong> with 3+ years at TCS building Java/Spring Boot systems at scale. Designed Kafka event pipelines, shipped CI/CD infrastructure, and run 22-service self-hosted production clusters on Oracle Cloud &mdash; ARM64, zero open ports, fully observable.
+      </p>
+      <div class="hero-code rv d2">
+        <span class="kw">// </span>Systems that stay up at 3am
+      </div>
+      <div class="hero-actions rv d3">
+        <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Resume
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          Get in Touch
+        </a>
+      </div>
+      <div class="hero-stats rv d4">
+        <div class="stat-item">
+          <span class="stat-num">3<em class="accent">+</em></span>
+          <span class="stat-label">Years at TCS</span>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-neutral-900 border-b border-neutral-800 p-6 z-40">
-            <div class="flex flex-col space-y-4">
-                <a href="#about" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
-                <a href="#expertise" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Expertise</a>
-                <a href="#work" class="block text-neutral-300 hover:text-primary-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Project Impacts</a>
-                <a href="#contact" class="block text-primary-400 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact Me</a>
-            </div>
+        <div class="stat-item">
+          <span class="stat-num">40<em class="accent">%</em></span>
+          <span class="stat-label">Throughput &uarr;</span>
         </div>
-    </nav>
-
-    <!-- Hero Section (Added ID="hero") -->
-    <!-- Increased pt-20 to pt-32 to lower the content -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">
-        <!-- Background Accents -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none opacity-50" id="hero-glow"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
-            
-            <!-- HEADLINE SECTION: Name & Title spanning full width -->
-            <div class="space-y-6 mb-12 animate-fade-in-up relative z-30">
-                <!-- Updated Status Pill -->
-                <div id="status-pill" class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-pill text-green-500 text-xs font-semibold tracking-wider uppercase whitespace-nowrap overflow-hidden" style="transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); width: auto;">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)] shrink-0"></span>
-                    <span id="status-text" class="transition-opacity duration-700 ease-in-out">Available</span>
-                </div>
-                
-                <!-- Name moved here, spanning full width -->
-                <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-4 name-gradient-glow relative z-30">
-                    Mohammed Yusuf
-                </h1>
-                <!-- Title moved here -->
-                <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white relative z-30">
-                    <span class="text-gradient-primary">Software Engineer</span>
-                </h2>
-            </div>
-
-            <!-- CONTENT GRID: Description vs Graphic -->
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                
-                <!-- LEFT COLUMN: Description, Buttons, Stats -->
-                <div class="space-y-8 animate-fade-in-up relative z-30" style="animation-delay: 0.2s;"> <!-- Added slight delay for staggered effect -->
-                    <p class="text-lg text-neutral-400 max-w-xl leading-relaxed relative z-30">
-                        I architect and build robust Java ecosystems and distributed systems. My focus is on modernizing legacy infrastructure and crafting high-efficiency microservices that scale effortlessly.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4 relative z-30">
-                        <!-- Resume Download Button (Linked to GitHub) -->
-                        <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="px-8 py-4 glass-button text-white font-medium rounded-lg text-center flex items-center justify-center gap-2 group">
-                            <i class="ph ph-download-simple text-xl group-hover:text-primary-400 group-hover:translate-y-1 transition-transform"></i>
-                            <span>Resume</span>
-                        </a>
-                    </div>
-
-                    <!-- Trust Indicators / Quick Stats -->
-                    <div class="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-800 mt-8 relative z-30">
-                        <div>
-                            <div class="text-3xl font-bold text-white">100%</div>
-                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Test Coverage</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-white">35%</div>
-                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Faster Execution</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-white">20+</div>
-                            <div class="text-xs text-neutral-500 uppercase tracking-wide mt-1">Engineers Mentored</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN: Abstract Visual / Code Graphic -->
-                <!-- Removed excessive top margin since it's now side-by-side with description, not name -->
-                <div class="hidden lg:block relative animate-float z-10">
-                    <div class="glass-card p-8 rounded-2xl relative bg-black/60">
-                        <div class="flex items-center space-x-2 mb-6">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="font-mono text-sm space-y-3">
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">1</span>
-                                <span class="text-purple-400">@Service</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">2</span>
-                                <span class="text-blue-400">public class</span> <span class="text-yellow-200 ml-2">MigrationService</span> <span class="text-neutral-300">{</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">3</span>
-                                <span class="text-neutral-500 ml-4">// Migrating legacy .NET to Java Spring Boot</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">4</span>
-                                <span class="text-purple-400 ml-4">public void</span> <span class="text-blue-300">optimizeWorkflow</span><span class="text-neutral-300">() {</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">5</span>
-                                <!-- Matches resume: 40% efficiency -->
-                                <span class="text-neutral-300 ml-8">efficiency += </span> <span class="text-orange-400">40%</span><span class="text-neutral-300">;</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">6</span>
-                                <!-- Matches resume: 30% defect reduction -->
-                                <span class="text-neutral-300 ml-8">security.reduceDefects(</span><span class="text-orange-400">30%</span><span class="text-neutral-300">;</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">7</span>
-                                <span class="text-neutral-300 ml-4">}</span>
-                            </div>
-                            <div class="flex">
-                                <span class="text-primary-500 mr-4">8</span>
-                                <span class="text-neutral-300">}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-item">
+          <span class="stat-num">22</span>
+          <span class="stat-label">Docker Services</span>
         </div>
-    </section>
-
-    <!-- Logos / Tech Stack -->
-    <section class="py-16 border-y border-neutral-900 bg-neutral-950/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-center text-sm font-semibold text-neutral-500 mb-12 uppercase tracking-widest">Technologies & Tools</p>
-            
-            <!-- Primary Tech Grid -->
-            <div class="flex flex-wrap justify-center gap-12 md:gap-24 mb-12">
-                <!-- Java -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 0s;">
-                    <i class="ph ph-coffee text-5xl md:text-6xl text-orange-500 drop-shadow-[0_0_10px_rgba(249,115,22,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Java</span>
-                </div>
-
-                <!-- Spring Boot -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 0.5s;">
-                    <i class="ph ph-leaf text-5xl md:text-6xl text-emerald-500 drop-shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Spring Boot</span>
-                </div>
-
-                <!-- Azure -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 1s;">
-                    <i class="ph ph-cloud-arrow-up text-5xl md:text-6xl text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Azure</span>
-                </div>
-
-                <!-- Jenkins (Replaced AWS) -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 1.5s;">
-                    <!-- Using a generic build/gear icon as Jenkins specific icon might not be available in phosphor/fontawesome free standard sets, but checking fontawesome -->
-                    <i class="fa-brands fa-jenkins text-5xl md:text-6xl text-neutral-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Jenkins</span>
-                </div>
-
-                <!-- Docker -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 2s;">
-                    <i class="fa-brands fa-docker text-5xl md:text-6xl text-sky-500 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">Docker</span>
-                </div>
-
-                <!-- PostgreSQL (Replaced Oracle) -->
-                <div class="flex flex-col items-center gap-3 group animate-float" style="animation-delay: 2.5s;">
-                    <i class="ph ph-database text-5xl md:text-6xl text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.3)] transition-transform duration-300 group-hover:scale-110"></i>
-                    <span class="text-base font-bold text-neutral-400 group-hover:text-white transition-colors">PostgreSQL</span>
-                </div>
-            </div>
-
-            <!-- Advanced Toolkit List (Updated: Text Only + Color Glows) -->
-            <div class="border-t border-neutral-800 pt-12">
-                <p class="text-center text-xs text-neutral-600 mb-8 uppercase tracking-widest">Advanced Toolkit</p>
-                <div class="flex flex-wrap justify-center gap-6">
-                    
-                    <!-- Apache Kafka (Red/Orange) - NEW -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_20px_-5px_rgba(239,68,68,0.5)] cursor-default">
-                        Apache Kafka
-                    </span>
-
-                    <!-- GitHub Copilot (Indigo) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-[0_0_20px_-5px_rgba(99,102,241,0.5)] cursor-default">
-                        GitHub Copilot
-                    </span>
-
-                    <!-- SonarQube (Cyan) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-cyan-500 hover:text-cyan-400 hover:shadow-[0_0_20px_-5px_rgba(6,182,212,0.5)] cursor-default">
-                        SonarQube
-                    </span>
-
-                    <!-- Git Actions (Replaced Kubernetes) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_-5px_rgba(249,115,22,0.5)] cursor-default">
-                        Git Actions
-                    </span>
-
-                    <!-- Hibernate (Olive Green) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-lime-600 hover:text-lime-500 hover:shadow-[0_0_20px_-5px_rgba(132,204,22,0.5)] cursor-default">
-                        Hibernate
-                    </span>
-
-                    <!-- JUnit (Split Red/Green Glow) -->
-                    <span class="px-6 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-semibold transition-all duration-300 hover:border-neutral-700 hover:text-white hover:shadow-[-15px_0_30px_-5px_rgba(239,68,68,0.6),15px_0_30px_-5px_rgba(16,185,129,0.6)] cursor-default">
-                        JUnit 5
-                    </span>
-
-                </div>
-            </div>
+        <div class="stat-item">
+          <span class="stat-num">30<em class="accent">%</em></span>
+          <span class="stat-label">Fewer Defects</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-black relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-12">
-                <div class="md:col-span-4 reveal">
-                    <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
-                    <div class="w-20 h-1 bg-primary-500 mb-8"></div>
-                    <!-- Updated with glass-card for liquid effect -->
-                    <div class="p-6 rounded-xl glass-card">
-                        <i class="ph ph-certificate text-4xl text-primary-400 mb-4"></i>
-                        <h3 class="text-lg font-semibold text-white mb-2">Certified Expert</h3>
-                        <p class="text-neutral-400 text-sm mb-2">Microsoft Certified: Azure Security Engineer Associate</p>
-                        <!-- Added Verify Link -->
-                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/MohammedYusuf-0636/C2BED8FD1B1373F?sharingId=DBB00A15C7365DA5" target="_blank" class="text-xs font-mono text-primary-500 hover:underline flex items-center gap-1">
-                            <i class="ph ph-check-circle"></i> Verify (ID: C2BED8FD1B1373F)
-                        </a>
-                    </div>
-                </div>
-                <div class="md:col-span-8 space-y-6 text-neutral-400 leading-relaxed reveal">
-                    <p class="text-lg">
-                        I work as a System Engineer at <span class="text-white font-medium">Tata Consultancy Services</span>, creating secure, efficient code and scalable solutions.
-                    </p>
-                    <p>
-                        With strong experience in end-to-end engineering, I manage the entire software lifecycle—from initial concept and system design to deployment and ongoing monitoring. I don’t just write code; I ensure stability, security, and continuous improvement through regular updates and smart enhancements that meet evolving business needs.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                        <div class="flex items-center space-x-3">
-                            <i class="ph ph-check-circle text-primary-500"></i>
-                            <span>Full SDLC Ownership</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="ph ph-check-circle text-primary-500"></i>
-                            <span>Incident Management</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="ph ph-check-circle text-primary-500"></i>
-                            <span>Security Patching</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="ph ph-users-three text-primary-500"></i>
-                            <span>Mentored 20+ Engineers</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="hero-right rv d2">
+      <div class="photo-frame">
+        <div class="photo-border"></div>
+        <div class="photo-inner-wrap"></div>
+        <div class="photo-img">
+          <img src="data:image/jpeg;base64,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" alt="Mohammed Yusuf">
         </div>
-    </section>
-
-    <!-- Expertise Section -->
-    <section id="expertise" class="py-24 bg-neutral-950 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#262626 1px, transparent 1px); background-size: 32px 32px;"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Core Capabilities</h2>
-                <!-- Updated description text -->
-                <p class="text-neutral-400">Here’s the tech stack I rely on to build enterprise-grade solutions.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass-card p-8 rounded-xl reveal hover:bg-neutral-900/50">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 text-blue-400">
-                        <i class="ph ph-code text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Backend Engineering</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                        Building high-performance, scalable services. I specialize in modernizing legacy systems and designing event-driven architectures that handle complex data flows efficiently.
-                    </p>
-                    <ul class="space-y-2 text-sm text-neutral-500">
-                        <li>• Spring Boot & Data</li>
-                        <li>• Apache Kafka Integration</li>
-                        <li>• RESTful API Design</li>
-                    </ul>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass-card p-8 rounded-xl reveal hover:bg-neutral-900/50" style="transition-delay: 100ms;">
-                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-primary-400">
-                        <i class="ph ph-cloud text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Cloud & DevOps</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                         Ensuring reliable and automated delivery. I focus on streamlining deployment pipelines and implementing proactive monitoring to maintain high system availability.
-                    </p>
-                    <ul class="space-y-2 text-sm text-neutral-500">
-                        <li>• Automated Deployments</li>
-                        <li>• Proactive Monitoring</li>
-                        <li>• Docker & Jenkins</li>
-                    </ul>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-card p-8 rounded-xl reveal" style="transition-delay: 200ms;">
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 text-purple-400">
-                        <i class="ph ph-shield-check text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Quality & Security</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-                        Prioritizing secure and stable code. I champion rigorous testing standards and proactive vulnerability management to safeguard enterprise applications.
-                    </p>
-                    <ul class="space-y-2 text-sm text-neutral-500">
-                        <li>• Vulnerability Management</li>
-                        <li>• Security Compliance</li>
-                        <li>• 100% Test Coverage</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="photo-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tamil Nadu &middot; Bengaluru
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Featured Work / Project Impacts -->
-    <section id="work" class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                <div>
-                    <span class="text-primary-500 font-semibold tracking-wider uppercase text-sm">Portfolio</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Project Impacts</h2>
-                </div>
-                <div class="hidden md:block w-1/3 h-px bg-neutral-800 mb-2"></div>
-            </div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot" style="background:#f89820"></span>Java</span>
+    <span class="ticker-item"><span class="dot" style="background:#4ade80"></span>Spring Boot</span>
+    <span class="ticker-item"><span class="dot" style="background:#f87171"></span>Apache Kafka</span>
+    <span class="ticker-item"><span class="dot" style="background:#4f9cf9"></span>Docker</span>
+    <span class="ticker-item"><span class="dot" style="background:#cc3e26"></span>Jenkins</span>
+    <span class="ticker-item"><span class="dot" style="background:#4f9cf9"></span>PostgreSQL</span>
+    <span class="ticker-item"><span class="dot" style="background:#8b5cf6"></span>Traefik v3</span>
+    <span class="ticker-item"><span class="dot" style="background:#d97706"></span>Prometheus</span>
+    <span class="ticker-item"><span class="dot" style="background:#3fcf8e"></span>Tailscale</span>
+    <span class="ticker-item"><span class="dot" style="background:#ca8a04"></span>Python</span>
+    <span class="ticker-item"><span class="dot" style="background:#4ade80"></span>JUnit &amp; Mockito</span>
+    <span class="ticker-item"><span class="dot" style="background:#0ea5e9"></span>Azure Security</span>
+    <span class="ticker-item"><span class="dot" style="background:#9333ea"></span>LLM / AI</span>
+    <span class="ticker-item"><span class="dot" style="background:#6d28d9"></span>Microservices</span>
+    <span class="ticker-item"><span class="dot" style="background:#f89820"></span>Java</span>
+    <span class="ticker-item"><span class="dot" style="background:#4ade80"></span>Spring Boot</span>
+    <span class="ticker-item"><span class="dot" style="background:#f87171"></span>Apache Kafka</span>
+    <span class="ticker-item"><span class="dot" style="background:#4f9cf9"></span>Docker</span>
+    <span class="ticker-item"><span class="dot" style="background:#cc3e26"></span>Jenkins</span>
+    <span class="ticker-item"><span class="dot" style="background:#4f9cf9"></span>PostgreSQL</span>
+    <span class="ticker-item"><span class="dot" style="background:#8b5cf6"></span>Traefik v3</span>
+    <span class="ticker-item"><span class="dot" style="background:#d97706"></span>Prometheus</span>
+    <span class="ticker-item"><span class="dot" style="background:#3fcf8e"></span>Tailscale</span>
+    <span class="ticker-item"><span class="dot" style="background:#ca8a04"></span>Python</span>
+    <span class="ticker-item"><span class="dot" style="background:#4ade80"></span>JUnit &amp; Mockito</span>
+    <span class="ticker-item"><span class="dot" style="background:#0ea5e9"></span>Azure Security</span>
+    <span class="ticker-item"><span class="dot" style="background:#9333ea"></span>LLM / AI</span>
+    <span class="ticker-item"><span class="dot" style="background:#6d28d9"></span>Microservices</span>
+  </div>
+</div>
 
-            <div class="space-y-8">
-                <!-- Project 1 -->
-                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-100 transition-opacity">
-                        <i class="ph ph-arrow-up-right text-4xl text-primary-500"></i>
-                    </div>
-                    <div class="grid md:grid-cols-12 gap-8 items-center">
-                        <div class="md:col-span-8">
-                            <h3 class="text-2xl font-bold text-white mb-2">Legacy System Migration</h3>
-                            <p class="text-neutral-400 mb-6">Led the migration from .NET/Mainframe to a robust Java Spring Boot ecosystem.</p>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">40+</div>
-                                    <div class="text-xs text-neutral-500">Endpoints Created</div>
-                                </div>
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <!-- Updated to 35% Speed Boost based on resume -->
-                                    <div class="text-2xl font-bold text-primary-400">35%</div>
-                                    <div class="text-xs text-neutral-500">Speed Boost</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Java</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Spring Boot</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">REST API</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
-                    <div class="grid md:grid-cols-12 gap-8 items-center">
-                        <div class="md:col-span-8">
-                            <h3 class="text-2xl font-bold text-white mb-2">Testing Automation Framework</h3>
-                            <p class="text-neutral-400 mb-6">Implemented robust testing protocols using Cucumber and JUnit to ensure every release is stable.</p>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">100%</div>
-                                    <div class="text-xs text-neutral-500">Coverage Achieved</div>
-                                </div>
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">30%</div>
-                                    <div class="text-xs text-neutral-500">Defect Reduction</div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">JUnit</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Cucumber</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Quality Assurance</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="group relative bg-neutral-900 border border-neutral-800 rounded-2xl p-8 transition-all duration-300 hover:border-primary-500 hover:shadow-[0_0_30px_-10px_var(--color-primary-500)] reveal">
-                    <div class="grid md:grid-cols-12 gap-8 items-center">
-                        <div class="md:col-span-8">
-                            <h3 class="text-2xl font-bold text-white mb-2">DevOps & Operational Efficiency</h3>
-                            <p class="text-neutral-400 mb-6">Streamlined deployment workflows with Hydra & XLR and enhanced incident response through ELF monitoring.</p>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">25%</div>
-                                    <div class="text-xs text-neutral-500">Adoption Rate</div>
-                                </div>
-                                <div class="bg-black p-4 rounded-lg border border-neutral-800">
-                                    <div class="text-2xl font-bold text-primary-400">20%</div>
-                                    <div class="text-xs text-neutral-500">Build Time Cut</div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Hydra / XLR</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">ELF Monitoring</span>
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-neutral-800 text-neutral-300">Docker / Jenkins</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ABOUT -->
+<section id="about"><div class="si">
+  <div class="about-grid">
+    <div class="about-text rv">
+      <span class="section-label">About</span>
+      <h2 class="section-title">Production systems<br>at work. Production<br>infrastructure at home.</h2>
+      <p>Backend Software Engineer at <strong>Tata Consultancy Services</strong>, Bengaluru. Over 3 years I&rsquo;ve built and maintained Java and Spring Boot systems at scale &mdash; migrating legacy .NET and mainframe applications, designing event-driven Kafka pipelines for high-throughput financial workflows, and shipping with 100% test coverage enforced at every release via SonarQube gates.</p>
+      <p>Outside work I operate <strong>Falak</strong> &mdash; a 3-node production infrastructure on Oracle Cloud (ARM64 Ampere) with a local warm-standby. Traefik v3 reverse proxy, Cloudflare Tunnels for zero-port external access, Tailscale mesh VPN, CrowdSec threat detection, and Authelia SSO with TOTP 2FA. Currently migrating to a hot-standby architecture with automatic DNS failover via a dedicated watchdog node.</p>
+      <p>I also built <strong>Falak AI</strong>, a private self-hosted AI assistant with local LLM inference (Ollama), semantic memory via ChromaDB, and multi-agent orchestration &mdash; all accessible via Telegram with zero open ports.</p>
+      <div class="cert-block rv d1">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-    </section>
-
-    <!-- Testimonial / Trust Section -->
-    <section class="py-20 bg-gradient-to-b from-black to-neutral-950 border-t border-neutral-900">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <i class="ph ph-quotes text-5xl text-neutral-700 mb-6 inline-block"></i>
-            <h3 class="text-2xl md:text-3xl font-medium text-white mb-8 leading-snug">
-                "Consistently praised in <span class="text-primary-400">95% of client feedback</span> for proactive problem-solving and system enhancements."
-            </h3>
-            <div class="flex items-center justify-center space-x-4">
-                <div class="w-12 h-12 bg-neutral-800 rounded-full flex items-center justify-center text-xl font-bold text-primary-500">T</div>
-                <div class="text-left">
-                    <div class="text-white font-bold">Feedback Record</div>
-                    <div class="text-primary-500 text-sm">Tata Consultancy Services</div>
-                </div>
-            </div>
+        <div>
+          <span class="cert-title">Microsoft Certified: Azure Security Engineer Associate</span>
+          <span class="cert-sub">Credential ID: C2BED8FD1B1373F &nbsp;&middot;&nbsp; Valid 2023&ndash;2026</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-neutral-950 relative">
-        <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-3xl font-bold text-white mb-4">Contact</h2>
-                <p class="text-neutral-400">Want to optimize your architecture? Let's chat.</p>
-            </div>
-
-            <div class="bg-black border border-neutral-800 rounded-2xl p-8 md:p-12 shadow-2xl reveal">
-                
-                <!-- Contact Methods Grid -->
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
-                    
-                    <!-- Email (Red) -->
-                    <a href="mailto:mohammedyusuf1799@gmail.com" class="group flex flex-col items-center gap-3" title="Email Me">
-                        <!-- Replaced bg-black/border with glass-icon -->
-                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-red-500 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.6)] group-hover:-translate-y-1">
-                            <i class="ph ph-envelope-simple text-3xl text-red-500 transition-transform duration-300 group-hover:scale-110"></i>
-                        </div>
-                        <span class="text-xs font-medium text-neutral-500 group-hover:text-red-500 transition-colors tracking-widest uppercase">Email</span>
-                    </a>
-
-                    <!-- Phone (Green) -->
-                    <a href="tel:+918056660332" class="group flex flex-col items-center gap-3" title="Call Me">
-                        <!-- Replaced bg-black/border with glass-icon -->
-                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-emerald-500 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] group-hover:-translate-y-1">
-                            <i class="ph ph-phone text-3xl text-emerald-500 transition-transform duration-300 group-hover:scale-110"></i>
-                        </div>
-                        <span class="text-xs font-medium text-neutral-500 group-hover:text-emerald-500 transition-colors tracking-widest uppercase">Phone</span>
-                    </a>
-
-                    <!-- LinkedIn (Blue) -->
-                    <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="LinkedIn">
-                        <!-- Replaced bg-black/border with glass-icon -->
-                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-blue-500 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] group-hover:-translate-y-1">
-                            <i class="ph ph-linkedin-logo text-3xl text-blue-500 transition-transform duration-300 group-hover:scale-110"></i>
-                        </div>
-                        <span class="text-xs font-medium text-neutral-500 group-hover:text-blue-500 transition-colors tracking-widest uppercase">LinkedIn</span>
-                    </a>
-
-                    <!-- GitHub (White) -->
-                    <a href="https://github.com/md-yusuf-f" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="GitHub">
-                        <!-- Replaced bg-black/border with glass-icon -->
-                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:-translate-y-1">
-                            <i class="ph ph-github-logo text-3xl text-white transition-transform duration-300 group-hover:scale-110"></i>
-                        </div>
-                        <span class="text-xs font-medium text-neutral-500 group-hover:text-white transition-colors tracking-widest uppercase">GitHub</span>
-                    </a>
-
-                    <!-- LeetCode (Yellow) -->
-                    <a href="https://leetcode.com/u/YusufSaf/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3" title="LeetCode">
-                        <!-- Replaced bg-black/border with glass-icon -->
-                        <div class="w-16 h-16 rounded-full glass-icon flex items-center justify-center transition-all duration-300 group-hover:border-yellow-500 group-hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] group-hover:-translate-y-1">
-                            <i class="ph ph-code text-3xl text-yellow-500 transition-transform duration-300 group-hover:scale-110"></i>
-                        </div>
-                        <span class="text-xs font-medium text-neutral-500 group-hover:text-yellow-500 transition-colors tracking-widest uppercase">LeetCode</span>
-                    </a>
-
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="skills-grid rv d2">
+      <div class="skill-group">
+        <div class="skill-group-label">Daily Use</div>
+        <div class="skill-pills">
+          <span class="pill pill-java">Java</span>
+          <span class="pill pill-spring">Spring Boot</span>
+          <span class="pill pill-kafka">Apache Kafka</span>
+          <span class="pill pill-docker">Docker</span>
+          <span class="pill pill-spring">JUnit / Mockito</span>
+          <span class="pill pill-docker">PostgreSQL</span>
+          <span class="pill pill-docker">Jenkins</span>
+          <span class="pill pill-java">Maven</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-neutral-900">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="text-lg font-bold text-white">MOHAMMED YUSUF<span class="text-primary-500">.</span></span>
-                <p class="text-neutral-500 text-sm mt-1">Based in Tamil Nadu / Bengaluru, India</p>
-            </div>
-            <!-- Footer Icons -->
-            <div class="flex space-x-6 text-neutral-500">
-                <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 hover:scale-110 transition-all"><i class="ph ph-linkedin-logo text-3xl"></i></a>
-                <a href="https://github.com/md-yusuf-f" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:scale-110 transition-all"><i class="ph ph-github-logo text-3xl"></i></a>
-                <a href="https://leetcode.com/u/YusufSaf/" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 hover:scale-110 transition-all" title="LeetCode"><i class="ph ph-code text-3xl"></i></a>
-            </div>
-            <div class="mt-4 md:mt-0 text-neutral-600 text-sm">
-                &copy; 2024 Mohammed Yusuf. All rights reserved.
-            </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Infrastructure</div>
+        <div class="skill-pills">
+          <span class="pill pill-infra">Traefik v3</span>
+          <span class="pill pill-infra">Cloudflare Tunnels</span>
+          <span class="pill pill-infra">Tailscale</span>
+          <span class="pill pill-infra">UFW / Linux</span>
+          <span class="pill pill-infra">OCI / ARM64</span>
+          <span class="pill pill-docker">Docker Compose</span>
+          <span class="pill pill-sec">Authelia 2FA</span>
+          <span class="pill pill-sec">CrowdSec</span>
         </div>
-    </footer>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Observability</div>
+        <div class="skill-pills">
+          <span class="pill pill-obs">Prometheus</span>
+          <span class="pill pill-obs">Grafana</span>
+          <span class="pill pill-obs">Alertmanager</span>
+          <span class="pill pill-obs">SonarQube</span>
+          <span class="pill pill-obs">Uptime Kuma</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Familiar</div>
+        <div class="skill-pills">
+          <span class="pill pill-ai">Python</span>
+          <span class="pill pill-ai">FastAPI</span>
+          <span class="pill pill-ai">Ollama / LLMs</span>
+          <span class="pill pill-ai">ChromaDB</span>
+          <span class="pill pill-ai">n8n</span>
+          <span class="pill pill-docker">Azure Security</span>
+          <span class="pill pill-spring">SQLite</span>
+          <span class="pill pill-ai">Telegram Bot API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
 
-    <!-- Simple Scroll Reveal Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Reveal Animation Logic
-            const reveals = document.querySelectorAll('.reveal');
+<!-- EXPERTISE -->
+<section id="expertise"><div class="si">
+  <div class="rv">
+    <span class="section-label">Capabilities</span>
+    <h2 class="section-title">Core Skills</h2>
+    <p class="section-sub">Full ownership from backend architecture to production observability.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card exp-card-1 rv d1">
+      <div class="exp-ico" style="background:rgba(79,156,249,.1);color:#4f9cf9">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Backend Engineering</h3>
+      <div class="exp-metric" style="background:rgba(248,113,113,.08);color:#f87171">&#8593; 40% throughput on Kafka pipeline</div>
+      <p>Event-driven microservices and REST APIs with Java and Spring Boot at enterprise scale.</p>
+      <ul class="exp-list">
+        <li>Spring Boot &amp; Hibernate ORM</li>
+        <li>Apache Kafka event streaming</li>
+        <li>REST API design &amp; versioning</li>
+        <li>Legacy .NET / Mainframe migration</li>
+      </ul>
+    </div>
+    <div class="exp-card exp-card-2 rv d2">
+      <div class="exp-ico" style="background:rgba(232,255,71,.08);color:var(--accent)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Cloud &amp; DevOps</h3>
+      <div class="exp-metric" style="background:rgba(232,255,71,.06);color:var(--accent)">22 Docker services in production</div>
+      <p>CI/CD pipelines, container orchestration, and Linux server management on Oracle Cloud ARM64.</p>
+      <ul class="exp-list">
+        <li>Docker &amp; Jenkins CI/CD</li>
+        <li>Traefik v3 + Let&rsquo;s Encrypt TLS</li>
+        <li>Tailscale VPN &middot; UFW firewall</li>
+        <li>AES-256 encrypted backups (rclone)</li>
+      </ul>
+    </div>
+    <div class="exp-card exp-card-3 rv d3">
+      <div class="exp-ico" style="background:rgba(63,207,142,.1);color:var(--green)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Quality &amp; Security</h3>
+      <div class="exp-metric" style="background:rgba(63,207,142,.08);color:var(--green)">100% unit test coverage &middot; 30% fewer defects</div>
+      <p>Zero-defect pipelines with full observability and active threat detection in production.</p>
+      <ul class="exp-list">
+        <li>JUnit &amp; Mockito test suites</li>
+        <li>SonarQube quality gates on every release</li>
+        <li>Prometheus &middot; Grafana &middot; Alertmanager</li>
+        <li>CrowdSec + Authelia SSO/2FA</li>
+      </ul>
+    </div>
+    <div class="exp-card exp-card-4 rv d1">
+      <div class="exp-ico" style="background:rgba(192,132,252,.1);color:#c084fc">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+      <h3>AI &amp; Automation</h3>
+      <div class="exp-metric" style="background:rgba(192,132,252,.08);color:#c084fc">Local-first &middot; 5 LLMs &middot; 0 open ports</div>
+      <p>Private AI systems with local inference, semantic memory, and n8n workflow automation.</p>
+      <ul class="exp-list">
+        <li>Ollama local LLM inference</li>
+        <li>ChromaDB semantic memory &middot; RAG</li>
+        <li>Multi-agent DAG orchestration</li>
+        <li>n8n &amp; Telegram automation</li>
+      </ul>
+    </div>
+    <div class="exp-card exp-card-5 exp-wide rv d2">
+      <div class="exp-wide-inner">
+        <div>
+          <div class="exp-ico" style="background:rgba(14,165,233,.1);color:#38bdf8">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          </div>
+          <h3>Azure Security</h3>
+          <div class="exp-metric" style="background:rgba(14,165,233,.08);color:#7dd3fc">Microsoft Certified &middot; 2023&ndash;2026</div>
+          <p>Cloud security, identity management, threat protection and compliance on Azure.</p>
+        </div>
+        <ul class="exp-list">
+          <li>Azure Identity &amp; Access Management</li>
+          <li>Security Center &amp; Defender for Cloud</li>
+          <li>Network security groups &amp; private endpoints</li>
+          <li>Key Vault and encryption at rest</li>
+          <li>Compliance monitoring &amp; security posture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div></section>
 
-            function reveal() {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
+<!-- PROJECTS -->
+<section id="work"><div class="si">
+  <div class="rv">
+    <span class="section-label">Work</span>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Enterprise pipelines built at TCS and personal infrastructure running in production.</p>
+  </div>
+  <div class="proj-list">
 
-                    if (elementTop < windowHeight - elementVisible) {
-                        if (reveals[i]) reveals[i].classList.add('active');
-                    }
-                }
-            }
+    <!-- Falak AI -->
+    <div class="proj-card rv">
+      <div class="proj-content">
+        <div class="proj-num">01 <span class="proj-badge pb-ai">AI &middot; Personal</span></div>
+        <h3>Falak AI &mdash; Self-Hosted AI Assistant</h3>
+        <p>Private AI assistant on a self-hosted OCI ARM64 server with zero exposed ports via Cloudflare Tunnel. Local-first model routing: Ollama (qwen3:8b/14b) &rarr; Gemini Flash &rarr; Groq &rarr; Claude. Persistent semantic memory via ChromaDB with RAG pipeline, multi-agent DAG orchestration (up to 2 concurrent agents), and a Telegram bot interface with inline approval gates for sensitive operations.</p>
+        <div class="arch-diagram">
+<span class="comment"># Model routing chain</span>
+<span class="node">Prompt</span> <span class="arrow">→</span> <span class="node">model_router.route()</span>
+  <span class="arrow">→ LOCAL</span>  <span class="label">OllamaProvider</span>  <span class="comment">(qwen3:8b default)</span>
+           <span class="arrow">↓ fallback</span>
+           <span class="label">GeminiProvider</span>  <span class="comment">(Flash 2.0, free)</span>
+           <span class="arrow">↓ fallback</span>
+           <span class="label">GroqProvider</span>    <span class="comment">(llama-3.3-70b, free)</span>
+  <span class="arrow">→ API</span>    <span class="label">AnthropicSDK</span>   <span class="comment">(claude-sonnet, paid, rare)</span>
+        </div>
+        <div class="proj-stats">
+          <div class="pstat"><span class="pstat-n">5</span><span class="pstat-l">LLM Providers</span></div>
+          <div class="pstat"><span class="pstat-n">4</span><span class="pstat-l">Agent Modes</span></div>
+          <div class="pstat"><span class="pstat-n">&lt;2GB</span><span class="pstat-l">RAM Budget</span></div>
+          <div class="pstat"><span class="pstat-n">0</span><span class="pstat-l">Open Ports</span></div>
+        </div>
+        <div class="proj-tags">
+          <span class="tag tpy">Python</span>
+          <span class="tag tai">Ollama</span>
+          <span class="tag tai">ChromaDB</span>
+          <span class="tag tv">Cloudflare Tunnel</span>
+          <span class="tag tn">FastAPI</span>
+          <span class="tag tn">Telegram Bot</span>
+          <span class="tag td">Docker</span>
+        </div>
+      </div>
+      <div class="proj-icon-area">
+        <div class="proj-icon-circle" style="background:rgba(192,132,252,.1);color:#c084fc">🤖</div>
+      </div>
+    </div>
 
-            window.addEventListener('scroll', reveal);
-            reveal(); // Trigger once on load
-            
-            // Navbar Glass Effect on Scroll
-            window.addEventListener('scroll', function() {
-                const nav = document.getElementById('navbar');
-                if (nav) {
-                    if (window.scrollY > 50) {
-                        nav.classList.add('shadow-lg');
-                    } else {
-                        nav.classList.remove('shadow-lg');
-                    }
-                }
-            });
+    <!-- Falak Finance -->
+    <div class="proj-card rv d1">
+      <div class="proj-content">
+        <div class="proj-num">02 <span class="proj-badge pb-ai">Finance &middot; AI &middot; Personal</span></div>
+        <h3>Falak Finance &mdash; AI Portfolio Monitor</h3>
+        <p>Aggregates equity holdings (Zerodha/KiteConnect), mutual funds, crypto spot balances (Binance via ccxt), and INDstocks into one dashboard. Five AI models run in parallel &mdash; Groq, Gemini, OpenAI, Claude, and local Falak AI &mdash; generating risk scores, allocation breakdowns, and portfolio verdicts. Includes a paper trading engine with RSI/EMA signal rules, a 5,000-candle backtester, and scheduled daily Telegram reports.</p>
+        <div class="proj-stats">
+          <div class="pstat"><span class="pstat-n">5</span><span class="pstat-l">AI Analysts</span></div>
+          <div class="pstat"><span class="pstat-n">3</span><span class="pstat-l">Data Sources</span></div>
+          <div class="pstat"><span class="pstat-n">5k</span><span class="pstat-l">Candle BT</span></div>
+          <div class="pstat"><span class="pstat-n">15min</span><span class="pstat-l">Signal Cycle</span></div>
+        </div>
+        <div class="proj-tags">
+          <span class="tag tpy">Python</span>
+          <span class="tag tpy">FastAPI</span>
+          <span class="tag tai">Multi-LLM</span>
+          <span class="tag tn">ccxt / Binance</span>
+          <span class="tag tn">KiteConnect</span>
+          <span class="tag td">Docker</span>
+          <span class="tag tn">APScheduler</span>
+        </div>
+      </div>
+      <div class="proj-icon-area">
+        <div class="proj-icon-circle" style="background:rgba(232,255,71,.08);color:var(--accent)">📈</div>
+      </div>
+    </div>
 
-            // --- Robust Navigation Active Link Indicator Logic ---
-            const indicator = document.getElementById('nav-indicator');
-            const navContainer = document.getElementById('desktop-nav-container');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section');
-            
-            // Initialize tracking for all sections to avoid "reduce of empty array" errors
-            let visibleSections = {
-                'hero': 0,
-                'about': 0,
-                'expertise': 0,
-                'work': 0,
-                'contact': 0
-            };
+    <!-- Falak Homelab -->
+    <div class="proj-card rv d1">
+      <div class="proj-content">
+        <div class="proj-num">03 <span class="proj-badge pb-inf">Infrastructure &middot; Personal</span></div>
+        <h3>Falak &mdash; 3-Node Self-Hosted Infrastructure</h3>
+        <p>Primary node: OCI Ampere A1 (ARM64, 4 CPU, 24GB RAM). Warm standby: AMD laptop on LAN. Watchdog: OCI E2.1 Micro (1GB RAM, Mumbai). 22 Docker services including Vaultwarden, Nextcloud, n8n, AdGuard DNS, Traefik v3, Prometheus/Grafana. Vault synced to standby every 15 minutes via rsync over Tailscale. Watchdog monitors both nodes every 2 minutes and triggers automatic Cloudflare DNS failover on primary outage.</p>
+        <div class="arch-diagram">
+<span class="comment"># Server chain topology</span>
+<span class="node">falak-ai</span> <span class="comment">(OCI Ampere, ARM64)</span>     <span class="arrow">← PRIMARY (22 services)</span>
+   <span class="arrow">↓ rsync every 15m (Tailscale)</span>
+<span class="node">falak</span>    <span class="comment">(AMD laptop, LAN)</span>       <span class="arrow">← WARM STANDBY</span>
+   <span class="arrow">↑ health-check every 2m</span>
+<span class="node">e2-micro</span> <span class="comment">(OCI E2, Mumbai)</span>       <span class="arrow">← WATCHDOG + DNS FAILOVER</span>
+        </div>
+        <div class="proj-stats">
+          <div class="pstat"><span class="pstat-n">22</span><span class="pstat-l">Services</span></div>
+          <div class="pstat"><span class="pstat-n">3</span><span class="pstat-l">Node HA</span></div>
+          <div class="pstat"><span class="pstat-n">2FA</span><span class="pstat-l">SSO Auth</span></div>
+          <div class="pstat"><span class="pstat-n">15m</span><span class="pstat-l">Vault Sync</span></div>
+        </div>
+        <div class="proj-tags">
+          <span class="tag td">Docker</span>
+          <span class="tag tv">Traefik v3</span>
+          <span class="tag tv">Cloudflare Tunnels</span>
+          <span class="tag tg">Prometheus</span>
+          <span class="tag tn">CrowdSec</span>
+          <span class="tag tn">Authelia</span>
+          <span class="tag tg">n8n</span>
+          <span class="tag tn">Tailscale</span>
+        </div>
+      </div>
+      <div class="proj-icon-area">
+        <div class="proj-icon-circle" style="background:rgba(63,207,142,.08);color:var(--green)">🖥️</div>
+      </div>
+    </div>
 
-            function updateIndicator(link) {
-                if (!link || !indicator) return;
-                
-                // Use offsetWidth/offsetLeft for precise element-relative positioning
-                // This ensures the slider matches the element's width (text + padding) exactly
-                const width = link.offsetWidth;
-                const left = link.offsetLeft;
-                
-                // Apply styles
-                indicator.style.width = `${width}px`;
-                indicator.style.transform = `translateX(${left}px)`;
-                indicator.style.opacity = '1';
-            }
+    <!-- Kafka Pipeline -->
+    <div class="proj-card rv d2">
+      <div class="proj-content">
+        <div class="proj-num">04 <span class="proj-badge pb-tcs">TCS &middot; 2023</span></div>
+        <h3>Event-Driven Kafka Pipeline</h3>
+        <p>Replaced synchronous REST calls with an event-driven Apache Kafka pipeline for high-throughput financial transaction processing at TCS. Designed producer/consumer topology with partitioned topics to eliminate blocking I/O bottlenecks, reducing end-to-end latency by 35% and improving system throughput by 40%.</p>
+        <div class="arch-diagram">
+<span class="comment"># Before: synchronous REST (blocking)</span>
+<span class="node">Service A</span> <span class="arrow">──[HTTP POST]──&gt;</span> <span class="node">Service B</span> <span class="arrow">──[HTTP POST]──&gt;</span> <span class="node">Service C</span>
 
-            function hideIndicator() {
-                if(indicator) indicator.style.opacity = '0';
-            }
+<span class="comment"># After: async Kafka (non-blocking)</span>
+<span class="node">Service A</span> <span class="arrow">──[Produce]──&gt;</span> <span class="label">Topic: txn.events</span>
+<span class="node">Service B</span> <span class="arrow">──[Consume]──</span> <span class="label">Topic: txn.events</span> <span class="comment">(parallel consumers)</span>
+<span class="node">Service C</span> <span class="arrow">──[Consume]──</span> <span class="label">Topic: txn.processed</span>
+<span class="comment"># Result: 35% latency ↓, 40% throughput ↑</span>
+        </div>
+        <div class="proj-stats">
+          <div class="pstat"><span class="pstat-n">35%</span><span class="pstat-l">Latency &darr;</span></div>
+          <div class="pstat"><span class="pstat-n">40%</span><span class="pstat-l">Throughput &uarr;</span></div>
+        </div>
+        <div class="proj-tags">
+          <span class="tag tk">Apache Kafka</span>
+          <span class="tag ts">Spring Boot</span>
+          <span class="tag tj">Java</span>
+          <span class="tag tn">Microservices</span>
+        </div>
+      </div>
+      <div class="proj-icon-area">
+        <div class="proj-icon-circle" style="background:rgba(248,113,113,.08);color:#f87171">⚡</div>
+      </div>
+    </div>
 
-            function snapToActiveSection() {
-                // Determine which section is currently most visible
-                const keys = Object.keys(visibleSections);
-                if (keys.length === 0) {
-                    hideIndicator();
-                    return;
-                }
+    <!-- Legacy Migration -->
+    <div class="proj-card rv d2">
+      <div class="proj-content">
+        <div class="proj-num">05 <span class="proj-badge pb-tcs">TCS &middot; 2022</span></div>
+        <h3>Legacy System Migration &amp; CI/CD Pipeline</h3>
+        <p>Full migration of .NET and mainframe systems to Java Spring Boot microservices &mdash; 40+ REST API endpoints with 35% faster execution. Established Docker + Jenkins CI/CD pipelines (20% build time reduction) and enforced 100% test coverage with JUnit + SonarQube quality gates on every release, cutting production defects by 30%.</p>
+        <div class="proj-stats">
+          <div class="pstat"><span class="pstat-n">40+</span><span class="pstat-l">API Endpoints</span></div>
+          <div class="pstat"><span class="pstat-n">20%</span><span class="pstat-l">Build Time &darr;</span></div>
+          <div class="pstat"><span class="pstat-n">30%</span><span class="pstat-l">Defects &darr;</span></div>
+        </div>
+        <div class="proj-tags">
+          <span class="tag tj">Java</span>
+          <span class="tag ts">Spring Boot</span>
+          <span class="tag td">Docker</span>
+          <span class="tag tn">Jenkins</span>
+          <span class="tag tn">JUnit</span>
+          <span class="tag tn">SonarQube</span>
+        </div>
+      </div>
+      <div class="proj-icon-area">
+        <div class="proj-icon-circle" style="background:rgba(79,156,249,.08);color:var(--blue)">🔀</div>
+      </div>
+    </div>
 
-                // Find section with max visibility ratio
-                const mostVisibleSection = keys.reduce((a, b) => 
-                    visibleSections[a] > visibleSections[b] ? a : b
-                );
+  </div>
+</div></section>
 
-                // If currently in Hero section or no section is visible enough, hide it
-                // Adjusted threshold for better responsiveness
-                if (mostVisibleSection === 'hero' || visibleSections[mostVisibleSection] < 0.1) {
-                    hideIndicator();
-                } else {
-                    const activeLink = document.querySelector(`.nav-link[href="#${mostVisibleSection}"]`);
-                    if (activeLink) {
-                        updateIndicator(activeLink);
-                    } else {
-                        hideIndicator();
-                    }
-                }
-            }
+<!-- EXPERIENCE -->
+<section id="experience"><div class="si">
+  <div class="rv">
+    <span class="section-label">Experience</span>
+    <h2 class="section-title">Work History</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item rv">
+      <div class="tl-date">Aug 2022 &mdash; Present</div>
+      <div class="tl-role">System Engineer</div>
+      <div class="tl-company">Tata Consultancy Services &nbsp;&middot;&nbsp; <strong>Bengaluru, India</strong></div>
+      <ul class="tl-list">
+        <li>Migrated <strong>.NET and mainframe systems to Java &amp; Spring Boot</strong> &mdash; 40+ REST endpoints, 35% faster execution.</li>
+        <li>Designed <strong>Apache Kafka event-driven pipeline</strong> for financial transaction processing &mdash; 35% lower latency, 40% higher throughput.</li>
+        <li>Built <strong>Docker &amp; Jenkins CI/CD</strong> pipelines reducing build times by 20%; deployed via Hydra and XLR.</li>
+        <li>Maintained <strong>100% unit test coverage</strong> with JUnit and Mockito; SonarQube quality gates on every release &mdash; 30% fewer production defects.</li>
+        <li>Mentored <strong>20+ junior engineers</strong>, improving team delivery speed by 20%.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -20% 0px', // Focus on the center 60% of the screen
-                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-            };
+<!-- EDUCATION -->
+<section id="education"><div class="si">
+  <div class="rv">
+    <span class="section-label">Education</span>
+    <h2 class="section-title">Academic Background</h2>
+  </div>
+  <div class="edu-card rv d1">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <h3>B.E. in Mechanical Engineering</h3>
+      <p>AVS Engineering College &nbsp;&middot;&nbsp; Tamil Nadu, India &nbsp;&middot;&nbsp; 2016&ndash;2020 &nbsp;&middot;&nbsp; CGPA: 7.49</p>
+      <p class="code-note">// Self-taught into software &mdash; Java, Spring Boot, distributed systems</p>
+    </div>
+  </div>
+</div></section>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    visibleSections[entry.target.id] = entry.intersectionRatio;
-                });
-                snapToActiveSection();
-            }, observerOptions);
+<!-- CONTACT -->
+<section id="contact"><div class="si">
+  <div class="contact-head rv">
+    <span class="section-label">Contact</span>
+    <h2 class="section-title">Get in Touch</h2>
+    <p>Open to backend engineering roles &mdash; remote or Bengaluru. Available now.</p>
+  </div>
+  <div class="soc-grid">
+    <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener" class="soc-card rv d1" style="--card-accent:#0a66c2">
+      <div class="soc-ico" style="background:rgba(10,102,194,.12);color:#0a66c2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <span class="soc-label">LinkedIn</span>
+    </a>
+    <a href="https://github.com/md-yusuf-f" target="_blank" rel="noopener" class="soc-card rv d1" style="--card-accent:rgba(255,255,255,.3)">
+      <div class="soc-ico" style="background:rgba(255,255,255,.06);color:var(--t1)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </div>
+      <span class="soc-label">GitHub</span>
+    </a>
+    <a href="mailto:mohammedyusuf1799@gmail.com" class="soc-card rv d2" style="--card-accent:#ea4335">
+      <div class="soc-ico" style="background:rgba(234,67,53,.1);color:#ea4335">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <span class="soc-label">Email</span>
+    </a>
+  </div>
+  <div class="cta-strip rv d2">
+    <p><strong>Mohammed Yusuf</strong> &mdash; Backend Engineer &middot; Salem, TN &rarr; Bengaluru<br>
+    Open to senior backend, distributed systems, and cloud-native roles.</p>
+    <a href="https://github.com/md-yusuf-f/portfolio/raw/main/Yusuf_Resume.pdf" class="btn-primary" style="white-space:nowrap;font-size:.8rem;padding:9px 18px">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Resume
+    </a>
+  </div>
+</div></section>
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+<footer>
+  <div class="foot-logo">MY<span class="dot">.</span></div>
+  <div class="foot-copy">Tamil Nadu &middot; Bengaluru, India</div>
+  <div class="foot-copy">&copy; 2026</div>
+</footer>
 
-            // Interaction Event Listeners
-            
-            // 1. Hover: Move to hovered link
-            navLinks.forEach(link => {
-                link.addEventListener('mouseenter', (e) => updateIndicator(e.target));
-            });
-            
-            // 2. Mouse Leave: Snap back to currently active section
-            if (navContainer) {
-                navContainer.addEventListener('mouseleave', () => {
-                    snapToActiveSection();
-                });
-            }
+<script>
+/* Mobile menu */
+document.getElementById('mb').onclick = () => document.getElementById('mobile-menu').classList.toggle('open');
+function cm() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-            // 3. Resize: Recalculate position (crucial for responsive layouts)
-            window.addEventListener('resize', () => {
-               snapToActiveSection();
-            });
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: .07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(r => obs.observe(r));
 
-            // 4. Font Loading: Recalculate once fonts are ready to ensure correct widths
-            document.fonts.ready.then(() => {
-                snapToActiveSection();
-            });
-
-            // --- Status Text Rotator with Smooth Width Animation ---
-            const statusWords = ["Available", "Online", "Open to work"];
-            let statusIndex = 0;
-            const statusText = document.getElementById('status-text');
-            const statusPill = document.getElementById('status-pill');
-
-            if (statusText && statusPill) {
-                setInterval(() => {
-                    // 1. Lock current width to prepare for animation
-                    const currentWidth = statusPill.offsetWidth;
-                    statusPill.style.width = `${currentWidth}px`;
-                    
-                    // 2. Fade out text
-                    statusText.style.opacity = '0'; 
-
-                    setTimeout(() => {
-                        // 3. Prepare next state
-                        statusIndex = (statusIndex + 1) % statusWords.length;
-                        const newWord = statusWords[statusIndex];
-                        
-                        // 4. Measure new width invisible to user
-                        // We temporarily disable transition to snap to 'auto' and measure
-                        statusPill.style.transition = 'none';
-                        statusPill.style.width = 'auto';
-                        statusText.innerText = newWord;
-                        const newWidth = statusPill.offsetWidth;
-
-                        // 5. Reset to start position (previous width)
-                        statusPill.style.width = `${currentWidth}px`;
-                        
-                        // Force reflow to ensure the browser registers the width change
-                        void statusPill.offsetWidth; 
-
-                        // 6. Enable transition and animate to new width
-                        statusPill.style.transition = 'width 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
-                        statusPill.style.width = `${newWidth}px`;
-                        
-                        // 7. Fade in text
-                        statusText.style.opacity = '1';
-
-                        // 8. Cleanup: After animation, reset to auto to handle window resizing gracefully
-                        setTimeout(() => {
-                            statusPill.style.width = 'auto';
-                        }, 700); // Matches transition duration
-
-                    }, 700); // Wait for fade out
-                }, 4000); // Change every 4 seconds
-            }
-
-        });
-    </script>
+/* Active nav highlight */
+const secs = document.querySelectorAll('section[id]');
+const nls = document.querySelectorAll('.nav-link');
+const so = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nls.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.nav-link[href="#' + e.target.id + '"]');
+      if (a) a.classList.add('active');
+    }
+  });
+}, { threshold: .35 });
+secs.forEach(s => so.observe(s));
+</script>
 </body>
 </html>
