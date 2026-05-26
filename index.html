@@ -28,7 +28,7 @@
   --blue:  #4f9cf9;
   --green: #3fcf8e;
   --amber: #f5a623;
-  --t1: #F8FAFC;
+  --t1: #F5F7FA;
   --t2: #CBD5E1;
   --t3: #94A3B8;
   --r:  8px;
@@ -50,7 +50,7 @@ body {
   color: var(--t2);
   font-family: var(--sans);
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -140,7 +140,7 @@ h2.sec-title {
   font-weight: 800; color: var(--t1);
   letter-spacing: -.03em; line-height: 1.1; margin-bottom: .5rem;
 }
-.sec-sub { color: var(--t2); font-size:.93rem; max-width:500px; }
+.sec-sub { color: var(--t2); font-size:.96rem; max-width:500px; }
 
 /* scroll reveal — respects prefers-reduced-motion */
 @media (prefers-reduced-motion: no-preference) {
@@ -215,7 +215,7 @@ h2.sec-title {
 /* Code snippet — engineering signal */
 .hero-code {
   font-family: var(--mono); font-size:.79rem;
-  color: var(--t3); padding: 10px 14px;
+  color: var(--t2); padding: 10px 14px;
   background: var(--bg2); border:1px solid var(--border);
   border-left: 2px solid var(--accent);
   border-radius: 0 var(--r) var(--r) 0; letter-spacing:.01em;
@@ -248,7 +248,7 @@ h2.sec-title {
 }
 .sn { font-family:var(--display); font-size:1.7rem; font-weight:800; color:var(--t1); letter-spacing:-.04em; line-height:1; }
 .sn em { color:var(--accent); font-style:normal; }
-.sl { font-family:var(--mono); font-size:.63rem; color:var(--t3); text-transform:uppercase; letter-spacing:.1em; font-weight:500; margin-top:2px; }
+.sl { font-family:var(--mono); font-size:.67rem; color:var(--t3); text-transform:uppercase; letter-spacing:.1em; font-weight:500; margin-top:2px; }
 
 /* Photo — simplified: clean border, no gradient wrapper hack */
 .hero-photo {
@@ -322,25 +322,26 @@ h2.sec-title {
   color:var(--t1); margin-bottom:.35rem; letter-spacing:-.02em;
 }
 .proj-problem {
-  font-family:var(--mono); font-size:.72rem; color:var(--t3);
+  font-family:var(--mono); font-size:.74rem; color:var(--t2);
   background:var(--bg2); border-left:2px solid var(--border2);
-  padding:8px 12px; margin-bottom:.75rem; border-radius:0 var(--r) var(--r) 0;
-  line-height:1.5;
+  padding:9px 13px; margin-bottom:.85rem; border-radius:0 var(--r) var(--r) 0;
+  line-height:1.6;
 }
 .proj-problem strong { color:var(--amber); font-weight:500; }
-.proj-desc { font-size:.92rem; color:var(--t2); line-height:1.82; max-width:660px; }
+.proj-desc code { font-family:var(--mono); color:var(--blue); font-size:.85em; }
+.proj-desc { font-size:.9rem; color:var(--t2); line-height:1.8; max-width:660px; }
 
 /* Architecture diagram */
 .arch {
-  margin-top:.9rem; padding:1.1rem 1.4rem;
+  margin-top:.9rem; padding:1.2rem 1.5rem;
   background:var(--bg2); border:1px solid var(--border);
-  border-radius:var(--r); font-family:var(--mono); font-size:.7rem;
-  color:var(--t3); overflow-x:auto; line-height:1.65;
+  border-radius:var(--r); font-family:var(--mono); font-size:.72rem;
+  color:var(--t2); overflow-x:auto; line-height:1.75;
 }
 .arch .n { color:var(--t1); font-weight:500; }
 .arch .a { color:var(--accent); }
 .arch .l { color:var(--blue); }
-.arch .c { color:var(--t3); }
+.arch .c { color:#64748B; }
 .arch .g { color:var(--green); }
 .arch .r { color:#f87171; }
 
@@ -352,7 +353,7 @@ h2.sec-title {
   background:var(--bg2); border:1px solid var(--border);
 }
 .psn { font-family:var(--display); font-size:.95rem; font-weight:800; color:var(--accent); letter-spacing:-.02em; line-height:1; }
-.psl { font-family:var(--mono); font-size:.56rem; color:var(--t3); text-transform:uppercase; letter-spacing:.1em; font-weight:500; }
+.psl { font-family:var(--mono); font-size:.62rem; color:var(--t3); text-transform:uppercase; letter-spacing:.1em; font-weight:500; }
 
 /* Tags */
 .proj-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:.7rem; }
@@ -398,13 +399,13 @@ h2.sec-title {
 .topo-diagram {
   padding:1.5rem 1.75rem; margin-bottom:2rem;
   background:var(--bg2); border:1px solid var(--border); border-radius:var(--r2);
-  font-family:var(--mono); font-size:.73rem; color:var(--t3); line-height:1.8; overflow-x:auto;
+  font-family:var(--mono); font-size:.75rem; color:var(--t2); line-height:1.9; overflow-x:auto;
 }
 .topo-diagram .n { color:var(--t1); font-weight:500; }
 .topo-diagram .a { color:var(--accent); }
 .topo-diagram .l { color:var(--blue); }
 .topo-diagram .g { color:var(--green); }
-.topo-diagram .c { color:var(--t3); }
+.topo-diagram .c { color:#64748B; }
 .topo-diagram .label-row { margin-top:.25rem; }
 
 /* Service cards grid */
@@ -427,12 +428,12 @@ h2.sec-title {
   color:var(--t1); letter-spacing:-.01em;
 }
 .infra-card .infra-meta {
-  font-family:var(--mono); font-size:.68rem; color:var(--t3); margin-top:.1rem;
+  font-family:var(--mono); font-size:.7rem; color:var(--t3); margin-top:.1rem;
 }
 .infra-list { list-style:none; }
 .infra-list li {
-  font-family:var(--mono); font-size:.77rem; color:var(--t3);
-  padding:4px 0 4px 13px; position:relative; line-height:1.62;
+  font-family:var(--mono); font-size:.75rem; color:var(--t2);
+  padding:4px 0 4px 13px; position:relative; line-height:1.65;
 }
 .infra-list li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:.65rem; }
 .infra-card .infra-badge {
@@ -480,12 +481,12 @@ h2.sec-title {
   font-family:var(--mono); font-size:.67rem; font-weight:600;
   margin-bottom:.7rem; letter-spacing:.02em;
 }
-.exp-card p { font-size:.88rem; color:var(--t2); line-height:1.75; margin-bottom:.75rem; }
+.exp-card p { font-size:.87rem; color:var(--t2); line-height:1.75; margin-bottom:.75rem; }
 .exp-list { list-style:none; }
 .exp-list li {
-  font-family:var(--mono); font-size:.78rem;
-  color:var(--t3); padding:5px 0 5px 13px;
-  position:relative; line-height:1.6;
+  font-family:var(--mono); font-size:.76rem;
+  color:var(--t2); padding:4px 0 4px 13px;
+  position:relative; line-height:1.65;
 }
 .exp-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:.7rem; }
 .exp-wide { grid-column:span 2; }
@@ -499,7 +500,7 @@ h2.sec-title {
   display:grid; grid-template-columns:1fr 400px;
   gap:5rem; align-items:start; margin-top:2.5rem;
 }
-.about-text p { color:var(--t2); line-height:1.85; margin-bottom:.9rem; font-size:.93rem; }
+.about-text p { color:var(--t2); line-height:1.9; margin-bottom:.9rem; font-size:.95rem; }
 .about-text p strong { color:var(--t1); font-weight:500; }
 .cert-row {
   display:flex; align-items:center; gap:11px;
@@ -550,8 +551,8 @@ h2.sec-title {
 .tl-role { font-family:var(--display); font-size:1.05rem; font-weight:700; color:var(--t1); letter-spacing:-.02em; }
 .tl-co { font-size:.83rem; color:var(--t3); margin-bottom:.8rem; margin-top:.1rem; }
 .tl-co strong { color:var(--amber); font-weight:600; }
-.tl-list { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
-.tl-list li { font-size:.9rem; color:var(--t2); padding-left:1.1rem; position:relative; line-height:1.72; }
+.tl-list { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.tl-list li { font-size:.88rem; color:var(--t2); padding-left:1.1rem; position:relative; line-height:1.75; }
 .tl-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:.72rem; }
 .tl-list li strong { color:var(--t1); font-weight:500; }
 
@@ -669,10 +670,6 @@ a:focus:not(:focus-visible),
 button:focus:not(:focus-visible) { outline: none; }
 
 /* =====================================================
-   EXTRA MOBILE READABILITY
-   ===================================================== */
-
-/* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:960px){
@@ -699,15 +696,12 @@ button:focus:not(:focus-visible) { outline: none; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
   .infra-grid { grid-template-columns:1fr; }
   .soc-grid { grid-template-columns:1fr 1fr; }
-  .proj-desc { font-size:.93rem; line-height:1.85; }
-  .proj-card { padding:1.4rem 1.25rem; }
-  .arch { font-size:.67rem; padding:.9rem 1rem; }
-  .exp-card { padding:1.3rem 1.25rem; }
-  .exp-card p { font-size:.9rem; }
-  .exp-list li, .infra-list li { font-size:.8rem; padding-top:6px; padding-bottom:6px; }
-  .tl-list li { font-size:.9rem; }
-  .infra-card { padding:1.2rem 1.25rem; }
-  .ps { padding:5px 10px; }
+  body { font-size:16px; line-height:1.75; }
+  .proj-desc { font-size:.92rem; line-height:1.85; }
+  .tl-list li { font-size:.9rem; line-height:1.8; }
+  .infra-list li, .exp-list li { font-size:.8rem; padding:5px 0 5px 14px; line-height:1.7; }
+  .arch { font-size:.68rem; line-height:1.75; }
+  .topo-diagram { font-size:.7rem; line-height:1.85; }
 }
 @media(max-width:380px){
   .soc-grid { grid-template-columns:1fr; }
@@ -756,7 +750,7 @@ button:focus:not(:focus-visible) { outline: none; }
       </div>
       <h1 class="hero-name rv d1">Mohammed<br><span class="accent">Yusuf</span></h1>
       <p class="hero-bio rv d1">
-        <strong>Backend Software Engineer</strong> specialising in distributed systems, Kafka event pipelines, and cloud-native infrastructure. 3+ years at TCS building Java/Spring Boot systems at scale. Designed async event pipelines reducing P99 latency from ~850ms to ~550ms, and run a self-hosted 3-node production cluster on Oracle Cloud ARM&nbsp;64 &mdash; 22 services, automatic DNS failover, fully observable.
+        <strong>Backend Software Engineer</strong> with 3+ years at TCS building Java and Spring Boot systems at enterprise scale. Designed event-driven Kafka pipelines that cut P99 latency from 850ms to 550ms. Outside work, I run a self-hosted 3-node cluster on Oracle Cloud — 22 services, automatic failover, and full observability.
       </p>
       <div class="hero-code rv d2">
         <span class="kw">// </span>Systems that stay up at 3&thinsp;am &nbsp;&middot;&nbsp; reliability over ceremony
@@ -808,18 +802,18 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-problem">
           <strong>Problem:</strong> 3-hop synchronous REST chain for financial transaction processing. P99 ~850ms; consumers timed out under month-end batch load, requiring manual retry.
         </div>
-        <p class="proj-desc">Replaced a 3-hop synchronous REST chain with an event-driven Kafka pipeline for financial transaction processing. P99 latency dropped from 850ms to 550ms with peak throughput of 1,200 msg/sec. The pipeline uses 6 partitions across 3 consumer replicas. Offsets commit only after a confirmed downstream write, ensuring at-least-once delivery. A dead-letter queue with exponential backoff recovers ~0.3% of failed messages. Idempotent upserts keyed on <code>correlation_id</code> prevent duplicate settlement.</p>
+        <p class="proj-desc">Replaced a blocking 3-hop REST chain with an async Kafka pipeline. Six partitions serve a 3-replica consumer group, keeping messages ordered while handling burst load. Offsets commit only after a confirmed downstream write (<code>enable.auto.commit=false</code>), guaranteeing at-least-once delivery. A dead-letter queue with 3-attempt exponential backoff isolates the ~0.3% of messages that fail validation. Settlement writes use a database upsert on <code>correlation_id</code>, preventing duplicate processing under retry.</p>
         <div class="arch">
-<span class="c"># BEFORE ─ synchronous REST (blocking, cascading timeouts)</span>
-<span class="n">OrderSvc</span> <span class="a">──[HTTP 200ms]──&gt;</span> <span class="n">ValidationSvc</span> <span class="a">──[HTTP 300ms]──&gt;</span> <span class="n">SettleSvc</span>
-<span class="c">#         any hop failure = full chain failure + manual retry</span>
+<span class="c"># BEFORE — synchronous REST chain (blocking, cascading timeouts)</span>
+<span class="n">OrderSvc</span> <span class="a">──[HTTP]──&gt;</span> <span class="n">ValidationSvc</span> <span class="a">──[HTTP]──&gt;</span> <span class="n">SettleSvc</span>
+<span class="c">#  one hop failure = full chain failure, manual retry required</span>
 
-<span class="c"># AFTER ─ async Kafka (non-blocking, independently scalable)</span>
-<span class="n">OrderSvc</span> <span class="a">──[produce]──&gt;</span> <span class="l">txn.events</span> <span class="c">(6 partitions, RF=2)</span>
-                            <span class="a">├──&gt;</span> <span class="n">ValidationConsumer</span><span class="c">[0..2]</span>  <span class="a">──[produce]──&gt;</span> <span class="l">txn.processed</span>
-                            <span class="a">└──&gt;</span> <span class="r">txn.events.dlq</span>      <span class="c">(retry 3×, backoff 2^n×100ms)</span>
-<span class="l">txn.processed</span> <span class="a">──&gt;</span> <span class="n">SettleSvc</span> <span class="c">(upsert on correlation_id, idempotent)</span>
-<span class="g"># Result: P99 850ms → 550ms  |  ~1,200 msg/sec peak  |  horizontal scale = add consumers</span>
+<span class="c"># AFTER — async Kafka pipeline (non-blocking, independently scalable)</span>
+<span class="n">OrderSvc</span> <span class="a">──[produce]──&gt;</span> <span class="l">txn.events</span>  <span class="c">(6 partitions · 3 consumer replicas)</span>
+  <span class="a">├──&gt;</span> <span class="n">ValidationConsumer</span>  <span class="a">──[produce]──&gt;</span> <span class="l">txn.processed</span> <span class="a">──&gt;</span> <span class="n">SettleSvc</span>
+  <span class="a">└──&gt;</span> <span class="r">txn.events.dlq</span>      <span class="c">(3 retries, exponential backoff)</span>
+
+<span class="g"># P99 850ms → 550ms  ·  ~1,200 msg/sec peak  ·  scale by adding consumers</span>
         </div>
         <div class="proj-stats">
           <div class="ps"><span class="psn">550ms</span><span class="psl">P99 Latency</span></div>
@@ -849,7 +843,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-problem">
           <strong>Problem:</strong> .NET/mainframe application with no test coverage, 14-minute manual build process, and 12+ critical SonarQube issues per release shipping to production.
         </div>
-        <p class="proj-desc">Migrated .NET and mainframe systems to Java Spring Boot microservices — 40+ REST API endpoints with 35% faster execution. Established Docker + Jenkins CI/CD pipelines with staged gates: unit tests (JUnit/Mockito), SonarQube quality gates (0 critical issues enforced), Docker image build, staging deploy with smoke tests, then manual approval before production. Auto-rollback on post-deploy health-check failure. 100% unit test coverage maintained across all releases, cutting production defects by 30%.</p>
+        <p class="proj-desc">Migrated .NET and mainframe applications to Java Spring Boot microservices — 40+ REST endpoints, 35% faster execution. Built Jenkins CI/CD pipelines with six staged quality gates: unit tests, SonarQube analysis (zero critical issues enforced), Docker build, staging smoke tests, manual approval, and a production deploy with auto-rollback on health-check failure. Maintained 100% unit test coverage across every release, cutting production defects by 30%.</p>
         <div class="arch">
 <span class="c"># CI/CD Pipeline ─ staged quality gates</span>
 <span class="n">Code Push</span> <span class="a">──&gt;</span> <span class="l">GitHub</span> <span class="a">──&gt;</span> <span class="n">Jenkins Webhook</span>
@@ -890,7 +884,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-problem">
           <strong>Design goal:</strong> Production-grade availability for personal cloud services without managed Kubernetes — using OCI free tier plus a LAN machine.
         </div>
-        <p class="proj-desc">Primary node: OCI Ampere A1 (ARM64, 4 vCPU, 24GB RAM) running 22 containerised services. Warm standby: AMD laptop on LAN, replicated via rsync over Tailscale every 15 minutes (15-minute RPO). Watchdog: OCI E2.1 Micro in Mumbai polls both nodes every 2 minutes and triggers Cloudflare DNS failover if primary is unreachable (~2-minute RTO). All traffic enters via Cloudflare Tunnel — zero exposed ports. Traefik v3 handles TLS termination, Authelia enforces SSO/2FA. Prometheus + Grafana + Alertmanager provide full observability with Telegram alerting on SLO breaches.</p>
+        <p class="proj-desc">Primary node runs on OCI Ampere A1 (ARM64, 4 vCPU, 24GB RAM) hosting 22 containerised services. A warm standby on a LAN machine syncs every 15 minutes via rsync over Tailscale (RPO = 15m). A lightweight watchdog polls both nodes every 2 minutes and triggers Cloudflare DNS failover if the primary goes down (RTO ≈ 2m). All traffic enters through Cloudflare Tunnel — no ports exposed. Traefik v3 handles TLS termination; Authelia enforces SSO with 2FA. Prometheus, Grafana, and Alertmanager provide full observability with real-time Telegram alerts on SLO breaches.</p>
         <div class="arch">
 <span class="c"># Network topology</span>
 <span class="n">Internet</span> <span class="a">──&gt;</span> <span class="l">Cloudflare CDN</span> <span class="a">──&gt;</span> <span class="l">Tunnel 3</span> <span class="a">──&gt;</span> <span class="n">Traefik v3</span> <span class="a">──&gt;</span> <span class="n">Docker services</span>
@@ -934,7 +928,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-problem">
           <strong>Design goal:</strong> Private AI assistant with local-first inference, graceful cloud fallback, and zero vendor lock-in — running under 2GB resident memory.
         </div>
-        <p class="proj-desc">Async Python backend routing prompts through a scored provider chain: Ollama (qwen3:8b/14b, local) → Gemini Flash → Groq → Claude. Provider selection uses a weighted latency/cost/quality score; failed providers are circuit-broken for 60 seconds before retry. Persistent semantic memory via ChromaDB with background auto-extraction after each turn. Multi-agent DAG orchestration dispatches up to 2 concurrent sub-agents with topological execution order. Accessible via Telegram bot (inline approval gates for destructive tool calls), REST API, and CLI. Zero open ports — all traffic via Cloudflare Tunnel.</p>
+        <p class="proj-desc">Async Python backend that routes prompts through a scored provider chain: local Ollama (qwen3:8b/14b) → Gemini Flash → Groq → Claude. Each provider is ranked by a weighted score across latency, cost, and quality. Failed providers are circuit-broken for 60 seconds before retrying. Conversation history persists in ChromaDB with semantic extraction running in the background after each turn. A DAG orchestrator dispatches up to 2 sub-agents concurrently in topological order. Accessible via Telegram bot (with approval gates for destructive actions), REST API, and CLI. No open ports — all traffic routed through Cloudflare Tunnel.</p>
         <div class="arch">
 <span class="c"># Provider routing with circuit breaker</span>
 <span class="n">Prompt</span> <span class="a">──&gt;</span> <span class="n">model_router.route()</span>  <span class="c">(strategy: balanced | latency | cost)</span>
@@ -980,7 +974,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-problem">
           <strong>Design goal:</strong> Aggregate 3 brokerage APIs into a single observable dashboard with parallel AI analysis, automated alerting, and a paper trading engine — all under a 30-second analysis timeout budget.
         </div>
-        <p class="proj-desc">Aggregates equity (Zerodha/KiteConnect), crypto spot (Binance via ccxt), and mutual fund holdings. Five AI models run in parallel via <code>asyncio.gather()</code> with a 30-second per-provider timeout — failed providers degrade gracefully (return <code>None</code>, not errors). Price alerts checked on every holdings fetch; breaches push Telegram notifications instantly. APScheduler cron jobs handle daily reports, Kite token refresh warnings, and 15-minute candle collection. Paper trading engine evaluates RSI/EMA signals every 15 minutes with a 4-hour per-symbol cooldown and daily drawdown circuit breaker.</p>
+        <p class="proj-desc">Aggregates equity (Zerodha/KiteConnect), crypto (Binance via ccxt), and mutual fund holdings into a single dashboard. Five AI models analyse the portfolio in parallel — each with a 30-second timeout and graceful degradation on failure. Price alerts are evaluated on every holdings fetch and push Telegram notifications instantly on breach. APScheduler handles daily reports, token refresh reminders, and 15-minute candle collection. A paper trading engine evaluates RSI/EMA signals every 15 minutes, with a 4-hour per-symbol cooldown and a daily drawdown circuit breaker.</p>
         <div class="arch">
 <span class="c"># Parallel analysis — 5 providers, 30s timeout each, graceful degradation</span>
 <span class="l">asyncio.gather(</span>
@@ -1030,37 +1024,46 @@ button:focus:not(:focus-visible) { outline: none; }
     <h2 class="sec-title">Infrastructure &amp;<br>Operational Ownership</h2>
   </div>
   <div class="infra-intro rv d1">
-    <p>I run a <strong>3-node production cluster on Oracle Cloud</strong> hosting 22 self-hosted services with genuine reliability requirements: encrypted offsite backups, automatic DNS failover, full observability, and SSO-gated access. The stack mirrors what platform teams run at scale — Traefik for ingress, Prometheus and Grafana for observability, CrowdSec for threat detection, and Cloudflare Tunnels for zero-trust ingress without exposed ports.</p>
-    <p>This is where I practice reliability engineering, capacity planning, and incident response without a safety net. If it breaks at 3am, I get the Telegram alert and fix it.</p>
+    <p>I operate a <strong>3-node production cluster on Oracle Cloud</strong> running 22 self-hosted services — not as a toy project, but with production-grade reliability requirements: encrypted offsite backups, automatic failover, observability, and SSO-secured access. The stack is intentionally close to what platform teams run at scale: Traefik as ingress, Prometheus/Grafana for observability, CrowdSec for threat detection, and Cloudflare Tunnels for zero-trust ingress.</p>
+    <p>This isn't a hobby. It's where I practice reliability engineering, capacity planning, incident response, and infrastructure-as-code discipline without a safety net.</p>
   </div>
 
   <div class="topo-diagram rv d2">
-<span class="c">╔══════════════════════════════════════════════════════════════════════════╗</span>
-<span class="c">║                    FALAK INFRASTRUCTURE TOPOLOGY                        ║</span>
-<span class="c">╚══════════════════════════════════════════════════════════════════════════╝</span>
+<span class="c">── TRAFFIC &amp; NETWORKING ──────────────────────────────────────────────────</span>
 
-<span class="n">External Traffic</span>
-  <span class="a">│</span>
+<span class="n">Internet</span>
   <span class="a">▼</span>
-<span class="l">Cloudflare CDN</span> <span class="c">(DDoS protection, Tunnel 3)</span>
-  <span class="a">│  zero open ports on host — tunnel only</span>
+<span class="l">Cloudflare CDN</span>   <span class="c">DDoS protection · zero open ports on host</span>
   <span class="a">▼</span>
-<span class="n">Traefik v3</span>  <span class="c">(reverse proxy, Let's Encrypt TLS, Authelia 2FA middleware)</span>
-  <span class="a">├──▶</span> <span class="l">Vaultwarden</span>   <span class="c">(passwords, synced to standby every 15m)</span>
-  <span class="a">├──▶</span> <span class="l">Nextcloud</span>     <span class="c">(files, MariaDB + Redis)</span>
-  <span class="a">├──▶</span> <span class="l">n8n</span>           <span class="c">(workflow automation, webhook handling)</span>
-  <span class="a">├──▶</span> <span class="l">AdGuard DNS</span>   <span class="c">(internal DNS resolver)</span>
-  <span class="a">├──▶</span> <span class="l">Grafana</span>       <span class="c">(dashboards, Prometheus datasource)</span>
-  <span class="a">└──▶</span> <span class="l">+ 17 more services</span>
+<span class="l">Cloudflare Tunnel</span> <span class="c">encrypted tunnel — no inbound firewall rules needed</span>
+  <span class="a">▼</span>
+<span class="n">Traefik v3</span>       <span class="c">TLS termination · Let's Encrypt · Authelia 2FA middleware</span>
+  <span class="a">├──▶</span> <span class="l">Vaultwarden</span>  <span class="c">password manager</span>
+  <span class="a">├──▶</span> <span class="l">Nextcloud</span>    <span class="c">file sync (MariaDB + Redis)</span>
+  <span class="a">├──▶</span> <span class="l">n8n</span>          <span class="c">workflow automation</span>
+  <span class="a">├──▶</span> <span class="l">Grafana</span>      <span class="c">monitoring dashboards</span>
+  <span class="a">└──▶</span> <span class="l">17 more services</span>
 
-<span class="n">Monitoring layer</span>
-  <span class="l">Prometheus</span> <span class="a">──scrapes──▶</span> <span class="n">node_exporter</span> <span class="c">+ cAdvisor + custom exporters</span>
-  <span class="l">Alertmanager</span> <span class="a">──▶</span> <span class="n">Telegram bot</span>  <span class="c">(SLO breach alerts)</span>
+<span class="c">── HIGH AVAILABILITY ──────────────────────────────────────────────────────</span>
 
-<span class="n">Resilience</span>
-  <span class="l">rsync over Tailscale</span> <span class="a">──▶</span> <span class="n">Warm standby</span>  <span class="c">every 15m (RPO)</span>
-  <span class="l">e2-micro watchdog</span>    <span class="a">──▶</span> <span class="n">DNS failover</span>  <span class="c">on primary outage (RTO ≈ 2m)</span>
-  <span class="l">rclone</span>               <span class="a">──▶</span> <span class="n">Encrypted cloud</span> <span class="c">daily at 02:00 (7 daily, 4 weekly)</span>
+<span class="n">PRIMARY</span>    <span class="l">falak-ai</span>   <span class="c">OCI Ampere A1 · ARM64 · 4 vCPU · 24GB RAM · 22 services</span>
+  <span class="a">│  rsync every 15m over Tailscale</span>  <span class="c">RPO = 15m</span>
+<span class="n">STANDBY</span>    <span class="l">falak</span>      <span class="c">AMD laptop on LAN · warm standby</span>
+  <span class="a">│  health-check every 2m → DNS failover on outage</span>  <span class="c">RTO ≈ 2m</span>
+<span class="n">WATCHDOG</span>   <span class="l">e2-micro</span>   <span class="c">OCI E2 · Mumbai · triggers Cloudflare DNS failover</span>
+
+<span class="c">── OBSERVABILITY ──────────────────────────────────────────────────────────</span>
+
+<span class="l">Prometheus</span>    <span class="c">scrapes node_exporter · cAdvisor · JVM · custom exporters</span>
+<span class="l">Grafana</span>       <span class="c">dashboards for container health, traffic, and resources</span>
+<span class="l">Alertmanager</span>  <span class="c">SLO breach alerts → Telegram bot</span>
+<span class="l">Uptime Kuma</span>   <span class="c">external endpoint monitoring</span>
+
+<span class="c">── SECURITY &amp; BACKUPS ─────────────────────────────────────────────────────</span>
+
+<span class="l">CrowdSec</span>      <span class="c">community threat intelligence · Traefik bouncer integration</span>
+<span class="l">Authelia</span>      <span class="c">SSO + TOTP 2FA on all admin surfaces</span>
+<span class="l">rclone</span>        <span class="c">AES-256 encrypted cloud backup nightly · 7 daily + 4 weekly</span>
   </div>
 
   <div class="infra-grid rv d2">
@@ -1075,11 +1078,11 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>Cloudflare Tunnels — zero exposed inbound ports on the host</li>
-        <li>Traefik v3 for TLS termination and service routing</li>
-        <li>Authelia enforcing SSO and TOTP 2FA on all admin surfaces</li>
-        <li>Tailscale mesh VPN for private management access only</li>
-        <li>UFW default-deny firewall with Tailscale and LAN exceptions</li>
+        <li>Cloudflare Tunnels — no inbound ports exposed on host</li>
+        <li>Traefik v3 — automatic TLS termination and middleware routing</li>
+        <li>Authelia — SSO and TOTP 2FA on all admin interfaces</li>
+        <li>Tailscale mesh VPN for internal management access only</li>
+        <li>UFW default-deny — only Tailscale and LAN traffic allowed</li>
       </ul>
       <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">Production</div>
     </div>
@@ -1095,10 +1098,10 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>Prometheus metrics collection for containers, host, and JVM</li>
-        <li>Custom exporters tracking Kafka consumer lag and HTTP error rates</li>
+        <li>Prometheus with system, container, and JVM metrics collection</li>
+        <li>Custom exporters for Kafka consumer lag and HTTP error rates</li>
         <li>Grafana dashboards for container health, traffic, and resource usage</li>
-        <li>Alertmanager routing SLO breach alerts to Telegram</li>
+        <li>Alertmanager sends real-time Telegram alerts on SLO breaches</li>
         <li>Uptime Kuma for external endpoint availability monitoring</li>
       </ul>
       <div class="infra-badge" style="background:rgba(245,166,35,.06);color:var(--amber);border-color:rgba(245,166,35,.2)">Fully Observable</div>
@@ -1115,11 +1118,11 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>CrowdSec community threat intelligence with Traefik bouncing</li>
-        <li>Authelia SSO with 2FA and Redis-backed encrypted session management</li>
-        <li>Azure Security Engineer certification applied to OCI infrastructure hardening</li>
-        <li>Docker secrets for credential management — no plaintext environment variables</li>
-        <li>Automated IP blocking via CrowdSec scenario-based detection</li>
+        <li>CrowdSec with community threat intelligence and Traefik integration</li>
+        <li>Authelia SSO with Argon2id password hashing and Redis sessions</li>
+        <li>Azure Security Engineer certification applied to OCI hardening</li>
+        <li>Secrets managed via Docker secrets — no plaintext environment variables</li>
+        <li>Automated IP banning via CrowdSec threat scenarios</li>
       </ul>
       <div class="infra-badge" style="background:rgba(248,113,113,.06);color:#f87171;border-color:rgba(248,113,113,.2)">Hardened</div>
     </div>
@@ -1135,11 +1138,11 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>rsync over Tailscale replicating to warm standby every 15 minutes (RPO)</li>
-        <li>Watchdog VPS polls every 2 minutes and triggers DNS failover on outage (RTO ~2m)</li>
-        <li>AES-256 encrypted cloud backups via rclone running nightly</li>
-        <li>Backup retention: 7 daily and 4 weekly snapshots</li>
-        <li>Backup integrity verified by the OCI watchdog node</li>
+        <li>rsync over Tailscale to warm standby every 15 minutes (RPO = 15m)</li>
+        <li>Watchdog polling every 2 minutes triggers DNS failover (RTO ≈ 2m)</li>
+        <li>Nightly AES-256 encrypted cloud backups via rclone</li>
+        <li>Retention: 7 daily and 4 weekly snapshots</li>
+        <li>Automated backup verification via a dedicated watchdog node</li>
       </ul>
       <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">RPO 15m · RTO 2m</div>
     </div>
@@ -1155,11 +1158,11 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>n8n for webhook-triggered automation pipelines and integrations</li>
+        <li>n8n webhook-triggered automation workflows</li>
         <li>Watchtower for automated Docker image updates</li>
-        <li>Telegram bot for operational alerts and remote manual commands</li>
-        <li>Cron jobs handling backup verification, token refresh, and daily reports</li>
-        <li>Open-source reusable workflow library on GitHub</li>
+        <li>Telegram bot for live alerts and manual operational commands</li>
+        <li>Scheduled cron jobs for backups, token refresh, and reports</li>
+        <li>Reusable n8n workflow template library (open source)</li>
       </ul>
       <a href="https://github.com/md-yusuf-f/n8n-webhook-templates" target="_blank" rel="noopener" class="proj-gh-link" style="margin-top:.75rem">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1178,11 +1181,11 @@ button:focus:not(:focus-visible) { outline: none; }
         </div>
       </div>
       <ul class="infra-list">
-        <li>OCI Ampere A1 primary node — 4 vCPU, 24 GB RAM, ARM64</li>
-        <li>22 services across Docker Compose stacks with isolated networks</li>
-        <li>Portainer for container management and stack oversight</li>
-        <li>All images verified for ARM64 compatibility before deployment</li>
-        <li>Per-container memory limits enforced at the Docker runtime level</li>
+        <li>OCI Ampere A1 — 4 vCPU, 24GB RAM, ARM64 (free tier)</li>
+        <li>22 services in Docker Compose stacks with isolated networks</li>
+        <li>Portainer for container management and health visibility</li>
+        <li>All images tested and verified for ARM64 compatibility</li>
+        <li>Per-container memory limits enforced to prevent resource contention</li>
       </ul>
       <div class="infra-badge" style="background:rgba(79,156,249,.06);color:var(--blue);border-color:rgba(79,156,249,.2)">Oracle Cloud · ARM64</div>
     </div>
@@ -1205,10 +1208,10 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="exp-metric" style="background:rgba(248,113,113,.08);color:#f87171">P99 850ms &rarr; 550ms on Kafka pipeline</div>
       <p>Event-driven microservices, REST APIs, and async processing with Java and Spring Boot at enterprise scale.</p>
       <ul class="exp-list">
-        <li>Spring Boot and Hibernate ORM for production Java backends</li>
-        <li>Apache Kafka with partitioned topics, DLQ, and at-least-once delivery</li>
-        <li>Idempotent consumer design with exponential backoff retry handling</li>
-        <li>Legacy .NET and mainframe migration to microservices</li>
+        <li>Spring Boot and Hibernate ORM at enterprise scale</li>
+        <li>Apache Kafka — partitioned topics, dead-letter queues, at-least-once delivery</li>
+        <li>Idempotent consumers with exponential backoff retry</li>
+        <li>Legacy .NET and mainframe migration to Java microservices</li>
       </ul>
     </div>
     <div class="exp-card ecc-2 rv d2">
@@ -1219,9 +1222,9 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="exp-metric" style="background:rgba(232,255,71,.06);color:var(--accent)">22 Docker services · RPO 15m · RTO 2m</div>
       <p>CI/CD pipelines, container orchestration, and Linux server management on Oracle Cloud ARM64.</p>
       <ul class="exp-list">
-        <li>Docker and Jenkins with staged deployment gates and auto-rollback</li>
-        <li>Traefik v3 with automated Let&rsquo;s Encrypt TLS certificate management</li>
-        <li>Tailscale mesh VPN for private networking with UFW default-deny policy</li>
+        <li>Docker and Jenkins CI/CD with staged quality gates and auto-rollback</li>
+        <li>Traefik v3 with automated TLS via Let&rsquo;s Encrypt</li>
+        <li>Tailscale mesh VPN with UFW default-deny firewall</li>
         <li>AES-256 encrypted offsite backups via rclone</li>
       </ul>
     </div>
@@ -1233,8 +1236,8 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="exp-metric" style="background:rgba(63,207,142,.08);color:var(--green)">100% coverage &middot; 0 critical SonarQube issues enforced</div>
       <p>Zero-defect pipelines with full-stack observability and active threat detection in production.</p>
       <ul class="exp-list">
-        <li>JUnit and Mockito with 100% coverage enforced at every release</li>
-        <li>SonarQube quality gates that hard-fail on critical issues</li>
+        <li>JUnit and Mockito with 100% coverage gates enforced in CI</li>
+        <li>SonarQube quality gates blocking releases on critical issues</li>
         <li>Prometheus, Grafana, and Alertmanager for production observability</li>
         <li>CrowdSec threat detection with Authelia SSO and 2FA</li>
       </ul>
@@ -1247,10 +1250,10 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="exp-metric" style="background:rgba(192,132,252,.08);color:#c084fc">5 LLMs · circuit breaker · &lt;2GB resident</div>
       <p>Private AI systems with local inference, graceful cloud fallback, and workflow automation.</p>
       <ul class="exp-list">
-        <li>Local LLM inference via Ollama with multi-provider fallback routing</li>
-        <li>Circuit breaker protection with 60-second cooldown on provider failure</li>
-        <li>Persistent semantic memory via ChromaDB with automatic extraction</li>
-        <li>n8n workflow automation and Telegram bot integration</li>
+        <li>Local inference via Ollama with multi-provider cloud fallback</li>
+        <li>Circuit breaker protection on AI provider failures with graceful fallback</li>
+        <li>ChromaDB semantic memory and RAG-based context retrieval</li>
+        <li>n8n workflow automation and Telegram bot integrations</li>
       </ul>
     </div>
     <div class="exp-card ecc-5 exp-wide rv d2">
@@ -1281,8 +1284,8 @@ button:focus:not(:focus-visible) { outline: none; }
     <div class="about-text rv">
       <span class="sec-label">About</span>
       <h2 class="sec-title">Production systems<br>at work. Production<br>infrastructure at home.</h2>
-      <p>Backend Software Engineer at <strong>Tata Consultancy Services</strong>, Bengaluru. Over 3 years building Java and Spring Boot systems at enterprise scale — migrating legacy .NET and mainframe applications, designing Kafka event pipelines for high-throughput financial workflows, and shipping with 100% test coverage enforced at every release via SonarQube quality gates.</p>
-      <p>Outside work I operate <strong>Falak</strong> &mdash; a 3-node production cluster on Oracle Cloud ARM64 running 22 services. It has automatic DNS failover, encrypted offsite backups, and full Prometheus observability. Currently migrating to a hot-standby architecture. I treat it the same way I treat production at work: if it breaks at 3am, the Telegram alert wakes me and I fix it.</p>
+      <p>Backend Software Engineer at <strong>Tata Consultancy Services</strong>, Bengaluru. Over 3 years building Java and Spring Boot systems at enterprise scale — migrating legacy .NET and mainframe applications, designing Kafka event pipelines for high-throughput financial workflows, and enforcing 100% test coverage via SonarQube quality gates on every release.</p>
+      <p>Outside work I run <strong>Falak</strong> — a 3-node production cluster on Oracle Cloud ARM64 hosting 22 services with automatic DNS failover, encrypted backups, and full observability. I treat it the same way I treat production at work: if it breaks at 3am, I get the Telegram alert and I fix it.</p>
       <div class="cert-row rv d1">
         <div class="cert-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1359,11 +1362,11 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="tl-role">System Engineer</div>
       <div class="tl-co">Tata Consultancy Services &nbsp;&middot;&nbsp; <strong>Bengaluru, India</strong></div>
       <ul class="tl-list">
-        <li>Migrated <strong>.NET and mainframe systems to Java &amp; Spring Boot</strong> &mdash; 40+ REST endpoints, 35% faster execution, zero data loss during cutover.</li>
-        <li>Designed <strong>Apache Kafka event-driven pipeline</strong> for financial transaction processing &mdash; P99 latency ~850ms &rarr; ~550ms, throughput ~1,200 msg/sec peak; DLQ + exponential backoff handles consumer failures.</li>
-        <li>Built <strong>Jenkins CI/CD pipelines</strong> with staged gates (unit tests &rarr; SonarQube &rarr; staging &rarr; prod) &mdash; build time 14min &rarr; 11min, 0 critical issues enforced on every release.</li>
-        <li>Maintained <strong>100% unit test coverage</strong> with JUnit and Mockito &mdash; 30% fewer production defects across 6 releases.</li>
-        <li>Mentored <strong>20+ junior engineers</strong> on Java/Spring Boot patterns and CI/CD discipline, improving team delivery cadence by 20%.</li>
+        <li>Migrated <strong>.NET and mainframe systems to Java and Spring Boot</strong> — 40+ REST endpoints delivered, 35% faster execution, zero data loss during cutover.</li>
+        <li>Designed an <strong>Apache Kafka event-driven pipeline</strong> for financial transaction processing — P99 latency dropped from 850ms to 550ms, throughput reached 1,200 msg/sec peak; dead-letter queue with exponential backoff handles consumer failures automatically.</li>
+        <li>Built <strong>Jenkins CI/CD pipelines</strong> with six staged quality gates (unit tests, SonarQube, staging, production) — build time cut from 14 to 11 minutes, zero critical issues enforced on every release.</li>
+        <li>Maintained <strong>100% unit test coverage</strong> with JUnit and Mockito — 30% fewer production defects measured across 6 consecutive releases.</li>
+        <li>Mentored <strong>20+ junior engineers</strong> on Java, Spring Boot patterns, and CI/CD discipline — improved team delivery cadence by 20%.</li>
       </ul>
     </div>
   </div>
