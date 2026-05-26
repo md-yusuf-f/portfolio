@@ -125,7 +125,7 @@ nav {
 /* =====================================================
    SECTION SHELL
    ===================================================== */
-section { padding: 86px 2.5rem; }
+section { padding: 96px 2.5rem; }
 .si { max-width: 1120px; margin: 0 auto; }
 .sec-label {
   display: inline-flex; align-items:center; gap:8px;
@@ -280,9 +280,9 @@ h2.sec-title {
    SECTION: PROJECTS  (leads the page after hero)
    ===================================================== */
 #work { background: var(--bg2); }
-.proj-list { display:flex; flex-direction:column; gap:1px; margin-top:2.5rem; }
+.proj-list { display:flex; flex-direction:column; gap:3px; margin-top:2.5rem; }
 .proj-card {
-  padding: 1.75rem 2rem;
+  padding: 2rem 2.25rem;
   background: var(--bg);
   border: 1px solid var(--border);
   display: grid; grid-template-columns: 1fr 48px;
@@ -372,13 +372,13 @@ h2.sec-title {
 /* GitHub link on project */
 .proj-gh-link {
   display:inline-flex; align-items:center; gap:5px;
-  padding:5px 11px; border-radius:6px;
+  padding:6px 13px; border-radius:6px;
   font-family:var(--mono); font-size:.69rem; font-weight:600;
-  text-decoration:none; border:1px solid var(--border2); color:var(--t2);
-  background:transparent; margin-top:.75rem;
-  transition: border-color .15s, color .15s;
+  text-decoration:none; border:1px solid rgba(232,255,71,.28); color:var(--accent);
+  background:rgba(232,255,71,.04); margin-top:.75rem;
+  transition: border-color .15s, color .15s, background .15s;
 }
-.proj-gh-link:hover { border-color:var(--t2); color:var(--t1); }
+.proj-gh-link:hover { border-color:rgba(232,255,71,.55); background:rgba(232,255,71,.08); color:var(--accent); }
 
 /* Right icon area */
 .proj-icon {
@@ -409,7 +409,7 @@ h2.sec-title {
 .topo-diagram .label-row { margin-top:.25rem; }
 
 /* Service cards grid */
-.infra-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.infra-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
 .infra-card {
   padding:1.4rem 1.5rem; border-radius:var(--r2);
   background:var(--bg2); border:1px solid var(--border);
@@ -448,7 +448,7 @@ h2.sec-title {
 #expertise { background: var(--bg2); }
 .exp-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1rem; margin-top:2.5rem;
+  gap:1.25rem; margin-top:2.5rem;
 }
 .exp-card {
   padding:1.6rem; border-radius:var(--r2);
@@ -888,10 +888,6 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="proj-content">
         <div class="proj-num">01 <span class="pb pb-tcs">TCS &middot; 2023</span></div>
         <h3>Event-Driven Kafka Transaction Pipeline</h3>
-        <div class="proj-problem">
-          <strong>Problem:</strong> 3-hop synchronous REST chain for financial transaction processing. P99 ~850ms; consumers timed out under month-end batch load, requiring manual retry.
-        </div>
-        <p class="proj-desc">Replaced a blocking 3-hop REST chain with an async Kafka pipeline. Six partitions serve a 3-replica consumer group, keeping messages ordered while handling burst load. Offsets commit only after a confirmed downstream write (<code>enable.auto.commit=false</code>), guaranteeing at-least-once delivery. A dead-letter queue with 3-attempt exponential backoff isolates the ~0.3% of messages that fail validation. Settlement writes use a database upsert on <code>correlation_id</code>, preventing duplicate processing under retry.</p>
         <div class="cs-blocks">
           <div class="cs-block">
             <div class="cs-label" style="color:#f87171">Problem</div>
@@ -899,7 +895,7 @@ button:focus:not(:focus-visible) { outline: none; }
           </div>
           <div class="cs-block">
             <div class="cs-label" style="color:#4f9cf9">Solution</div>
-            <div class="cs-text">Replaced the blocking chain with an async Kafka pipeline &mdash; 6 partitions, 3 consumer replicas. Offsets commit only after a confirmed downstream write, guaranteeing at-least-once delivery. A dead-letter queue with 3-attempt exponential backoff isolates failing messages. Idempotent upserts on <code>correlation_id</code> prevent duplicate settlement.</div>
+            <div class="cs-text">Replaced the blocking chain with an async Kafka pipeline &mdash; partitioned consumers, dead-letter queue with retry handling, and idempotent settlement writes.</div>
           </div>
           <div class="cs-block">
             <div class="cs-label" style="color:#3fcf8e">Result</div>
@@ -937,20 +933,9 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-num">02 <span class="pb pb-tcs">TCS &middot; 2022</span></div>
         <h3>Legacy Mainframe Migration &amp; CI/CD Pipeline</h3>
         <div class="proj-problem">
-          <strong>Problem:</strong> .NET/mainframe application with no test coverage, 14-minute manual build process, and 12+ critical SonarQube issues per release shipping to production.
+          <strong>Problem:</strong> No test coverage, 14-minute manual build, and frequent critical issues shipping to production.
         </div>
-        <p class="proj-desc">Migrated .NET and mainframe applications to Java Spring Boot microservices — 40+ REST endpoints, 35% faster execution. Built Jenkins CI/CD pipelines with six staged quality gates: unit tests, SonarQube analysis (zero critical issues enforced), Docker build, staging smoke tests, manual approval, and a production deploy with auto-rollback on health-check failure. Maintained 100% unit test coverage across every release, cutting production defects by 30%.</p>
-        <div class="arch">
-<span class="c"># CI/CD Pipeline ─ staged quality gates</span>
-<span class="n">Code Push</span> <span class="a">──&gt;</span> <span class="l">GitHub</span> <span class="a">──&gt;</span> <span class="n">Jenkins Webhook</span>
-  <span class="a">├── Stage 1</span> <span class="l">mvn test</span>       <span class="c">(JUnit+Mockito, coverage gate 100%)</span>
-  <span class="a">├── Stage 2</span> <span class="l">sonar:analyze</span>  <span class="c">(0 critical, &lt;5 major — hard fail)</span>
-  <span class="a">├── Stage 3</span> <span class="l">docker build</span>   <span class="c">+ push to registry</span>
-  <span class="a">├── Stage 4</span> <span class="l">deploy staging</span> <span class="c">→ smoke test suite</span>
-  <span class="a">├── Stage 5</span> <span class="l">manual approval</span>
-  <span class="a">└── Stage 6</span> <span class="l">deploy prod</span>    <span class="c">→ health-check poll 30s → auto-rollback on failure</span>
-<span class="g"># Result: build 14min → 11min  |  defects ↓30%  |  40+ endpoints migrated</span>
-        </div>
+        <p class="proj-desc">Migrated .NET and mainframe systems to Java Spring Boot microservices &mdash; 40+ REST endpoints, 35% faster execution, 100% unit test coverage enforced at every release. Built Jenkins CI/CD pipelines with staged quality gates and auto-rollback; reduced production defects by 30%.</p>
         <div class="proj-stats">
           <div class="ps"><span class="psn">40+</span><span class="psl">Endpoints</span></div>
           <div class="ps"><span class="psn">11min</span><span class="psl">Build Time</span></div>
@@ -978,22 +963,9 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-num">03 <span class="pb pb-inf">Infrastructure</span></div>
         <h3>Falak &mdash; 3-Node Production Infrastructure</h3>
         <div class="proj-problem">
-          <strong>Design goal:</strong> Production-grade availability for personal cloud services without managed Kubernetes — using OCI free tier plus a LAN machine.
+          <strong>Design goal:</strong> Production-grade availability for personal cloud services without managed Kubernetes.
         </div>
-        <p class="proj-desc">Primary node runs on OCI Ampere A1 (ARM64, 4 vCPU, 24GB RAM) hosting 22 containerised services. A warm standby on a LAN machine syncs every 15 minutes via rsync over Tailscale (RPO = 15m). A lightweight watchdog polls both nodes every 2 minutes and triggers Cloudflare DNS failover if the primary goes down (RTO ≈ 2m). All traffic enters through Cloudflare Tunnel — no ports exposed. Traefik v3 handles TLS termination; Authelia enforces SSO with 2FA. Prometheus, Grafana, and Alertmanager provide full observability with real-time Telegram alerts on SLO breaches.</p>
-        <div class="arch">
-<span class="c"># Network topology</span>
-<span class="n">Internet</span> <span class="a">──&gt;</span> <span class="l">Cloudflare CDN</span> <span class="a">──&gt;</span> <span class="l">Tunnel 3</span> <span class="a">──&gt;</span> <span class="n">Traefik v3</span> <span class="a">──&gt;</span> <span class="n">Docker services</span>
-<span class="c">#              zero open ports on host — no direct inbound</span>
-
-<span class="c"># HA chain</span>
-<span class="n">falak-ai</span>  <span class="c">(OCI Ampere A1, ARM64, 24GB)</span>  <span class="a">← PRIMARY · 22 services</span>
-  <span class="a">│  rsync every 15m over Tailscale (RPO=15m)</span>
-<span class="n">falak</span>     <span class="c">(AMD laptop, LAN)</span>              <span class="a">← WARM STANDBY</span>
-  <span class="a">│  health-check every 2m → DNS failover (RTO≈2m)</span>
-<span class="n">e2-micro</span>  <span class="c">(OCI E2, Mumbai, 1GB)</span>          <span class="a">← WATCHDOG + FAILOVER TRIGGER</span>
-<span class="g"># Observability: Prometheus metrics → Grafana → Alertmanager → Telegram</span>
-        </div>
+        <p class="proj-desc">Self-hosted 3-node production cluster on Oracle Cloud ARM64 running 22 containerised services. Architected for high availability &mdash; automatic DNS failover (RTO ~2m), zero-trust ingress via Cloudflare Tunnels, and full Prometheus observability.</p>
         <div class="proj-stats">
           <div class="ps"><span class="psn">22</span><span class="psl">Services</span></div>
           <div class="ps"><span class="psn">15m</span><span class="psl">RPO</span></div>
@@ -1022,21 +994,9 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-num">04 <span class="pb pb-ai">AI · Distributed</span></div>
         <h3>Falak AI &mdash; Self-Hosted Multi-Provider AI System</h3>
         <div class="proj-problem">
-          <strong>Design goal:</strong> Private AI assistant with local-first inference, graceful cloud fallback, and zero vendor lock-in — running under 2GB resident memory.
+          <strong>Design goal:</strong> Private AI assistant with local-first inference, graceful cloud fallback, and zero vendor lock-in.
         </div>
-        <p class="proj-desc">Async Python backend that routes prompts through a scored provider chain: local Ollama (qwen3:8b/14b) → Gemini Flash → Groq → Claude. Each provider is ranked by a weighted score across latency, cost, and quality. Failed providers are circuit-broken for 60 seconds before retrying. Conversation history persists in ChromaDB with semantic extraction running in the background after each turn. A DAG orchestrator dispatches up to 2 sub-agents concurrently in topological order. Accessible via Telegram bot (with approval gates for destructive actions), REST API, and CLI. No open ports — all traffic routed through Cloudflare Tunnel.</p>
-        <div class="arch">
-<span class="c"># Provider routing with circuit breaker</span>
-<span class="n">Prompt</span> <span class="a">──&gt;</span> <span class="n">model_router.route()</span>  <span class="c">(strategy: balanced | latency | cost)</span>
-  <span class="a">├─ LOCAL</span>  <span class="l">OllamaProvider</span>   <span class="c">qwen3:8b default, 14b for complex tasks</span>
-  <span class="a">│         ↓ CB open (60s) or timeout</span>
-  <span class="a">├─ FREE</span>   <span class="l">GeminiProvider</span>   <span class="c">Flash 2.0, large context</span>
-  <span class="a">│         ↓ CB open or timeout</span>
-  <span class="a">├─ FREE</span>   <span class="l">GroqProvider</span>     <span class="c">llama-3.3-70b, low latency</span>
-  <span class="a">└─ PAID</span>   <span class="l">AnthropicSDK</span>    <span class="c">claude-sonnet, used rarely</span>
-<span class="c"># Memory: ChromaDB semantic store, auto-extraction runs async post-turn</span>
-<span class="c"># Agents: asyncio.Semaphore(2), DAG topological order, Telegram approval gates</span>
-        </div>
+        <p class="proj-desc">Self-hosted AI assistant with local-first inference via Ollama, multi-provider fallback routing, and circuit breaker protection across 5 LLM providers. Persistent semantic memory, concurrent agent orchestration, and zero exposed ports &mdash; accessible via Telegram, REST, and CLI.</p>
         <div class="proj-stats">
           <div class="ps"><span class="psn">5</span><span class="psl">LLM Providers</span></div>
           <div class="ps"><span class="psn">&lt;2GB</span><span class="psl">RAM Budget</span></div>
@@ -1068,22 +1028,9 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="proj-num">05 <span class="pb pb-fin">Async · Finance</span></div>
         <h3>Falak Finance &mdash; Real-Time Portfolio Monitor</h3>
         <div class="proj-problem">
-          <strong>Design goal:</strong> Aggregate 3 brokerage APIs into a single observable dashboard with parallel AI analysis, automated alerting, and a paper trading engine — all under a 30-second analysis timeout budget.
+          <strong>Design goal:</strong> Aggregate 3 brokerage APIs into a single observable dashboard with parallel AI analysis and automated alerting.
         </div>
-        <p class="proj-desc">Aggregates equity (Zerodha/KiteConnect), crypto (Binance via ccxt), and mutual fund holdings into a single dashboard. Five AI models analyse the portfolio in parallel — each with a 30-second timeout and graceful degradation on failure. Price alerts are evaluated on every holdings fetch and push Telegram notifications instantly on breach. APScheduler handles daily reports, token refresh reminders, and 15-minute candle collection. A paper trading engine evaluates RSI/EMA signals every 15 minutes, with a 4-hour per-symbol cooldown and a daily drawdown circuit breaker.</p>
-        <div class="arch">
-<span class="c"># Parallel analysis — 5 providers, 30s timeout each, graceful degradation</span>
-<span class="l">asyncio.gather(</span>
-  <span class="n">groq_analysis</span><span class="c">(snapshot)</span>,    <span class="c"># verdict: HOLD / REVIEW / TRIM</span>
-  <span class="n">gemini_analysis</span><span class="c">(snapshot)</span>,  <span class="c"># risk score /10 + risk factors</span>
-  <span class="n">falak_analysis</span><span class="c">(snapshot)</span>,   <span class="c"># allocation vs ideal</span>
-  <span class="n">claude_analysis</span><span class="c">(snapshot)</span>,  <span class="c"># additional verdict</span>
-  <span class="n">openai_analysis</span><span class="c">(snapshot)</span>,  <span class="c"># allocation breakdown</span>
-  <span class="l">return_exceptions=True</span>        <span class="c"># provider down = None, not crash</span>
-<span class="l">)</span>
-<span class="c"># Signals: RSI&lt;30→BUY, RSI&gt;70→SELL, EMA crossover within 0.5×ATR</span>
-<span class="c"># Risk: 4h cooldown/symbol, -5% drawdown circuit breaker, Groq AI veto</span>
-        </div>
+        <p class="proj-desc">Real-time portfolio dashboard aggregating equity, crypto, and mutual fund data from 3 brokerages. Five AI models analyse holdings in parallel with graceful degradation; automated alerting, paper trading engine, and scheduled reporting.</p>
         <div class="proj-stats">
           <div class="ps"><span class="psn">5</span><span class="psl">Parallel Analysts</span></div>
           <div class="ps"><span class="psn">3</span><span class="psl">Data Sources</span></div>
@@ -1220,8 +1167,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <li>Cloudflare Tunnels — no inbound ports exposed on host</li>
         <li>Traefik v3 — automatic TLS termination and middleware routing</li>
         <li>Authelia — SSO and TOTP 2FA on all admin interfaces</li>
-        <li>Tailscale mesh VPN for internal management access only</li>
-        <li>UFW default-deny — only Tailscale and LAN traffic allowed</li>
+        <li>Tailscale mesh VPN for internal management access</li>
       </ul>
       <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">Production</div>
     </div>
@@ -1238,7 +1184,6 @@ button:focus:not(:focus-visible) { outline: none; }
       </div>
       <ul class="infra-list">
         <li>Prometheus with system, container, and JVM metrics collection</li>
-        <li>Custom exporters for Kafka consumer lag and HTTP error rates</li>
         <li>Grafana dashboards for container health, traffic, and resource usage</li>
         <li>Alertmanager sends real-time Telegram alerts on SLO breaches</li>
         <li>Uptime Kuma for external endpoint availability monitoring</li>
@@ -1259,9 +1204,7 @@ button:focus:not(:focus-visible) { outline: none; }
       <ul class="infra-list">
         <li>CrowdSec with community threat intelligence and Traefik integration</li>
         <li>Authelia SSO with Argon2id password hashing and Redis sessions</li>
-        <li>Azure Security Engineer certification applied to OCI hardening</li>
         <li>Secrets managed via Docker secrets — no plaintext environment variables</li>
-        <li>Automated IP banning via CrowdSec threat scenarios</li>
       </ul>
       <div class="infra-badge" style="background:rgba(248,113,113,.06);color:#f87171;border-color:rgba(248,113,113,.2)">Hardened</div>
     </div>
@@ -1280,8 +1223,6 @@ button:focus:not(:focus-visible) { outline: none; }
         <li>rsync over Tailscale to warm standby every 15 minutes (RPO = 15m)</li>
         <li>Watchdog polling every 2 minutes triggers DNS failover (RTO ≈ 2m)</li>
         <li>Nightly AES-256 encrypted cloud backups via rclone</li>
-        <li>Retention: 7 daily and 4 weekly snapshots</li>
-        <li>Automated backup verification via a dedicated watchdog node</li>
       </ul>
       <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">RPO 15m · RTO 2m</div>
     </div>
@@ -1299,9 +1240,7 @@ button:focus:not(:focus-visible) { outline: none; }
       <ul class="infra-list">
         <li>n8n webhook-triggered automation workflows</li>
         <li>Watchtower for automated Docker image updates</li>
-        <li>Telegram bot for live alerts and manual operational commands</li>
-        <li>Scheduled cron jobs for backups, token refresh, and reports</li>
-        <li>Reusable n8n workflow template library (open source)</li>
+        <li>Telegram bot for live alerts and operational commands</li>
       </ul>
       <a href="https://github.com/md-yusuf-f/n8n-webhook-templates" target="_blank" rel="noopener" class="proj-gh-link" style="margin-top:.75rem">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1323,8 +1262,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <li>OCI Ampere A1 — 4 vCPU, 24GB RAM, ARM64 (free tier)</li>
         <li>22 services in Docker Compose stacks with isolated networks</li>
         <li>Portainer for container management and health visibility</li>
-        <li>All images tested and verified for ARM64 compatibility</li>
-        <li>Per-container memory limits enforced to prevent resource contention</li>
+        <li>Per-container memory limits to prevent resource contention</li>
       </ul>
       <div class="infra-badge" style="background:rgba(79,156,249,.06);color:var(--blue);border-color:rgba(79,156,249,.2)">Oracle Cloud · ARM64</div>
     </div>
