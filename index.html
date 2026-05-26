@@ -442,6 +442,39 @@ h2.sec-title {
   font-size:.67rem; font-weight:600; letter-spacing:.04em; border:1px solid;
 }
 
+/* Specialized capability cards — infra Row 2 */
+.infra-spec-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.infra-spec-card {
+  flex: 0 0 360px;
+  padding: 1.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  position: relative;
+  overflow: hidden;
+  transition: border-color .18s;
+}
+.infra-spec-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  opacity: 0; transition: opacity .18s;
+}
+.infra-spec-card:hover { border-color: var(--border2); }
+.infra-spec-card:hover::before { opacity: 1; }
+.isc-ai::before { background: linear-gradient(90deg, #a78bfa, transparent); }
+.isc-az::before { background: linear-gradient(90deg, #38bdf8, transparent); }
+.isc-title {
+  font-family: var(--display); font-size: .93rem; font-weight: 700;
+  color: var(--t1); margin-bottom: .3rem; letter-spacing: -.01em;
+}
+.isc-desc {
+  font-size: .87rem; color: var(--t2); line-height: 1.75;
+  margin-top: .7rem; margin-bottom: .75rem;
+}
+
 /* =====================================================
    SECTION: EXPERTISE (capabilities)
    ===================================================== */
@@ -768,11 +801,10 @@ button:focus:not(:focus-visible) { outline: none; }
   .avail-badge { margin:0 auto; }
   .about-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-grid { grid-template-columns:1fr; }
-  .exp-wide { grid-column:span 1; }
-  .exp-wide-inner { grid-template-columns:1fr; gap:1rem; }
   .proj-card { grid-template-columns:1fr; }
   .proj-icon { display:none; }
-  .infra-grid { grid-template-columns:1fr 1fr; }
+  .infra-spec-row { flex-direction:column; align-items:center; }
+  .infra-spec-card { flex: 0 0 auto; width:100%; max-width:460px; }
   .repo-grid { grid-template-columns:1fr; }
   .soc-grid { grid-template-columns:repeat(2,1fr); }
   .nav-links,.nav-gh,.nav-resume { display:none; }
@@ -783,7 +815,7 @@ button:focus:not(:focus-visible) { outline: none; }
   section { padding:72px 1.25rem; }
   .hero-inner { padding:84px 1.25rem 56px; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
-  .infra-grid { grid-template-columns:1fr; }
+  .infra-spec-card { max-width:100%; }
   .soc-grid { grid-template-columns:1fr 1fr; }
   body { font-size:16px; line-height:1.75; }
   .proj-desc { font-size:.92rem; line-height:1.85; }
@@ -1154,120 +1186,51 @@ button:focus:not(:focus-visible) { outline: none; }
 
   </div>
 
-  <div class="infra-grid rv d2">
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(79,156,249,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f9cf9" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-        </div>
-        <div>
-          <h4>Ingress &amp; Networking</h4>
-          <div class="infra-meta">Zero-trust, zero open ports</div>
-        </div>
-      </div>
-      <ul class="infra-list">
-        <li>Cloudflare Tunnels — no inbound ports exposed on host</li>
-        <li>Traefik v3 — automatic TLS termination and middleware routing</li>
-        <li>Authelia — SSO and TOTP 2FA on all admin interfaces</li>
-        <li>Tailscale mesh VPN for internal management access</li>
-      </ul>
-      <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">Production</div>
-    </div>
+  <div class="infra-spec-row rv d3">
 
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(245,166,35,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <div>
-          <h4>Observability Stack</h4>
-          <div class="infra-meta">Metrics · Alerts · Uptime</div>
-        </div>
+    <div class="infra-spec-card isc-ai">
+      <div class="exp-ico" style="background:rgba(167,139,250,.1);color:#a78bfa;margin-bottom:.9rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
-      <ul class="infra-list">
-        <li>Prometheus with system, container, and JVM metrics collection</li>
-        <li>Grafana dashboards for container health, traffic, and resource usage</li>
-        <li>Alertmanager sends real-time Telegram alerts on SLO breaches</li>
-        <li>Uptime Kuma for external endpoint availability monitoring</li>
+      <h4 class="isc-title">AI &amp; Async Automation</h4>
+      <div class="exp-metric" style="background:rgba(167,139,250,.08);color:#a78bfa">5 LLMs &middot; circuit breaker &middot; Falak AI</div>
+      <p class="isc-desc">Private AI stack on bare-metal — local inference with graceful cloud fallback and n8n workflow automation.</p>
+      <ul class="exp-list">
+        <li>Ollama with 5 local models, multi-provider fallback</li>
+        <li>Circuit breaker on AI provider failures</li>
+        <li>ChromaDB semantic memory &amp; RAG retrieval</li>
+        <li>n8n workflows, Telegram bot, cron automation</li>
       </ul>
-      <div class="infra-badge" style="background:rgba(245,166,35,.06);color:var(--amber);border-color:rgba(245,166,35,.2)">Fully Observable</div>
-    </div>
-
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(248,113,113,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div>
-          <h4>Security</h4>
-          <div class="infra-meta">Threat detection · Hardening</div>
-        </div>
-      </div>
-      <ul class="infra-list">
-        <li>CrowdSec with community threat intelligence and Traefik integration</li>
-        <li>Authelia SSO with Argon2id password hashing and Redis sessions</li>
-        <li>Secrets managed via Docker secrets — no plaintext environment variables</li>
-      </ul>
-      <div class="infra-badge" style="background:rgba(248,113,113,.06);color:#f87171;border-color:rgba(248,113,113,.2)">Hardened</div>
-    </div>
-
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(63,207,142,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3fcf8e" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-        </div>
-        <div>
-          <h4>Reliability &amp; Backups</h4>
-          <div class="infra-meta">RPO · RTO · Retention</div>
-        </div>
-      </div>
-      <ul class="infra-list">
-        <li>rsync over Tailscale to warm standby every 15 minutes (RPO = 15m)</li>
-        <li>Watchdog polling every 2 minutes triggers DNS failover (RTO ≈ 2m)</li>
-        <li>Nightly AES-256 encrypted cloud backups via rclone</li>
-      </ul>
-      <div class="infra-badge" style="background:rgba(63,207,142,.06);color:var(--green);border-color:rgba(63,207,142,.2)">RPO 15m · RTO 2m</div>
-    </div>
-
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(167,139,250,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <div>
-          <h4>Automation</h4>
-          <div class="infra-meta">n8n · Telegram · Cron</div>
-        </div>
-      </div>
-      <ul class="infra-list">
-        <li>n8n webhook-triggered automation workflows</li>
-        <li>Watchtower for automated Docker image updates</li>
-        <li>Telegram bot for live alerts and operational commands</li>
-      </ul>
-      <a href="https://github.com/md-yusuf-f/n8n-webhook-templates" target="_blank" rel="noopener" class="proj-gh-link" style="margin-top:.75rem">
+      <a href="https://github.com/md-yusuf-f/n8n-webhook-templates" target="_blank" rel="noopener" class="proj-gh-link" style="margin-top:.85rem;display:inline-flex">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         n8n-webhook-templates
       </a>
     </div>
 
-    <div class="infra-card">
-      <div class="infra-card-head">
-        <div class="infra-icon" style="background:rgba(79,156,249,.1)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f9cf9" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+    <div class="infra-spec-card isc-az">
+      <div class="exp-ico" style="background:rgba(79,156,249,.1);color:#38bdf8;margin-bottom:.9rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h4 class="isc-title">Azure Security</h4>
+      <div class="exp-metric" style="background:rgba(14,165,233,.08);color:#7dd3fc">Microsoft Certified &middot; 2023&ndash;2026</div>
+      <p class="isc-desc">Cloud security architecture and identity management — applied directly to OCI infrastructure hardening.</p>
+      <ul class="exp-list">
+        <li>Azure IAM &amp; access control</li>
+        <li>Defender for Cloud monitoring</li>
+        <li>Network security groups &amp; private endpoints</li>
+        <li>Key Vault &amp; encryption practices</li>
+      </ul>
+      <div class="cert-row" style="margin-top:.85rem;padding:10px 13px">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div>
-          <h4>Compute &amp; Runtime</h4>
-          <div class="infra-meta">OCI · ARM64 · Docker</div>
+          <span class="cert-title">Azure Security Engineer Associate</span>
+          <span class="cert-sub">Credential ID: C2BED8FD1B1373F &nbsp;&middot;&nbsp; Valid 2023&ndash;2026</span>
         </div>
       </div>
-      <ul class="infra-list">
-        <li>OCI Ampere A1 — 4 vCPU, 24GB RAM, ARM64 (free tier)</li>
-        <li>22 services in Docker Compose stacks with isolated networks</li>
-        <li>Portainer for container management and health visibility</li>
-        <li>Per-container memory limits to prevent resource contention</li>
-      </ul>
-      <div class="infra-badge" style="background:rgba(79,156,249,.06);color:var(--blue);border-color:rgba(79,156,249,.2)">Oracle Cloud · ARM64</div>
     </div>
+
   </div>
 </div></section>
 
@@ -1335,24 +1298,19 @@ button:focus:not(:focus-visible) { outline: none; }
         <li>n8n workflow automation and Telegram bot integrations</li>
       </ul>
     </div>
-    <div class="exp-card ecc-5 exp-wide rv d2">
-      <div class="exp-wide-inner">
-        <div>
-          <div class="exp-ico" style="background:rgba(14,165,233,.1);color:#38bdf8">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-          </div>
-          <h3>Azure Security</h3>
-          <div class="exp-metric" style="background:rgba(14,165,233,.08);color:#7dd3fc">Microsoft Certified &middot; 2023&ndash;2026</div>
-          <p>Cloud security architecture, identity management, and compliance posture on Azure — applied to OCI infrastructure hardening.</p>
-        </div>
-        <ul class="exp-list">
-          <li>Azure Identity &amp; Access Management</li>
-          <li>Security Center &amp; Defender for Cloud</li>
-          <li>Network security groups &amp; private endpoints</li>
-          <li>Key Vault and encryption at rest/in-transit</li>
-          <li>Compliance monitoring &amp; security posture</li>
-        </ul>
+    <div class="exp-card ecc-5 rv d2">
+      <div class="exp-ico" style="background:rgba(14,165,233,.1);color:#38bdf8">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
+      <h3>Azure Security</h3>
+      <div class="exp-metric" style="background:rgba(14,165,233,.08);color:#7dd3fc">Microsoft Certified &middot; 2023&ndash;2026</div>
+      <p>Cloud security architecture, identity management, and compliance posture on Azure — applied to OCI infrastructure hardening.</p>
+      <ul class="exp-list">
+        <li>Azure IAM &amp; access control</li>
+        <li>Defender for Cloud monitoring</li>
+        <li>Network security groups &amp; private endpoints</li>
+        <li>Key Vault &amp; encryption practices</li>
+      </ul>
     </div>
   </div>
 </div></section>
