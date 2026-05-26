@@ -29,8 +29,8 @@
   --green: #3fcf8e;
   --amber: #f5a623;
   --t1: #F8FAFC;
-  --t2: #CBD5E1;
-  --t3: #94A3B8;
+  --t2: #E2E8F0;
+  --t3: #CBD5E1;
   --r:  8px;
   --r2: 12px;
   --mono: 'IBM Plex Mono', monospace;
@@ -118,14 +118,14 @@ nav {
 #mm.open { display: flex; }
 #mm a {
   color: var(--t2); text-decoration:none; font-size:.91rem; font-weight:500;
-  padding: .5rem .75rem; border-radius:6px; transition: background .15s;
+  padding: .6rem .75rem; border-radius:6px; transition: background .15s;
 }
 #mm a:hover { background: var(--accent3); color: var(--accent); }
 
 /* =====================================================
    SECTION SHELL
    ===================================================== */
-section { padding: 96px 2.5rem; }
+section { padding: 110px 2.5rem; }
 .si { max-width: 1120px; margin: 0 auto; }
 .sec-label {
   display: inline-flex; align-items:center; gap:8px;
@@ -140,7 +140,7 @@ h2.sec-title {
   font-weight: 800; color: var(--t1);
   letter-spacing: -.03em; line-height: 1.1; margin-bottom: .5rem;
 }
-.sec-sub { color: var(--t2); font-size:.96rem; max-width:500px; }
+.sec-sub { color: var(--t2); font-size:.95rem; max-width:520px; line-height:1.7; margin-top:.35rem; }
 
 /* scroll reveal — respects prefers-reduced-motion */
 @media (prefers-reduced-motion: no-preference) {
@@ -183,7 +183,7 @@ h2.sec-title {
   display: grid; grid-template-columns: 1fr 300px;
   gap: 5rem; align-items: center;
 }
-.hero-left { display:flex; flex-direction:column; gap:1.4rem; }
+.hero-left { display:flex; flex-direction:column; gap:1.6rem; }
 
 .avail-badge {
   display:inline-flex; align-items:center; gap:8px;
@@ -208,7 +208,7 @@ h2.sec-title {
 .hero-name .accent { color: var(--accent); }
 
 .hero-bio {
-  font-size:.97rem; color:var(--t2); line-height:1.7; max-width:500px;
+  font-size:.97rem; color:var(--t2); line-height:1.75; max-width:540px;
 }
 .hero-bio strong { color:var(--t1); font-weight:500; }
 
@@ -226,17 +226,17 @@ h2.sec-title {
 .hero-actions { display:flex; gap:.7rem; flex-wrap:wrap; }
 .btn-p {
   display:inline-flex; align-items:center; gap:7px;
-  padding:10px 22px; border-radius:var(--r);
+  padding:11px 24px; border-radius:var(--r);
   background:var(--accent); color:#0b0d12;
-  font-size:.86rem; font-weight:700; text-decoration:none;
+  font-size:.88rem; font-weight:700; text-decoration:none;
   transition: opacity .18s;
 }
 .btn-p:hover { opacity:.86; }
 .btn-s {
   display:inline-flex; align-items:center; gap:7px;
-  padding:10px 22px; border-radius:var(--r);
+  padding:11px 24px; border-radius:var(--r);
   background:transparent; border:1px solid var(--border2);
-  color:var(--t2); font-size:.86rem; font-weight:500; text-decoration:none;
+  color:var(--t2); font-size:.88rem; font-weight:500; text-decoration:none;
   transition: border-color .18s, color .18s;
 }
 .btn-s:hover { border-color:var(--accent); color:var(--accent); }
@@ -244,7 +244,7 @@ h2.sec-title {
 /* Stats — horizontal rule separates */
 .hero-stats {
   display:grid; grid-template-columns:repeat(4,1fr);
-  gap:1rem; padding-top:1.4rem; border-top:1px solid var(--border);
+  gap:1rem; padding-top:1.6rem; border-top:1px solid var(--border); margin-top:.2rem;
 }
 .sn { font-family:var(--display); font-size:1.7rem; font-weight:800; color:var(--t1); letter-spacing:-.04em; line-height:1; }
 .sn em { color:var(--accent); font-style:normal; }
@@ -280,9 +280,9 @@ h2.sec-title {
    SECTION: PROJECTS  (leads the page after hero)
    ===================================================== */
 #work { background: var(--bg2); }
-.proj-list { display:flex; flex-direction:column; gap:3px; margin-top:2.5rem; }
+.proj-list { display:flex; flex-direction:column; gap:2px; margin-top:2.75rem; }
 .proj-card {
-  padding: 2rem 2.25rem;
+  padding: 2rem 2.25rem 2.25rem;
   background: var(--bg);
   border: 1px solid var(--border);
   display: grid; grid-template-columns: 1fr 48px;
@@ -372,10 +372,10 @@ h2.sec-title {
 /* GitHub link on project */
 .proj-gh-link {
   display:inline-flex; align-items:center; gap:5px;
-  padding:6px 13px; border-radius:6px;
-  font-family:var(--mono); font-size:.69rem; font-weight:600;
-  text-decoration:none; border:1px solid rgba(232,255,71,.28); color:var(--accent);
-  background:rgba(232,255,71,.04); margin-top:.75rem;
+  padding:7px 14px; border-radius:6px;
+  font-family:var(--mono); font-size:.7rem; font-weight:600;
+  text-decoration:none; border:1px solid rgba(232,255,71,.3); color:var(--accent);
+  background:rgba(232,255,71,.05); margin-top:.85rem;
   transition: border-color .15s, color .15s, background .15s;
 }
 .proj-gh-link:hover { border-color:rgba(232,255,71,.55); background:rgba(232,255,71,.08); color:var(--accent); }
@@ -409,15 +409,15 @@ h2.sec-title {
 .topo-diagram .label-row { margin-top:.25rem; }
 
 /* Service cards grid */
-.infra-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+.infra-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
 .infra-card {
-  padding:1.4rem 1.5rem; border-radius:var(--r2);
+  padding:1.25rem 1.35rem; border-radius:var(--r2);
   background:var(--bg2); border:1px solid var(--border);
   transition: border-color .18s;
 }
 .infra-card:hover { border-color:var(--border2); }
 .infra-card-head {
-  display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem;
+  display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem;
 }
 .infra-icon {
   width:36px; height:36px; border-radius:8px;
@@ -432,8 +432,8 @@ h2.sec-title {
 }
 .infra-list { list-style:none; }
 .infra-list li {
-  font-family:var(--mono); font-size:.75rem; color:var(--t2);
-  padding:4px 0 4px 13px; position:relative; line-height:1.65;
+  font-family:var(--mono); font-size:.74rem; color:var(--t2);
+  padding:3px 0 3px 13px; position:relative; line-height:1.6;
 }
 .infra-list li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:.65rem; }
 .infra-card .infra-badge {
@@ -448,10 +448,10 @@ h2.sec-title {
 #expertise { background: var(--bg2); }
 .exp-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1.25rem; margin-top:2.5rem;
+  gap:1.1rem; margin-top:2.5rem;
 }
 .exp-card {
-  padding:1.6rem; border-radius:var(--r2);
+  padding:1.5rem; border-radius:var(--r2);
   background:var(--bg); border:1px solid var(--border);
   position:relative; overflow:hidden;
   transition: border-color .18s;
@@ -500,7 +500,7 @@ h2.sec-title {
   display:grid; grid-template-columns:1fr 400px;
   gap:5rem; align-items:start; margin-top:2.5rem;
 }
-.about-text p { color:var(--t2); line-height:1.9; margin-bottom:.9rem; font-size:.95rem; }
+.about-text p { color:var(--t2); line-height:1.85; margin-bottom:1rem; font-size:.95rem; }
 .about-text p strong { color:var(--t1); font-weight:500; }
 .cert-row {
   display:flex; align-items:center; gap:11px;
@@ -551,8 +551,8 @@ h2.sec-title {
 .tl-role { font-family:var(--display); font-size:1.05rem; font-weight:700; color:var(--t1); letter-spacing:-.02em; }
 .tl-co { font-size:.83rem; color:var(--t3); margin-bottom:.8rem; margin-top:.1rem; }
 .tl-co strong { color:var(--amber); font-weight:600; }
-.tl-list { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
-.tl-list li { font-size:.88rem; color:var(--t2); padding-left:1.1rem; position:relative; line-height:1.75; }
+.tl-list { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
+.tl-list li { font-size:.88rem; color:var(--t2); padding-left:1.1rem; position:relative; line-height:1.8; }
 .tl-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:.72rem; }
 .tl-list li strong { color:var(--t1); font-weight:500; }
 
@@ -582,8 +582,8 @@ h2.sec-title {
 .lang-dot { width:8px; height:8px; border-radius:50%; }
 
 .gh-cta {
-  margin-top:1.5rem; padding:1.25rem 1.5rem;
-  background:var(--bg2); border:1px solid var(--border); border-radius:var(--r2);
+  margin-top:1.75rem; padding:1.25rem 1.5rem;
+  background:var(--bg2); border:1px solid var(--border2); border-radius:var(--r2);
   display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
 }
 .gh-cta p { font-size:.88rem; color:var(--t2); }
@@ -780,8 +780,8 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 @media(max-width:540px){
   .arch-overview { grid-template-columns:1fr 1fr; }
-  section { padding:62px 1.25rem; }
-  .hero-inner { padding:78px 1.25rem 48px; }
+  section { padding:72px 1.25rem; }
+  .hero-inner { padding:84px 1.25rem 56px; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
   .infra-grid { grid-template-columns:1fr; }
   .soc-grid { grid-template-columns:1fr 1fr; }
@@ -794,6 +794,8 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 @media(max-width:380px){
   .soc-grid { grid-template-columns:1fr; }
+  .hero-actions { flex-direction:column; align-items:center; }
+  .hero-actions .btn-p, .hero-actions .btn-s { width:100%; justify-content:center; }
 }
 </style>
 </head>
@@ -839,7 +841,7 @@ button:focus:not(:focus-visible) { outline: none; }
       </div>
       <h1 class="hero-name rv d1">Mohammed<br><span class="accent">Yusuf</span></h1>
       <p class="hero-bio rv d1">
-        <strong>Backend Software Engineer</strong> with 3+ years at TCS building Java and Spring Boot systems at enterprise scale. Designed event-driven Kafka pipelines that cut P99 latency from 850ms to 550ms. Outside work, I run a self-hosted 3-node cluster on Oracle Cloud — 22 services, automatic failover, and full observability.
+        <strong>Backend Engineer</strong> · 3 years at TCS building Java microservices and Kafka event pipelines at enterprise scale. Self-hosted 3-node production cluster on Oracle Cloud — 22 services, automated failover, full observability.
       </p>
       <div class="hero-code rv d2">
         <span class="kw">// </span>Systems that stay up at 3&thinsp;am &nbsp;&middot;&nbsp; reliability over ceremony
@@ -1067,8 +1069,8 @@ button:focus:not(:focus-visible) { outline: none; }
     <h2 class="sec-title">Infrastructure &amp;<br>Operational Ownership</h2>
   </div>
   <div class="infra-intro rv d1">
-    <p>I run a <strong>3-node production cluster on Oracle Cloud</strong> hosting 22 self-hosted services with genuine reliability requirements &mdash; encrypted offsite backups, automatic DNS failover, full observability, and SSO-gated access. The stack mirrors what platform teams run at scale: Traefik for ingress, Prometheus and Grafana for observability, CrowdSec for threat intelligence, and Cloudflare Tunnels for zero-trust access without exposed ports.</p>
-    <p>This is where I practice reliability engineering, capacity planning, and incident response without a safety net. If it breaks at 3am, I get the Telegram alert and fix it.</p>
+    <p><strong>3-node production cluster on Oracle Cloud ARM64</strong> — 22 self-hosted services with encrypted offsite backups, automatic DNS failover, SSO-gated access, and full Prometheus observability. Traefik for ingress, CrowdSec for threat intelligence, Cloudflare Tunnels for zero-trust access.</p>
+    <p>Real reliability engineering: capacity planning, incident response, and on-call at 3am — no managed services, no safety net.</p>
   </div>
 
   <div class="arch-overview rv d2" role="region" aria-label="Infrastructure architecture overview">
@@ -1360,9 +1362,9 @@ button:focus:not(:focus-visible) { outline: none; }
   <div class="about-grid">
     <div class="about-text rv">
       <span class="sec-label">About</span>
-      <h2 class="sec-title">Production systems<br>at work. Production<br>infrastructure at home.</h2>
-      <p>Backend Software Engineer at <strong>Tata Consultancy Services</strong>, Bengaluru. Over 3 years building Java and Spring Boot systems at enterprise scale — migrating legacy .NET and mainframe applications, designing Kafka event pipelines for high-throughput financial workflows, and enforcing 100% test coverage via SonarQube quality gates on every release.</p>
-      <p>Outside work I run <strong>Falak</strong> — a 3-node production cluster on Oracle Cloud ARM64 hosting 22 services with automatic DNS failover, encrypted backups, and full observability. I treat it the same way I treat production at work: if it breaks at 3am, I get the Telegram alert and I fix it.</p>
+      <h2 class="sec-title">Production at work.<br>Production at home.</h2>
+      <p>Backend Engineer at <strong>Tata Consultancy Services</strong> — 3 years building Java / Spring Boot microservices at enterprise scale. Kafka event pipelines, legacy migrations, CI/CD quality gates, 100% test coverage enforced on every release.</p>
+      <p>Outside work: <strong>Falak</strong> — a self-hosted 3-node cluster on Oracle Cloud ARM64, 22 services, automatic DNS failover, encrypted backups, full observability. Real production engineering, no managed services.</p>
       <div class="cert-row rv d1">
         <div class="cert-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1440,10 +1442,10 @@ button:focus:not(:focus-visible) { outline: none; }
       <div class="tl-co">Tata Consultancy Services &nbsp;&middot;&nbsp; <strong>Bengaluru, India</strong></div>
       <ul class="tl-list">
         <li>Migrated <strong>.NET and mainframe systems to Java and Spring Boot</strong> — 40+ REST endpoints delivered, 35% faster execution, zero data loss during cutover.</li>
-        <li>Designed an <strong>Apache Kafka event-driven pipeline</strong> for financial transaction processing — P99 latency dropped from 850ms to 550ms, throughput reached 1,200 msg/sec peak; dead-letter queue with exponential backoff handles consumer failures automatically.</li>
-        <li>Built <strong>Jenkins CI/CD pipelines</strong> with six staged quality gates (unit tests, SonarQube, staging, production) — build time cut from 14 to 11 minutes, zero critical issues enforced on every release.</li>
-        <li>Maintained <strong>100% unit test coverage</strong> with JUnit and Mockito — 30% fewer production defects measured across 6 consecutive releases.</li>
-        <li>Mentored <strong>20+ junior engineers</strong> on Java, Spring Boot patterns, and CI/CD discipline — improved team delivery cadence by 20%.</li>
+        <li>Designed <strong>Apache Kafka event-driven pipeline</strong> — P99 latency 850ms → 550ms, 1,200 msg/sec peak; dead-letter queue with exponential backoff for consumer resilience.</li>
+        <li>Built <strong>Jenkins CI/CD</strong> with staged quality gates — build time 14→11 min, zero critical issues enforced on every release.</li>
+        <li>Maintained <strong>100% unit test coverage</strong> with JUnit and Mockito — 30% fewer production defects across 6 consecutive releases.</li>
+        <li>Mentored <strong>20+ junior engineers</strong> on Java and Spring Boot patterns — improved team delivery cadence by 20%.</li>
       </ul>
     </div>
   </div>
@@ -1456,7 +1458,7 @@ button:focus:not(:focus-visible) { outline: none; }
     <h2 class="sec-title">GitHub</h2>
   </div>
   <p class="gh-intro rv d1">
-    Public repositories for personal systems and automation projects. TCS work is under NDA, but the infrastructure, AI, and automation work is open. <strong>Architecture decisions and deployment configs are documented in each README.</strong>
+    Infrastructure, AI, and automation projects are open. TCS work is under NDA. <strong>Architecture decisions and deployment configs documented in each README.</strong>
   </p>
   <div class="repo-grid rv d2">
     <a href="https://github.com/md-yusuf-f/falak-ai" target="_blank" rel="noopener" class="repo-card">
@@ -1531,7 +1533,7 @@ button:focus:not(:focus-visible) { outline: none; }
   <div class="contact-head rv">
     <span class="sec-label">Contact</span>
     <h2 class="sec-title">Get in Touch</h2>
-    <p>Open to senior backend, distributed systems, and cloud-native roles &mdash; remote or Bengaluru. Available now.</p>
+    <p>Open to senior backend and platform engineering roles — distributed systems, cloud-native, or infrastructure. Remote or Bengaluru.</p>
   </div>
   <div class="soc-grid">
     <a href="https://www.linkedin.com/in/yusuf1799/" target="_blank" rel="noopener" class="soc-card rv d1" style="--c-acc:#0a66c2">
