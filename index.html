@@ -28,7 +28,7 @@
   --blue:  #4f9cf9;
   --green: #3fcf8e;
   --amber: #f5a623;
-  --t1: #F5F7FA;
+  --t1: #F8FAFC;
   --t2: #CBD5E1;
   --t3: #94A3B8;
   --r:  8px;
@@ -490,7 +490,7 @@ h2.sec-title {
 }
 .exp-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:.7rem; }
 .exp-wide { grid-column:span 2; }
-.exp-wide-inner { display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:start; }
+.exp-wide-inner { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; }
 
 /* =====================================================
    ABOUT  (skills grid alongside text)
@@ -651,6 +651,93 @@ footer {
 .foot-link:hover { color:var(--t2); }
 
 /* =====================================================
+   ARCHITECTURE OVERVIEW (replaces topo-diagram)
+   ===================================================== */
+.arch-overview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: .75rem;
+  margin-bottom: 2.25rem;
+}
+.arch-block {
+  padding: 1.1rem 1.2rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+}
+.arch-block-title {
+  font-family: var(--mono);
+  font-size: .6rem;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-weight: 600;
+  padding-bottom: .6rem;
+  margin-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.arch-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.arch-items { display:flex; flex-direction:column; gap:3px; }
+.arch-item {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--t3);
+  padding: 2px 0;
+  line-height: 1.45;
+}
+.arch-item strong { color: var(--t2); font-weight:500; display:block; }
+.arch-ha-nodes { display:flex; flex-direction:column; gap:5px; margin-top:.15rem; }
+.arch-ha-node {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 6px 9px;
+}
+.arch-ha-role {
+  font-family: var(--mono);
+  font-size: .57rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+.arch-ha-name { font-family:var(--mono); font-size:.73rem; color:var(--t2); font-weight:500; line-height:1.3; }
+.arch-ha-spec { font-family:var(--mono); font-size:.63rem; color:var(--t3); line-height:1.4; margin-top:1px; }
+
+/* =====================================================
+   CASE STUDY BLOCKS (replaces raw arch in Kafka card)
+   ===================================================== */
+.cs-blocks { display:flex; flex-direction:column; gap:.55rem; margin-top:.9rem; }
+.cs-block {
+  padding: .8rem 1.1rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+.cs-label {
+  font-family: var(--mono);
+  font-size: .6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  margin-bottom: .35rem;
+}
+.cs-text { font-size:.88rem; color:var(--t2); line-height:1.7; }
+.cs-text code { font-family:var(--mono); color:var(--blue); font-size:.85em; }
+.cs-chips { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.5rem; }
+.cs-chip {
+  padding: 2px 9px;
+  border-radius: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  font-family: var(--mono);
+  font-size: .66rem;
+  font-weight: 600;
+}
+
+/* =====================================================
    ACCESSIBILITY
    ===================================================== */
 .skip-link {
@@ -673,6 +760,7 @@ button:focus:not(:focus-visible) { outline: none; }
    RESPONSIVE
    ===================================================== */
 @media(max-width:960px){
+  .arch-overview { grid-template-columns:repeat(3,1fr); }
   .hero-inner { grid-template-columns:1fr; gap:2.5rem; text-align:center; }
   .hero-photo { display:none; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
@@ -691,6 +779,7 @@ button:focus:not(:focus-visible) { outline: none; }
   .nav-btn { display:block; }
 }
 @media(max-width:540px){
+  .arch-overview { grid-template-columns:1fr 1fr; }
   section { padding:62px 1.25rem; }
   .hero-inner { padding:78px 1.25rem 48px; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
@@ -803,17 +892,24 @@ button:focus:not(:focus-visible) { outline: none; }
           <strong>Problem:</strong> 3-hop synchronous REST chain for financial transaction processing. P99 ~850ms; consumers timed out under month-end batch load, requiring manual retry.
         </div>
         <p class="proj-desc">Replaced a blocking 3-hop REST chain with an async Kafka pipeline. Six partitions serve a 3-replica consumer group, keeping messages ordered while handling burst load. Offsets commit only after a confirmed downstream write (<code>enable.auto.commit=false</code>), guaranteeing at-least-once delivery. A dead-letter queue with 3-attempt exponential backoff isolates the ~0.3% of messages that fail validation. Settlement writes use a database upsert on <code>correlation_id</code>, preventing duplicate processing under retry.</p>
-        <div class="arch">
-<span class="c"># BEFORE — synchronous REST chain (blocking, cascading timeouts)</span>
-<span class="n">OrderSvc</span> <span class="a">──[HTTP]──&gt;</span> <span class="n">ValidationSvc</span> <span class="a">──[HTTP]──&gt;</span> <span class="n">SettleSvc</span>
-<span class="c">#  one hop failure = full chain failure, manual retry required</span>
-
-<span class="c"># AFTER — async Kafka pipeline (non-blocking, independently scalable)</span>
-<span class="n">OrderSvc</span> <span class="a">──[produce]──&gt;</span> <span class="l">txn.events</span>  <span class="c">(6 partitions · 3 consumer replicas)</span>
-  <span class="a">├──&gt;</span> <span class="n">ValidationConsumer</span>  <span class="a">──[produce]──&gt;</span> <span class="l">txn.processed</span> <span class="a">──&gt;</span> <span class="n">SettleSvc</span>
-  <span class="a">└──&gt;</span> <span class="r">txn.events.dlq</span>      <span class="c">(3 retries, exponential backoff)</span>
-
-<span class="g"># P99 850ms → 550ms  ·  ~1,200 msg/sec peak  ·  scale by adding consumers</span>
+        <div class="cs-blocks">
+          <div class="cs-block">
+            <div class="cs-label" style="color:#f87171">Problem</div>
+            <div class="cs-text">A 3-hop synchronous REST chain processed each financial transaction sequentially. Any single-hop failure caused a full-chain failure requiring manual retry. Under month-end batch load, P99 latency hit 850ms and consumer timeouts became routine.</div>
+          </div>
+          <div class="cs-block">
+            <div class="cs-label" style="color:#4f9cf9">Solution</div>
+            <div class="cs-text">Replaced the blocking chain with an async Kafka pipeline &mdash; 6 partitions, 3 consumer replicas. Offsets commit only after a confirmed downstream write, guaranteeing at-least-once delivery. A dead-letter queue with 3-attempt exponential backoff isolates failing messages. Idempotent upserts on <code>correlation_id</code> prevent duplicate settlement.</div>
+          </div>
+          <div class="cs-block">
+            <div class="cs-label" style="color:#3fcf8e">Result</div>
+            <div class="cs-text">P99 latency reduced from 850ms to 550ms. Peak throughput of ~1,200 msg/sec. Horizontal scale by adding consumers &mdash; no code changes required.</div>
+            <div class="cs-chips">
+              <span class="cs-chip" style="color:#3fcf8e;border-color:rgba(63,207,142,.28)">850ms &rarr; 550ms P99</span>
+              <span class="cs-chip" style="color:#3fcf8e;border-color:rgba(63,207,142,.28)">~1,200 msg/sec peak</span>
+              <span class="cs-chip" style="color:#3fcf8e;border-color:rgba(63,207,142,.28)">Horizontally scalable</span>
+            </div>
+          </div>
         </div>
         <div class="proj-stats">
           <div class="ps"><span class="psn">550ms</span><span class="psl">P99 Latency</span></div>
@@ -1024,46 +1120,89 @@ button:focus:not(:focus-visible) { outline: none; }
     <h2 class="sec-title">Infrastructure &amp;<br>Operational Ownership</h2>
   </div>
   <div class="infra-intro rv d1">
-    <p>I operate a <strong>3-node production cluster on Oracle Cloud</strong> running 22 self-hosted services — not as a toy project, but with production-grade reliability requirements: encrypted offsite backups, automatic failover, observability, and SSO-secured access. The stack is intentionally close to what platform teams run at scale: Traefik as ingress, Prometheus/Grafana for observability, CrowdSec for threat detection, and Cloudflare Tunnels for zero-trust ingress.</p>
-    <p>This isn't a hobby. It's where I practice reliability engineering, capacity planning, incident response, and infrastructure-as-code discipline without a safety net.</p>
+    <p>I run a <strong>3-node production cluster on Oracle Cloud</strong> hosting 22 self-hosted services with genuine reliability requirements &mdash; encrypted offsite backups, automatic DNS failover, full observability, and SSO-gated access. The stack mirrors what platform teams run at scale: Traefik for ingress, Prometheus and Grafana for observability, CrowdSec for threat intelligence, and Cloudflare Tunnels for zero-trust access without exposed ports.</p>
+    <p>This is where I practice reliability engineering, capacity planning, and incident response without a safety net. If it breaks at 3am, I get the Telegram alert and fix it.</p>
   </div>
 
-  <div class="topo-diagram rv d2">
-<span class="c">── TRAFFIC &amp; NETWORKING ──────────────────────────────────────────────────</span>
+  <div class="arch-overview rv d2" role="region" aria-label="Infrastructure architecture overview">
 
-<span class="n">Internet</span>
-  <span class="a">▼</span>
-<span class="l">Cloudflare CDN</span>   <span class="c">DDoS protection · zero open ports on host</span>
-  <span class="a">▼</span>
-<span class="l">Cloudflare Tunnel</span> <span class="c">encrypted tunnel — no inbound firewall rules needed</span>
-  <span class="a">▼</span>
-<span class="n">Traefik v3</span>       <span class="c">TLS termination · Let's Encrypt · Authelia 2FA middleware</span>
-  <span class="a">├──▶</span> <span class="l">Vaultwarden</span>  <span class="c">password manager</span>
-  <span class="a">├──▶</span> <span class="l">Nextcloud</span>    <span class="c">file sync (MariaDB + Redis)</span>
-  <span class="a">├──▶</span> <span class="l">n8n</span>          <span class="c">workflow automation</span>
-  <span class="a">├──▶</span> <span class="l">Grafana</span>      <span class="c">monitoring dashboards</span>
-  <span class="a">└──▶</span> <span class="l">17 more services</span>
+    <div class="arch-block">
+      <div class="arch-block-title">
+        <span class="arch-dot" style="background:#4f9cf9"></span>
+        <span style="color:#4f9cf9">Traffic &amp; Entry</span>
+      </div>
+      <div class="arch-items">
+        <div class="arch-item"><strong>Cloudflare CDN</strong>DDoS protection, zero open ports</div>
+        <div class="arch-item"><strong>Cloudflare Tunnel</strong>Encrypted inbound, no firewall rules</div>
+        <div class="arch-item"><strong>Traefik v3</strong>TLS termination, middleware routing</div>
+        <div class="arch-item"><strong>Authelia</strong>SSO + TOTP 2FA on all interfaces</div>
+      </div>
+    </div>
 
-<span class="c">── HIGH AVAILABILITY ──────────────────────────────────────────────────────</span>
+    <div class="arch-block">
+      <div class="arch-block-title">
+        <span class="arch-dot" style="background:#e8ff47"></span>
+        <span style="color:#e8ff47">High Availability</span>
+      </div>
+      <div class="arch-ha-nodes">
+        <div class="arch-ha-node">
+          <div class="arch-ha-role" style="color:#3fcf8e">Primary</div>
+          <div class="arch-ha-name">falak-ai</div>
+          <div class="arch-ha-spec">OCI A1 &middot; ARM64 &middot; 4 vCPU &middot; 24 GB</div>
+        </div>
+        <div class="arch-ha-node">
+          <div class="arch-ha-role" style="color:#f5a623">Standby</div>
+          <div class="arch-ha-name">falak</div>
+          <div class="arch-ha-spec">LAN &middot; rsync every 15m &middot; RPO = 15m</div>
+        </div>
+        <div class="arch-ha-node">
+          <div class="arch-ha-role" style="color:#94A3B8">Watchdog</div>
+          <div class="arch-ha-name">e2-micro</div>
+          <div class="arch-ha-spec">Mumbai &middot; DNS failover &middot; RTO &asymp;2m</div>
+        </div>
+      </div>
+    </div>
 
-<span class="n">PRIMARY</span>    <span class="l">falak-ai</span>   <span class="c">OCI Ampere A1 · ARM64 · 4 vCPU · 24GB RAM · 22 services</span>
-  <span class="a">│  rsync every 15m over Tailscale</span>  <span class="c">RPO = 15m</span>
-<span class="n">STANDBY</span>    <span class="l">falak</span>      <span class="c">AMD laptop on LAN · warm standby</span>
-  <span class="a">│  health-check every 2m → DNS failover on outage</span>  <span class="c">RTO ≈ 2m</span>
-<span class="n">WATCHDOG</span>   <span class="l">e2-micro</span>   <span class="c">OCI E2 · Mumbai · triggers Cloudflare DNS failover</span>
+    <div class="arch-block">
+      <div class="arch-block-title">
+        <span class="arch-dot" style="background:#3fcf8e"></span>
+        <span style="color:#3fcf8e">Core Services</span>
+      </div>
+      <div class="arch-items">
+        <div class="arch-item"><strong>Vaultwarden</strong>Password manager</div>
+        <div class="arch-item"><strong>Nextcloud</strong>File sync &amp; storage</div>
+        <div class="arch-item"><strong>Falak AI</strong>Local LLM assistant</div>
+        <div class="arch-item"><strong>n8n</strong>Workflow automation</div>
+        <div class="arch-item"><strong>+ 18 more services</strong></div>
+      </div>
+    </div>
 
-<span class="c">── OBSERVABILITY ──────────────────────────────────────────────────────────</span>
+    <div class="arch-block">
+      <div class="arch-block-title">
+        <span class="arch-dot" style="background:#f5a623"></span>
+        <span style="color:#f5a623">Observability</span>
+      </div>
+      <div class="arch-items">
+        <div class="arch-item"><strong>Prometheus</strong>Host, container &amp; JVM metrics</div>
+        <div class="arch-item"><strong>Grafana</strong>Dashboards &amp; visualization</div>
+        <div class="arch-item"><strong>Alertmanager</strong>SLO alerts &rarr; Telegram</div>
+        <div class="arch-item"><strong>Uptime Kuma</strong>External endpoint monitoring</div>
+      </div>
+    </div>
 
-<span class="l">Prometheus</span>    <span class="c">scrapes node_exporter · cAdvisor · JVM · custom exporters</span>
-<span class="l">Grafana</span>       <span class="c">dashboards for container health, traffic, and resources</span>
-<span class="l">Alertmanager</span>  <span class="c">SLO breach alerts → Telegram bot</span>
-<span class="l">Uptime Kuma</span>   <span class="c">external endpoint monitoring</span>
+    <div class="arch-block">
+      <div class="arch-block-title">
+        <span class="arch-dot" style="background:#f87171"></span>
+        <span style="color:#f87171">Security &amp; Backup</span>
+      </div>
+      <div class="arch-items">
+        <div class="arch-item"><strong>CrowdSec</strong>Community threat intelligence</div>
+        <div class="arch-item"><strong>Tailscale</strong>Private management VPN</div>
+        <div class="arch-item"><strong>rclone</strong>AES-256 encrypted nightly backup</div>
+        <div class="arch-item"><strong>Retention</strong>7 daily &middot; 4 weekly snapshots</div>
+      </div>
+    </div>
 
-<span class="c">── SECURITY &amp; BACKUPS ─────────────────────────────────────────────────────</span>
-
-<span class="l">CrowdSec</span>      <span class="c">community threat intelligence · Traefik bouncer integration</span>
-<span class="l">Authelia</span>      <span class="c">SSO + TOTP 2FA on all admin surfaces</span>
-<span class="l">rclone</span>        <span class="c">AES-256 encrypted cloud backup nightly · 7 daily + 4 weekly</span>
   </div>
 
   <div class="infra-grid rv d2">
