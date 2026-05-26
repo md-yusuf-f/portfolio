@@ -784,8 +784,11 @@ button:focus:not(:focus-visible) { outline: none; }
   .avail-badge { margin:0 auto; }
   .about-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-grid { grid-template-columns:1fr; }
+  .exp-wide { grid-column:span 1; }
+  .exp-wide-inner { grid-template-columns:1fr; gap:1.25rem; }
   .proj-card { grid-template-columns:1fr; }
   .proj-icon { display:none; }
+  .infra-grid { grid-template-columns:repeat(2,1fr); }
   .infra-spec-row { flex-direction:column; align-items:center; }
   .infra-spec-card { flex: 0 0 auto; width:100%; max-width:460px; }
   .spec-eng-row { flex-direction:column; align-items:center; }
@@ -794,15 +797,29 @@ button:focus:not(:focus-visible) { outline: none; }
   .soc-grid { grid-template-columns:repeat(2,1fr); }
   .nav-links,.nav-gh,.nav-resume { display:none; }
   .nav-btn { display:block; }
+  nav { padding:0 1.25rem; }
+}
+@media(max-width:720px){
+  .infra-grid { grid-template-columns:repeat(2,1fr); }
+  .edu-card { flex-direction:column; gap:.9rem; align-items:flex-start; }
+  .gh-cta { flex-direction:column; align-items:flex-start; gap:.75rem; }
+  .cta-foot { flex-direction:column; gap:.75rem; }
 }
 @media(max-width:540px){
   .arch-overview { grid-template-columns:1fr 1fr; }
   section { padding:72px 1.25rem; }
   .hero-inner { padding:84px 1.25rem 56px; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
+  .hero-code { display:block; max-width:100%; overflow-x:auto; white-space:pre; }
+  .infra-grid { grid-template-columns:1fr; }
   .infra-spec-card { max-width:100%; }
   .spec-eng-row .exp-card { max-width:100%; }
   .soc-grid { grid-template-columns:1fr 1fr; }
+  .edu-card { flex-direction:column; gap:.85rem; align-items:flex-start; }
+  .gh-cta { flex-direction:column; align-items:flex-start; gap:.75rem; }
+  .cta-foot { flex-direction:column; gap:.75rem; }
+  .proj-stats { gap:.4rem; }
+  nav { padding:0 1rem; }
   body { font-size:16px; line-height:1.75; }
   .proj-desc { font-size:.92rem; line-height:1.85; }
   .tl-list li { font-size:.9rem; line-height:1.8; }
@@ -811,9 +828,13 @@ button:focus:not(:focus-visible) { outline: none; }
   .topo-diagram { font-size:.7rem; line-height:1.85; }
 }
 @media(max-width:380px){
+  .arch-overview { grid-template-columns:1fr; }
   .soc-grid { grid-template-columns:1fr; }
   .hero-actions { flex-direction:column; align-items:center; }
   .hero-actions .btn-p, .hero-actions .btn-s { width:100%; justify-content:center; }
+  .hero-stats { grid-template-columns:1fr 1fr; }
+  .proj-stats { flex-direction:column; align-items:flex-start; }
+  nav { padding:0 .85rem; }
 }
 </style>
 </head>
