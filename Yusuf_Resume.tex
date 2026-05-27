@@ -1,0 +1,128 @@
+\documentclass[9pt, letterpaper]{article}
+
+\usepackage[
+  top=0.38in,
+  bottom=0.38in,
+  left=0.55in,
+  right=0.55in
+]{geometry}
+\usepackage{hyperref}
+\usepackage{fontenc}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+
+\definecolor{accent}{RGB}{20, 60, 120}
+\definecolor{subtle}{RGB}{80, 80, 80}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\titleformat{\section}
+  {\vspace{4pt}\bfseries\color{accent}\normalsize}
+  {}{0em}{}
+  [\vspace{1pt}\color{accent}\hrule\vspace{4pt}]
+
+\titlespacing{\section}{0pt}{2pt}{2pt}
+
+\setlist[itemize]{
+  leftmargin=1.2em,
+  itemsep=0.5pt,
+  parsep=0pt,
+  topsep=1.5pt,
+  label=\textbullet
+}
+
+\newcommand{\entry}[4]{
+  \textbf{#1} \hfill \textcolor{subtle}{\small #2} \\
+  \textit{\small\textcolor{subtle}{#3}} \hfill \textcolor{subtle}{\small #4}
+}
+
+\newcommand{\projectentry}[3]{
+  \textbf{#1} \hfill \textcolor{subtle}{\small #2} \\
+  \textit{\small\textcolor{subtle}{#3}}
+}
+
+\begin{document}
+
+%--- HEADER ------------------------------------------------------------------
+\begin{center}
+  {\Large\bfseries\color{accent} Mohammed Yusuf} \\[1pt]
+  {\small Software Engineer III} \\[1pt]
+  {\small
+    \href{tel:+918056660332}{+91 80566 60332}\ \textbar\
+    \href{mailto:mohammedyusuf1799@gmail.com}{mohammedyusuf1799@gmail.com}\ \textbar\
+    \href{https://linkedin.com/in/mohammedyusuf}{LinkedIn}\ \textbar\
+    \href{https://github.com/md-yusuf-f}{GitHub}\ \textbar\
+    \href{https://portfolio.safnetworks.com}{Portfolio}
+  }
+\end{center}
+
+%--- SUMMARY -----------------------------------------------------------------
+\section{Summary}
+
+Backend Software Engineer with 3+ years of experience designing and delivering high-availability,
+distributed Java and Spring Boot systems at enterprise scale. Proven track record in event-driven
+microservices architecture with Apache Kafka, test-driven development with 100\% unit test coverage,
+and CI/CD pipeline automation. Hands-on with relational databases, observability tooling, and
+production infrastructure. Microsoft Azure Security Engineer certified.
+
+%--- TECHNICAL SKILLS --------------------------------------------------------
+\section{Technical Skills}
+
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+  \textbf{Languages}         & Java, Python, SQL \\[1pt]
+  \textbf{Backend}           & Spring Boot, Spring Framework, Spring Data, Spring Security, Hibernate / JPA, \\
+                             & Apache Kafka, REST API, Microservices, Event-Driven Architecture \\[1pt]
+  \textbf{Testing \& Quality} & JUnit, Mockito, TDD, Integration Testing, SonarQube, Code Review \\[1pt]
+  \textbf{DevOps \& CI/CD}   & Docker, Jenkins, GitHub Actions, Maven, Linux, Oracle Cloud (OCI) \\[1pt]
+  \textbf{Databases}         & PostgreSQL, MySQL, SQLite, NoSQL (familiarity) \\[1pt]
+  \textbf{Observability}     & Prometheus, Grafana, Alertmanager, Distributed Tracing, Structured Logging \\[1pt]
+\end{tabularx}
+
+%--- EXPERIENCE --------------------------------------------------------------
+\section{Experience}
+
+\entry{Tata Consultancy Services}{Bengaluru, India}
+      {Software Engineer --- Java Backend}{Aug 2022 -- Present}
+\begin{itemize}
+  \item Designed and developed Java and Spring Boot microservices for mission-critical financial transaction platforms, engineering 40+ REST API endpoints and improving application execution speed by \textbf{35\%}.
+  \item Architected an event-driven, high-throughput pipeline using Apache Kafka, replacing synchronous REST calls and reducing P99 processing latency by \textbf{35\%} while improving system throughput by \textbf{40\%} --- handling peak financial transaction loads with high availability.
+  \item Implemented TDD using JUnit and Mockito, maintaining \textbf{100\% unit test coverage} with SonarQube quality gates enforced on every release --- achieving zero critical production defects across all feature deliveries.
+  \item Built and maintained CI/CD pipelines with Docker and Jenkins, reducing build and deployment cycle times by \textbf{20\%} and enabling continuous delivery across test, integration, and production environments.
+  \item Led migration of legacy .NET and mainframe systems to a scalable, distributed Spring Boot microservices architecture, delivering zero data loss during cutover across multiple production services.
+  \item Conducted regular code reviews, drove continuous refactoring, and mentored \textbf{20+ junior engineers} on Java best practices, accelerating team delivery velocity by 20\%.
+  \item Designed and documented RESTful API specifications, system architecture diagrams, and technical design documents for cross-functional teams, ensuring alignment between business requirements and scalable software solutions.
+  \item Collaborated with product and QA teams in Agile/Scrum sprints --- participating in story refinement, sprint planning, and retrospectives --- consistently delivering features on time with zero critical post-release incidents.
+  \item Optimised database query performance using Hibernate/JPA with PostgreSQL, reducing average query execution time through indexing strategies, lazy loading, and connection pool tuning across high-traffic service endpoints.
+\end{itemize}
+
+%--- PROJECTS ----------------------------------------------------------------
+\section{Projects}
+
+\projectentry{Falak --- Production-Grade Self-Hosted Infrastructure}
+             {2025 -- Present}
+             {Docker, Traefik v3, Prometheus, Grafana, Alertmanager, CrowdSec, Authelia, Ubuntu Server}
+\begin{itemize}
+  \item Designed and operate a high-availability 3-node cluster running 10+ production services on Ubuntu with Docker, Traefik v3 reverse proxy, automated TLS, and full observability via Prometheus, Grafana, and Alertmanager with custom alert rules.
+  \item Implemented structured logging, distributed monitoring, and automated alerting --- achieving RPO 15min / RTO 2min via automated failover and AES-256 encrypted offsite backups.
+  \item Hardened platform security with CrowdSec threat detection, Authelia SSO with TOTP 2FA, and a default-deny firewall --- applying defence-in-depth across all services.
+  \item Built workflow automation using n8n for scheduled tasks, Telegram-based alerting, and service health notifications --- reducing manual operational overhead across the infrastructure.
+\end{itemize}
+
+%--- EDUCATION & CERTIFICATIONS ----------------------------------------------
+\section{Education \& Certifications}
+\textbf{AVS Engineering College} --- B.E.\ Mechanical Engineering, CGPA 7.49 \hfill \textcolor{subtle}{\small Tamil Nadu, 2016--2020} \\[4pt]
+\textbf{Microsoft Certified: Azure Security Engineer Associate} \hfill \textcolor{subtle}{\small 2023--2026} \\
+{\small Microsoft\ \textbar\ Credential ID: C2BED8FD1B1373F}
+
+\end{document}
