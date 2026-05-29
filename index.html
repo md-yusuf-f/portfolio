@@ -42,6 +42,7 @@
    RESET & BASE
    ===================================================== */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-x: hidden; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
@@ -201,9 +202,10 @@ h2.sec-title {
 
 .hero-name {
   font-family: var(--display);
-  font-size: clamp(3rem, 5.8vw, 5rem);
+  font-size: clamp(1.9rem, 8.5vw, 5rem);
   font-weight: 800; line-height: .93;
   letter-spacing: -.04em; color: var(--t1);
+  word-break: break-word; overflow-wrap: break-word;
 }
 .hero-name .accent { color: var(--accent); }
 
@@ -778,6 +780,7 @@ button:focus:not(:focus-visible) { outline: none; }
 @media(max-width:960px){
   .arch-overview { grid-template-columns:repeat(3,1fr); }
   .hero-inner { grid-template-columns:1fr; gap:2.5rem; text-align:center; }
+  .hero-left { min-width: 0; max-width: 100%; }
   .hero-photo { display:none; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
   .hero-actions { justify-content:center; }
@@ -809,8 +812,9 @@ button:focus:not(:focus-visible) { outline: none; }
   .arch-overview { grid-template-columns:1fr 1fr; }
   section { padding:72px 1.25rem; }
   .hero-inner { padding:84px 1.25rem 56px; }
-  .hero-stats { grid-template-columns:repeat(2,1fr); }
-  .hero-code { display:block; max-width:100%; overflow-x:auto; white-space:pre; }
+  .hero-bio { max-width:100%; }
+  .hero-stats { grid-template-columns:repeat(2,1fr); gap:.6rem; }
+  .hero-code { display:block; width:100%; max-width:100%; overflow-x:auto; white-space:pre; }
   .infra-grid { grid-template-columns:1fr; }
   .infra-spec-card { max-width:100%; }
   .spec-eng-row .exp-card { max-width:100%; }
