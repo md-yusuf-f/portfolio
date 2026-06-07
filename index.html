@@ -203,7 +203,7 @@ h2.sec-title {
 .hero-name {
   font-family: var(--display);
   font-size: clamp(1.9rem, 8.5vw, 5rem);
-  font-weight: 800; line-height: .93;
+  font-weight: 800; line-height: 1;
   letter-spacing: -.04em; color: var(--t1);
   word-break: break-word; overflow-wrap: break-word;
 }
@@ -780,11 +780,13 @@ button:focus:not(:focus-visible) { outline: none; }
 @media(max-width:960px){
   .arch-overview { grid-template-columns:repeat(3,1fr); }
   .hero-inner { grid-template-columns:1fr; gap:2.5rem; text-align:center; }
-  .hero-left { min-width: 0; max-width: 100%; }
+  .hero-left { min-width: 0; max-width: 100%; align-items: center; }
   .hero-photo { display:none; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
   .hero-actions { justify-content:center; }
   .avail-badge { margin:0 auto; }
+  .hero-bio { max-width:540px; margin:0 auto; text-align:left; }
+  .hero-code { text-align:left; }
   .about-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-grid { grid-template-columns:1fr; }
   .exp-wide { grid-column:span 1; }
@@ -814,7 +816,7 @@ button:focus:not(:focus-visible) { outline: none; }
   .hero-inner { padding:84px 1.25rem 56px; }
   .hero-bio { max-width:100%; }
   .hero-stats { grid-template-columns:repeat(2,1fr); gap:.6rem; }
-  .hero-code { display:block; width:100%; max-width:100%; overflow-x:auto; white-space:pre; }
+  .hero-code { display:block; width:100%; max-width:100%; overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
   .infra-grid { grid-template-columns:1fr; }
   .infra-spec-card { max-width:100%; }
   .spec-eng-row .exp-card { max-width:100%; }
