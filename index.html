@@ -202,10 +202,9 @@ h2.sec-title {
 
 .hero-name {
   font-family: var(--display);
-  font-size: clamp(1.9rem, 8.5vw, 5rem);
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
   font-weight: 800; line-height: 1;
   letter-spacing: -.04em; color: var(--t1);
-  word-break: break-word; overflow-wrap: break-word;
 }
 .hero-name .accent { color: var(--accent); }
 
@@ -780,13 +779,14 @@ button:focus:not(:focus-visible) { outline: none; }
 @media(max-width:960px){
   .arch-overview { grid-template-columns:repeat(3,1fr); }
   .hero-inner { grid-template-columns:1fr; gap:2.5rem; text-align:center; }
-  .hero-left { min-width: 0; max-width: 100%; align-items: center; }
+  .hero-left { min-width: 0; max-width: 100%; }
   .hero-photo { display:none; }
   .hero-stats { grid-template-columns:repeat(2,1fr); }
   .hero-actions { justify-content:center; }
   .avail-badge { margin:0 auto; }
-  .hero-bio { max-width:540px; margin:0 auto; text-align:left; }
-  .hero-code { text-align:left; }
+  .hero-name { text-align:center; width:100%; }
+  .hero-bio { max-width:560px; margin:0 auto; text-align:left; }
+  .hero-code { display:block; margin:0 auto; text-align:left; width:fit-content; max-width:100%; }
   .about-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-grid { grid-template-columns:1fr; }
   .exp-wide { grid-column:span 1; }
