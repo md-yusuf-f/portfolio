@@ -809,7 +809,7 @@ button:focus:not(:focus-visible) { outline: none; }
       </div>
       <h1 class="hero-name rv d1">Mohammed<br><span class="accent">Yusuf</span></h1>
       <p class="hero-bio rv d1">
-        <strong>Backend Engineer</strong> · 3 years at TCS building Java microservices and Kafka event pipelines at enterprise scale. Self-hosted 3-node production cluster on Oracle Cloud — 22 services, automated failover, full observability.
+        <strong>Backend Engineer</strong> · 3 years at TCS building Java microservices and Kafka event pipelines at enterprise scale. Self-hosted infrastructure across a home server and Oracle Cloud — 20+ Dockerized services, zero-trust networking, full observability.
       </p>
       <div class="hero-code rv d2">
         <span class="kw">// </span>Systems that stay up at 3&thinsp;am &nbsp;&middot;&nbsp; reliability over ceremony
@@ -915,25 +915,25 @@ button:focus:not(:focus-visible) { outline: none; }
     <!-- 03 Falak AI -->
     <div class="proj-card rv d2">
       <div class="proj-content">
-        <div class="proj-num">03 <span class="pb pb-ai">AI · Distributed</span></div>
-        <h3>Falak AI &mdash; Self-Hosted Multi-Provider AI System</h3>
+        <div class="proj-num">03 <span class="pb pb-ai">Agentic AI · Self-Built</span></div>
+        <h3>Falak AI &mdash; Agentic AI Execution System</h3>
         <div class="proj-problem">
-          <strong>Design goal:</strong> Private AI assistant with local-first inference, graceful cloud fallback, and zero vendor lock-in.
+          <strong>Design goal:</strong> A private, self-hosted agent that plans, calls tools, and executes &mdash; minimizing cost while keeping data on my own hardware.
         </div>
-        <p class="proj-desc">Self-hosted AI assistant with local-first inference via Ollama, multi-provider fallback routing, and circuit breaker protection across 5 LLM providers. Persistent semantic memory, concurrent agent orchestration, and zero exposed ports &mdash; accessible via Telegram, REST, and CLI.</p>
+        <p class="proj-desc">Built from scratch: an agentic loop with planning, tool-calling, and ReAct-style execution over 8 tools (shell, file, web search, Notion, n8n). Smart model routing scores query complexity to send simple work to a local LLM (Ollama) and hard problems to the Anthropic API. A 3-tier memory system (SQLite sessions + ChromaDB semantic recall + typed memory files) adds RAG ingestion, auto-memory extraction, and context compaction. Shipped with a streaming Telegram interface, FastAPI REST, and CLI &mdash; guarded by prompt-injection detection, an audit log, allowlist access control, and human-in-the-loop approval for destructive actions.</p>
         <div class="proj-stats">
-          <div class="ps"><span class="psn">5</span><span class="psl">LLM Providers</span></div>
-          <div class="ps"><span class="psn">&lt;2GB</span><span class="psl">RAM Budget</span></div>
-          <div class="ps"><span class="psn">CB</span><span class="psl">Circuit Breaker</span></div>
-          <div class="ps"><span class="psn">0</span><span class="psl">Open Ports</span></div>
+          <div class="ps"><span class="psn">8</span><span class="psl">Agent Tools</span></div>
+          <div class="ps"><span class="psn">3-Tier</span><span class="psl">Memory + RAG</span></div>
+          <div class="ps"><span class="psn">Local+Cloud</span><span class="psl">Model Routing</span></div>
+          <div class="ps"><span class="psn">HITL</span><span class="psl">Approval Gate</span></div>
         </div>
         <div class="proj-tags">
           <span class="tag tpy">Python</span>
           <span class="tag tpy">FastAPI</span>
           <span class="tag tai">Ollama</span>
+          <span class="tag tai">Anthropic API</span>
           <span class="tag tai">ChromaDB</span>
-          <span class="tag tv">Cloudflare Tunnel</span>
-          <span class="tag tn">Circuit Breaker</span>
+          <span class="tag tn">ReAct Agent</span>
           <span class="tag td">Docker</span>
         </div>
         <a href="https://github.com/md-yusuf-f/falak-ai" target="_blank" rel="noopener" class="proj-gh-link">
@@ -1026,7 +1026,7 @@ button:focus:not(:focus-visible) { outline: none; }
     <h2 class="sec-title">Infrastructure &amp;<br>Operational Ownership</h2>
   </div>
   <div class="infra-intro rv d1">
-    <p><strong>3-node production cluster on Oracle Cloud ARM64</strong> — 22 self-hosted services with encrypted offsite backups, automatic DNS failover, SSO-gated access, and full Prometheus observability. Traefik for ingress, CrowdSec for threat intelligence, Cloudflare Tunnels for zero-trust access.</p>
+    <p><strong>20+ Dockerized services across a home server and an Oracle Cloud ARM64 VPS</strong> — encrypted offsite backups, SSO-gated access, and full Prometheus observability. Traefik for ingress, CrowdSec for threat intelligence, Tailscale mesh and Cloudflare Tunnels for zero-trust access.</p>
     <p>Real reliability engineering: capacity planning, incident response, and on-call at 3am — no managed services, no safety net.</p>
   </div>
 
@@ -1048,23 +1048,23 @@ button:focus:not(:focus-visible) { outline: none; }
     <div class="arch-block">
       <div class="arch-block-title">
         <span class="arch-dot" style="background:#e8ff47"></span>
-        <span style="color:#e8ff47">High Availability</span>
+        <span style="color:#e8ff47">Hosts &amp; Topology</span>
       </div>
       <div class="arch-ha-nodes">
         <div class="arch-ha-node">
-          <div class="arch-ha-role" style="color:#3fcf8e">Primary</div>
-          <div class="arch-ha-name">Cloud ARM64</div>
-          <div class="arch-ha-spec">Application + data tier</div>
+          <div class="arch-ha-role" style="color:#3fcf8e">Home Server</div>
+          <div class="arch-ha-name">Primary compute</div>
+          <div class="arch-ha-spec">Bulk of services + data tier</div>
         </div>
         <div class="arch-ha-node">
-          <div class="arch-ha-role" style="color:#f5a623">Standby</div>
-          <div class="arch-ha-name">Hot spare</div>
-          <div class="arch-ha-spec">Incremental sync &middot; RPO = 15m</div>
+          <div class="arch-ha-role" style="color:#f5a623">Oracle Cloud</div>
+          <div class="arch-ha-name">ARM64 VPS</div>
+          <div class="arch-ha-spec">Public edge services</div>
         </div>
         <div class="arch-ha-node">
-          <div class="arch-ha-role" style="color:#94A3B8">Watchdog</div>
-          <div class="arch-ha-name">Health probe</div>
-          <div class="arch-ha-spec">DNS failover &middot; RTO &asymp;2m</div>
+          <div class="arch-ha-role" style="color:#94A3B8">Link</div>
+          <div class="arch-ha-name">Tailscale mesh</div>
+          <div class="arch-ha-spec">Private zero-trust network</div>
         </div>
       </div>
     </div>
@@ -1079,7 +1079,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="arch-item"><strong>Nextcloud</strong>File sync &amp; storage</div>
         <div class="arch-item"><strong>Falak AI</strong>Local LLM assistant</div>
         <div class="arch-item"><strong>n8n</strong>Workflow automation</div>
-        <div class="arch-item"><strong>+ 18 more services</strong></div>
+        <div class="arch-item"><strong>+ 16 more services</strong></div>
       </div>
     </div>
 
@@ -1139,8 +1139,8 @@ button:focus:not(:focus-visible) { outline: none; }
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
       <h3>Cloud &amp; DevOps</h3>
-      <div class="exp-metric" style="background:rgba(232,255,71,.06);color:var(--accent)">22 Docker services · RPO 15m · RTO 2m</div>
-      <p>CI/CD pipelines, container orchestration, and Linux server management on Oracle Cloud ARM64.</p>
+      <div class="exp-metric" style="background:rgba(232,255,71,.06);color:var(--accent)">20+ Docker services · zero-trust mesh · offsite backups</div>
+      <p>CI/CD pipelines, container orchestration, and Linux server management across a home server and Oracle Cloud ARM64.</p>
       <ul class="exp-list">
         <li>Docker and Jenkins CI/CD with staged quality gates and auto-rollback</li>
         <li>Traefik v3 with automated TLS via Let&rsquo;s Encrypt</li>
@@ -1171,13 +1171,13 @@ button:focus:not(:focus-visible) { outline: none; }
         <div class="exp-ico" style="background:rgba(192,132,252,.1);color:#c084fc">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </div>
-        <h3>AI &amp; Async Automation</h3>
-        <div class="exp-metric" style="background:rgba(192,132,252,.08);color:#c084fc">5 LLMs &middot; circuit breaker &middot; &lt;2GB resident</div>
-        <p>Private AI systems with local inference, graceful cloud fallback, and workflow automation.</p>
+        <h3>Agentic AI &amp; Automation</h3>
+        <div class="exp-metric" style="background:rgba(192,132,252,.08);color:#c084fc">8-tool agent &middot; local+cloud routing &middot; RAG memory</div>
+        <p>Private, self-hosted agentic AI with planning, tool-calling, and complexity-based model routing.</p>
         <ul class="exp-list">
-          <li>Local inference via Ollama with multi-provider cloud fallback</li>
-          <li>Circuit breaker protection on AI provider failures with graceful fallback</li>
-          <li>ChromaDB semantic memory and RAG-based context retrieval</li>
+          <li>Agentic loop with planning, tool-calling, and ReAct-style execution</li>
+          <li>Smart model routing &mdash; local Ollama vs Anthropic API by query complexity</li>
+          <li>3-tier memory (SQLite + ChromaDB) with RAG ingestion and auto-extraction</li>
           <li>n8n workflow automation and Telegram bot integrations</li>
         </ul>
       </div>
@@ -1206,7 +1206,7 @@ button:focus:not(:focus-visible) { outline: none; }
       <span class="sec-label">About</span>
       <h2 class="sec-title">Production at work.<br>Production at home.</h2>
       <p>Backend Engineer at <strong>Tata Consultancy Services</strong> — 3 years building Java / Spring Boot microservices at enterprise scale. Kafka event pipelines, legacy migrations, CI/CD quality gates, high test coverage enforced on every release.</p>
-      <p>Outside work: <strong>Falak</strong> — a self-hosted 3-node cluster on Oracle Cloud ARM64, 22 services, automatic DNS failover, encrypted backups, full observability. Real production engineering, no managed services.</p>
+      <p>Outside work: <strong>Falak</strong> — self-hosted infrastructure across a home server and an Oracle Cloud ARM64 VPS, 20+ services, zero-trust networking, encrypted backups, full observability. Real production engineering, no managed services.</p>
       <div class="cert-row rv d1">
         <div class="cert-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1308,7 +1308,7 @@ button:focus:not(:focus-visible) { outline: none; }
         <span class="repo-name">falak-ai</span>
         <svg class="repo-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
       </div>
-      <p class="repo-desc">Self-hosted AI assistant — local-first inference, multi-provider fallback chain with circuit breakers, Telegram/REST/CLI interfaces, ChromaDB semantic memory.</p>
+      <p class="repo-desc">Self-hosted agentic AI — ReAct loop over 8 tools, complexity-based local/cloud model routing, 3-tier memory with RAG, Telegram/REST/CLI with human-in-the-loop approval.</p>
       <div class="repo-meta">
         <span class="repo-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
         <span class="repo-lang">FastAPI · Ollama · Docker</span>
