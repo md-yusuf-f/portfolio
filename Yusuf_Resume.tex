@@ -1,10 +1,10 @@
-\documentclass[9pt, letterpaper]{article}
+\documentclass[9pt, letterpaper]{extarticle}
 
 \usepackage[
-  top=0.38in,
-  bottom=0.38in,
-  left=0.55in,
-  right=0.55in
+  top=0.3in,
+  bottom=0.3in,
+  left=0.5in,
+  right=0.5in
 ]{geometry}
 \usepackage{hyperref}
 \usepackage{fontenc}
@@ -28,9 +28,9 @@
 \setlength{\parskip}{0pt}
 
 \titleformat{\section}
-  {\vspace{4pt}\bfseries\color{accent}\normalsize}
+  {\vspace{1pt}\bfseries\color{accent}\normalsize}
   {}{0em}{}
-  [\vspace{1pt}\color{accent}\hrule\vspace{4pt}]
+  [\vspace{1pt}\color{accent}\hrule\vspace{2pt}]
 
 \titlespacing{\section}{0pt}{2pt}{2pt}
 
@@ -74,7 +74,8 @@ Backend Software Engineer with 3+ years of experience designing and delivering h
 distributed Java and Spring Boot systems at enterprise scale. Proven track record in event-driven
 microservices architecture with Apache Kafka, test-driven development with SonarQube quality
 gates, and CI/CD pipeline automation. Hands-on with relational databases, observability tooling, and
-production infrastructure. Microsoft Azure Security Engineer certified.
+production infrastructure --- and builds self-hosted agentic AI systems with LLMs, RAG, and tool-calling.
+Microsoft Azure Security Engineer certified.
 
 %--- TECHNICAL SKILLS --------------------------------------------------------
 \section{Technical Skills}
@@ -109,14 +110,25 @@ production infrastructure. Microsoft Azure Security Engineer certified.
 %--- PROJECTS ----------------------------------------------------------------
 \section{Projects}
 
-\projectentry{Falak --- Production-Grade Self-Hosted Infrastructure}
+\projectentry{Falak AI --- Agentic AI Execution System (self-built)}
              {2025 -- Present}
-             {Docker, Traefik v3, Prometheus, Grafana, Alertmanager, CrowdSec, Authelia, Ubuntu Server}
+             {Python, Ollama, Anthropic API, ChromaDB, FastAPI}
 \begin{itemize}
-  \item Designed and operate a high-availability 3-node cluster running 22 production services on Ubuntu with Docker, Traefik v3 reverse proxy, automated TLS, and full observability via Prometheus, Grafana, and Alertmanager with custom alert rules.
-  \item Implemented structured logging, distributed monitoring, and automated alerting --- achieving RPO 15min / RTO 2min via automated failover and AES-256 encrypted offsite backups.
-  \item Hardened platform security with CrowdSec threat detection, Authelia SSO with TOTP 2FA, and a default-deny firewall --- applying defence-in-depth across all services.
-  \item Built workflow automation using n8n for scheduled tasks, Telegram-based alerting, and service health notifications --- reducing manual operational overhead across the infrastructure.
+  \item Built a private, self-hosted agentic AI system from scratch: an agentic loop with planning, tool-calling, and ReAct-style execution over 8 tools (shell, file, web search, Notion, n8n).
+  \item Engineered smart model routing --- complexity scoring sends simple queries to a local LLM (Ollama) and complex ones to the Anthropic API --- minimizing cost while keeping data private.
+  \item Implemented a 3-tier memory system (SQLite sessions + ChromaDB semantic recall + typed memory files) with RAG ingestion, auto-memory extraction, and context compaction.
+  \item Shipped a streaming Telegram interface (plus FastAPI REST + CLI) with prompt-injection detection, an audit log, allowlist access control, and human-in-the-loop approval for destructive actions.
+\end{itemize}
+
+\vspace{1pt}
+
+\projectentry{Falak --- Self-Hosted Infrastructure \& Automation}
+             {2025 -- Present}
+             {Docker, Traefik v3, Prometheus, Grafana, Tailscale, n8n}
+\begin{itemize}
+  \item Designed and operate 20+ Dockerized services across a home server and an Oracle Cloud VPS, with Traefik v3 reverse proxy, automated TLS via Let's Encrypt, and full observability (Prometheus, Grafana, Alertmanager with custom alert rules).
+  \item Hardened with CrowdSec threat detection, Authelia SSO + TOTP 2FA, a default-deny firewall, and a Tailscale zero-trust mesh; zero open ports via Cloudflare Tunnel.
+  \item Built n8n automation for AI-driven health monitoring, self-healing backup recovery, and Telegram-based alerting; daily encrypted + weekly AES-256 offsite backups.
 \end{itemize}
 
 %--- EDUCATION & CERTIFICATIONS ----------------------------------------------
